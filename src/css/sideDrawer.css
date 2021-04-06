@@ -1,0 +1,180 @@
+body{
+    position: relative;
+}
+
+.sideNav .nav-link:hover{
+    color: black;
+}
+
+.active{
+    color: white !important;
+}
+
+.sideNav .nav-link{
+    padding: 15px 20px !important;
+    color: black;
+    display: flex !important;
+    align-items: center;
+    /* position: relative; */
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.sideNav .nav-link i, .nav-link img{
+ margin-right: 10px;
+}
+
+.sideNav .nav-link i{
+    font-size: 20px;
+}
+
+.sideNav .nav-link img{
+   width: 20px;
+}
+
+.sideNav .nav-link .number{
+    background-color: rgb(227, 66, 75);
+    color: black;
+    line-height: 18px;
+    border-radius: 100%;
+    padding: 2px 7px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+.fa-bars{
+    font-size: 30px;
+    
+}
+
+.sideNav .active{
+  background:#E3424B;
+  color:white;
+  
+}
+
+.expanded-menu .fa-times{
+    position: absolute;
+    top: 17px;
+    right: 24px;
+    font-size: 25px;
+}
+
+
+
+.expanded-menu{
+    position: absolute;
+    background-color: white;
+    width: 98%;
+    height: 100%;
+    z-index: 999;
+    left: -800px;
+    transition: all .9s ease;
+}
+
+.slide-menu{
+    left: 0;
+}
+
+.hide-menu{
+    left: -2000px;
+}
+
+.fire{
+    background: rgb(255, 221, 115);
+    color: rgb(227, 66, 75);
+    width: 55px;
+    font-size: 30px;
+    border-radius: 12px;
+    text-align: center;
+    padding: 14px 15px;
+}
+
+.free-delivery{
+    color: black;
+    border: red;
+    background: rgb(247, 247, 247);
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,.1);
+    box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);
+    font-size: .875rem;
+    padding: 40px 35px 32px 35px;
+    margin-top: 58px;
+    position: relative;
+}
+
+.free-delivery .fa-times{
+    position: absolute;
+    top: 18px;
+    right: 19px;
+    cursor: pointer;
+    color: rgb(41, 41, 41);
+}
+
+.hideAd{
+    display: none;
+}
+
+.free-delivery h5{
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 30px;
+}
+
+.free-delivery h5 span{
+    color: orange;
+}
+
+.free-delivery p{
+    color: gray;
+    margin-bottom: 35px;
+}
+
+.order-now-btn{
+    background: rgb(34, 49, 66);
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    padding: .375rem .75rem;
+}
+
+.order-now-btn:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.order-now-btn .fas{
+    margin-left: 10px;
+}
+
+/* @media(min-width:980.5px){
+    .slide-menu,.expanded-menu{
+       display: none;
+       left: -2000px;
+    } 
+} */
+
+@media screen and (max-width:980px){
+    .sideNav{
+        display: none;
+    }
+
+    .menu-icon{
+        display: block;
+    }
+
+    .logo{
+        height:10vh !important;
+        margin-top: 1rem;
+         
+      }
+      .logo-img{
+        width:100% !important;
+        height:100% !important;
+        /* margin-left:-1% !important */
+      }
+}

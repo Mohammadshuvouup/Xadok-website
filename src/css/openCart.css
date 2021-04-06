@@ -1,0 +1,39 @@
+
+.cart{
+    width: 52% !important;
+    left: 65% !important;
+}
+
+.cart .modal-dialog{
+    margin: 0;
+    max-width: none;
+
+ 
+}
+
+.cart .modal-content{
+    padding: 40px 32px;
+}
+
+.cart .modal-header{
+    padding: 0;
+}
+.cart .modal-title{
+    padding-left: 0;
+    color: #223142;
+    margin-bottom: 54px;
+}
+
+.cart .modal-body{
+    padding: 0;
+}
+
+.cart .modal-title span{
+    line-height: 32px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.cart .modal-footer{
+    justify-content: center;
+}

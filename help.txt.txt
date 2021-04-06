@@ -1,0 +1,55 @@
+$ npm install formik --save
+$ npm install yup --save
+  // "homepage": "https://xadok.com",
+
+
+https://stackoverflow.com/questions/57778950/how-to-load-more-search-results-when-scrolling-down-the-page-in-react-js
+
+https://dev.to/gaels/an-alternative-to-handle-global-state-in-react-the-url--3753
+
+    Params.shop_name +
+                            "/" +
+                            Params.shop_id +
+                            "/" +
+                            value.procat_id +
+                            "/"+
+                            sub_cat.procat_name_en +
+                            "/" +
+                            sub_cat.procat_id
+
+if there is a no more item in api
+ return status 0
+
+if status =0
+then loadmore= false
+
+
+Store API:
+
+URL: https://ristsys.store/api/shopPage
+Method: Post
+Parameters: shop_id, user_id(optional)
+
+343 : https://ristsys.store/api/GetProductInfo
+
+409 : https://ristsys.store/api/GetShopProducts
+
+439: https://ristsys.store/api/shopPage
+
+449: https://ristsys.store/api/GetBooklets
+
+458: https://ristsys.store/api/shopPage
+
+468: https://ristsys.store/api/GetShopProducts
+
+484: https://ristsys.store/api/GetShopProducts
+
+497: https://ristsys.store/api/GetShopSubCategoryProducts
+
+556: https://ristsys.store/api/GetShopSubCategoryProducts
+
+627: https://ristsys.store/api/GetShopProducts
+
+645 : https://ristsys.store/api/GetShopSubCategoryProducts
+
+662 : https://ristsys.store/api/GetShopSubCategoryProducts

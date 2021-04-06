@@ -1,0 +1,344 @@
+.sideNav .nav-link{
+  display: block !important;
+}
+
+.sideNav .active {
+  background: none !important;
+
+}
+
+.explore-banner img{
+    max-width: 10%;
+  }
+  
+  .explore-sub-title{
+    color: rgb(34, 49, 66);
+    font-weight: bold;
+    margin-top: 15px;
+    margin-left: 20px;
+    font-size: 29px;
+  }
+  .explore-banner{
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+      min-height: 38vh;
+      margin-top: 3.5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .card-group a:hover{
+    text-decoration: none;
+  }
+  .offer-item{
+    border: none !important;
+    margin-bottom: 20px;
+  }
+  
+  .offer-item .card-img-top{
+    border-radius: 10px;
+    max-width: 35vh;
+  }
+  
+  .offer-item:hover .offer-item .card-text{
+    text-decoration: none !important;
+  }
+
+  .similar-item .item-description{
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .item-image{
+      height: 170px;
+      text-align: center;
+  }
+
+  .similar-item .item-image img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      
+  }
+
+  .modal-dialog {
+    max-width: 70% !important;
+  }
+
+  .modal-box h6{
+    color: black;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .modal-box h6 span{
+    font-weight: 400;
+  }
+
+  .modal-box del{
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  .modal-box .current-price{
+    color: rgb(227, 66, 75);
+    font-weight: bold;
+    font-size: 27px;
+  }
+
+  .modal-box .currency{
+    font-size: 14px;
+    color: silver;
+  }
+
+  .modal-box .price-box{
+    position: relative;
+  }
+
+  .modal-box .discount{
+      width: 16%;
+    background: rgb(227, 66, 75);
+    font-size: 12px;
+    text-align: center;
+    color: white;
+    -webkit-clip-path: polygon(100% 0px, 100% 50%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);
+    clip-path: polygon(100% 0px, 100% 50%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);
+    top: 5px;
+    line-height: 22px;
+  }
+
+  .modal-box .note{
+    font-size: 13px;
+    color: silver;
+  }
+
+  .plus-minus-input {
+    align-items: center;
+  
+  
+    }
+
+  .plus-minus-input .input-group-field {
+    text-align: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 1rem;
+    width: 26%;
+    height: 40px;
+    border: none;
+}
+  .plus-minus-input .input-group-field:focus{
+    border: rgb(153, 205, 221);
+    outline:rgb(153, 205, 221) ;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+ 
+  
+    .input-group-button .sign-btn{
+      background: rgb(246, 246, 246);
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      width: 40px;
+      height: 40px;
+      font-size: 14px;
+      text-align: center;
+      border: none;
+ 
+    }
+
+    .input-group-button .plus{
+      border-top-right-radius: 12px;
+    }
+  
+    .input-group-button .minus{
+      border-top-left-radius: 12px;
+    }
+  
+    .modal_addcart_btn{
+      border: 0px;
+      border-radius: 4px;
+      background: rgb(251, 219, 115);
+      padding: 8px;
+      /* width: 45%; */
+      min-width: 140px;
+      margin-right: 8px;
+   
+    }
+
+    .modal-box .favourite-icon{
+      border: none;
+      color: rgb(189, 189, 189);
+      border-radius: 4px;
+      background: rgb(246, 246, 246);
+      padding: 12px;
+      cursor: pointer;
+    }
+
+    .modal-box .carousel-indicators {
+      display: none;
+    }
+
+    .modal-box .carousel-control-next,.modal-box  .carousel-control-prev{
+     background: rgba(128, 128, 128, 0.815);
+      width: 3%;
+      top: 39%;
+      bottom: 36%;
+    }
+  
+   .modal-carousel-row {
+    background: rgb(246, 246, 246);
+    padding: 25px 0 42px 0;
+  }
+  .card-body{
+    margin-top: 10rem !important;
+    padding: 0 !important;
+  }
+  .alternative-item img{
+      border-radius: 10px;
+      flex-shrink: 0;
+      width: 100%;
+      height: 162px;
+    /* width: auto; */
+  }
+  
+  .alternative-item .old_price{
+    margin-top: 10px;
+  }
+  .alternative-item .old_price,.currency-symbol{
+   color: #6c757d;
+  }
+  
+  .alternative-item .priceBox{
+    background-color: white;
+    margin-top: -20px;
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .alternative-item .currency-symbol{
+      font-size: 11px;
+      margin-left: 4px;
+  }
+  
+  .alternative-item .item_price{
+  color:  rgb(227, 66, 75);
+  font-weight: bold;
+  /* margin-top: -20px; */
+  }
+  
+  .card-deck{
+    padding: 22px;
+  }
+  .alternative-item .discount{
+  /* position: absolute;
+  right: 0; */
+  /* top: 17px; */
+  width:30%;
+   background:#E3424B;
+   font-size:12px;
+  text-align: center;
+   height:4vh;
+   color: white;
+   clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);
+  }
+  
+  .alternative-item .item_description{
+      color: rgb(34, 49, 66);
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      background: white;
+      padding: 10px 15px;
+      height:64px;
+  }
+  
+  .addcartBtn{
+      border: 0px;
+      border-bottom-left-radius: inherit;
+      background: rgb(251, 219, 115);
+      border-bottom-right-radius: inherit;
+      padding: .75rem 1.25rem;
+      width: 100%;
+      /* transform: translateY(-20px); */
+  }
+
+  .carousel{
+    width:100%;
+  }
+
+  .accordion .card-body{
+    color: black;
+    margin-top: 0 !important;
+   
+  }
+
+  .side-bar-item .accordion .card-header{
+    background-color: transparent !important;
+    border-bottom:none;
+    padding: 0;
+  }
+
+  .side-bar-item .accordion .card{
+    border: none;
+  }
+
+  .side-bar-item .accordion .card-header .btn{
+    text-align: left;
+    padding: 0;
+  }
+
+  .side-bar-item .accordion .card-header  .btn:focus {
+
+    box-shadow:none;
+}
+
+  .subcategory-nav{
+    padding: 0;
+  }
+
+  .side-bar-item .accordion .card-header .btn-link{
+    color: black;
+  }
+
+  .side-bar-item .accordion .card-header .btn-link:hover{
+    text-decoration: none;
+  }
+
+  .side-nav-catgory-list{
+    list-style-type: none;
+    padding-left: 5px;
+  }
+
+  .side-nav-catgory-list li{
+    color: black;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin: 0;
+  }
+
+  .side-nav-catgory-list li:hover{
+    background-color: #FFDD73;
+  }
+
+  .side-nav-catgory-list li:first-child{
+    margin-top: 30px;
+  }

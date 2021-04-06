@@ -1,0 +1,116 @@
+.section3 .text{
+    margin-left: 28px;
+    max-width: 60%;
+}
+
+.section3 ul{
+    list-style-type: none;
+    padding: 0;
+    margin:0;
+    float: right;
+}
+
+.section3 ul li{
+    margin-bottom: 35px;
+}
+
+.section3 .text h5{
+    font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 23px;
+color: #6654A4;
+}
+
+.section3 .text p{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 26px;
+    color: #656668;
+    margin-top: 10px;
+}
+
+.section3 .right-column{
+    float: right;
+}
+
+.section4-heading h2{
+    font-family: Poppins;
+font-style: normal;
+font-weight: normal;
+font-size: 32px;
+line-height: 48px;
+text-align: center;
+color: #6654A4;
+text-align: center;
+}
+
+.section4-heading .sub-heading{
+    font-family: Poppins;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 26px;
+color: #656668;
+text-align: center;
+}
+
+.footer-container{
+    background: #6654A4;
+    padding: 80px 122px 55px 122px !important;
+}
+
+.footer-container ul{
+    list-style-type: none;
+    font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 30px;
+color: white;
+}
+
+.footer-container ul li a{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 39px;
+    
+    /* or 244% */
+    
+    color: #FFFFFF;
+
+
+}
+
+.footer-container a{
+    text-decoration: none;
+}
+
+.copy-right-footer{
+    margin-top: 80px;
+}
+.copy-right-footer ul{
+    float:right;
+}
+.copy-right-footer ul li{
+   display: inline-block;
+   margin-right: 20px;
+}
+
+.copy-right-footer ul li:first-child{
+    margin-left: 20px;
+}
+.copy-right-footer footer{
+    font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 22px;
+
+color: #FFFFFF;
+}

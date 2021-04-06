@@ -1,0 +1,83 @@
+.welcome{
+    border: none;
+    width: 50px;
+    height: auto;
+    display: block;
+    
+   
+}
+.welcome  .modal-header{
+    outline: none;
+    border: none;
+}
+.welcome .modal-content{
+    width: 48%;
+    float: right;
+    left: 22%;
+}
+
+/* .modal.modal-dialog {
+
+    transform: translateX(97%) !important;
+} */
+
+.welcome .modal-title{
+    border: none;
+    font-size: 30px;
+    padding-left: 25.5px;
+}
+
+.sign_in_form label{
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 2%;
+    text-transform: uppercase;
+}
+
+.sign_in_form input{
+    border: none;
+    border-bottom: 1px solid silver;
+    color: rgb(110, 110, 110);
+}
+
+.sign_in_form input:focus{
+    outline: none;
+}
+
+.sign_in_form .icon{
+    height: 10%;
+    border-radius: 10px;
+  
+}
+
+.container-padding{
+    padding: 0 42px !important;
+}
+
+.error_msg{
+    color: rgb(207, 3, 3);
+    font-size: 14px;
+    margin-top: 7px;
+}
+
+.top-spacing{
+    margin-top: 40px;
+}
+
+.sign_in_form .btn-danger{
+    border: none;
+    border-radius: 7px;
+    background: rgb(227, 66, 75);
+}
+
+.sign_in_form h6{
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sign_in_form .create_account_btn{
+    background-color: gray;
+    border: none;
+    border-radius: 7px;
+}
