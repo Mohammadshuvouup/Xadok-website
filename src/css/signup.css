@@ -14,6 +14,7 @@
     width: 48%;
     float: right;
     left: 22%;
+    height: 95vh;
 }
 
 /* .modal.modal-dialog {
@@ -88,4 +89,19 @@
     cursor: pointer;
     font-weight: 700;
     /* display: inline-block; */
+}
+
+.reg-form-btn{
+    padding: 15px 0;
+    border-radius: 10px;
+    font-size: 22px;
+    background: rgb(227, 66, 75);
+    border: 1px solid rgb(227, 66, 75);;
+    color: #fff;
+    width: 100%;
+    margin-top:20px;
+}
+
+.reg1-contents input{
+    margin-left: 1rem;
 }

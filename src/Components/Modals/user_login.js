@@ -6,8 +6,8 @@ import * as Yup from 'yup';
 import Service from '../../services/service';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
-import Openregister from './user_register1'
-import SignUp from './user_register2'
+import SignUpForm from './user_register2'
+// import SignUp from './user_register2'SignUpForm
 
 const UserLoginModal=(props)=>{
 
@@ -178,7 +178,7 @@ const UserLoginModal=(props)=>{
    
             </Modal>
        
-        <Openregister show_reg={show_reg} setShow_reg={setShow_reg} handleShow_reg={handleShow_reg} handleClose_reg={handleClose_reg}/>
+        <SignUpForm show_reg={show_reg} setShow_reg={setShow_reg} handleShow_reg={handleShow_reg} handleClose_reg={handleClose_reg}/>
       </React.Fragment>
     );
 }
