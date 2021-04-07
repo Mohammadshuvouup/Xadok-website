@@ -130,6 +130,7 @@ const SignUpForm = (props) => {
         setShowBtn(false);
         setShowOtpBtn(true);
         setShowOtp(false);
+        setShowMob(true);
      
     }
 
@@ -144,29 +145,69 @@ const SignUpForm = (props) => {
             <Modal.Body className="reg_body">
              
                     {showForm1 &&
-                        <div className="reg1-contents text-center">
-                        <p> Please enter your mobile number to create an account</p>
-                        
+                        <div className="reg1-contents">
+                        <Container fluid>
                            {showMob &&
-                            <label htmlFor="mobile">Mobile
-                               <input type="tel" name="mobile" id="" onKeyDown={(e) => handleMobile(e)} />
-                            </label>
+                                <Row>
+                                <p> Please enter your mobile number to create an account</p>
+                                    <Col xs={2} sm={2} md={2} className="icon">
+                                    <i class="fas fa-phone" style={{fontSize:"19px"}}></i>
+                                    </Col>
+                                    <Col xs={10} sm={10} md={10} className="d-flex flex-column">
+                                        <label htmlFor="email">Mobile Number</label>
+                                        
+                                        <input
+                                            id="mobile"
+                                            name="mobile"
+                                            type="tel"
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.mobile}
+                                            onKeyDown={(e) => handleMobile(e)} 
+                                        />  
+                                        {formik.touched.mobile && formik.errors.mobile ? (
+                                            <div className="error_msg">{formik.errors.mobile}</div>
+                                    ) : null}
+                                    </Col>
+                                </Row>
                             }
+                            
                             {showOtp &&
-                            <label htmlFor="text">OTP
-                               <input type="text" name="otp" id="" onKeyDown={(e) => handleMobile(e)} />
-                            </label>
+                                <>
+                                <p> Please enter your OTP to verify </p>
+                                <Row className="justify-content-center">
+                                    <Col xs={2} sm={2} md={2} className="icon">
+                                    <i class="fas fa-user-check" style={{fontSize:"19px"}}></i>
+                                   </Col>
+                                
+                                    <Col xs={10} sm={10} md={10} className="d-flex flex-column">
+                                        <label htmlFor="">OTP</label>
+                                        
+                                        <input
+                                            id="otp"
+                                            name="otp"
+                                            type="text"
+                                            value={formik.values.otp}
+                                            onKeyDown={(e) => handleMobile(e)} 
+                                        />  
+                                  
+                                </Col>
+                                <h5 className="text-center mt-4">{message}</h5>
+                                </Row>
+                                </>
                             }
+                                
+                            <Row>
+                                {showOtpBtn &&
+                                    <button className="reg-form-btn mt-5" onClick={getOtp}>GET OTP</button>
+                                }
 
-                            <h5>{message}</h5>
-
-                            {showOtpBtn &&
-                                <button className="reg-form-btn" onClick={getOtp}>GET OTP</button>
-                            }
-
-                            {showBtn &&
-                                <button className="reg-form-btn" onClick={handleContinue}>Continue</button>
-                            }
+                                {showBtn &&
+                                    <button className="reg-form-btn mt-4" onClick={handleContinue}>Continue</button>
+                                }
+                            </Row>
+                         
+                        </Container>
                         
                         </div>
                     }
