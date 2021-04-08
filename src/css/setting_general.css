@@ -1,7 +1,15 @@
-.personal-info .modal-content {
-    
+.personal-info .modal-content , 
+.save-address-modal .modal-content {
     width: 49%;
     margin: 0 auto;
+}
+
+.personal-info .modal-title,
+.save-address-modal .modal-title{
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: #223142;
 }
 .personal-info   .upload-img-box{
     align-items: center;
@@ -45,22 +53,85 @@
 .profile-details{
     margin-top: 50px;
     font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 24px;
-
-
-color: #BDBDBD;
-
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #BDBDBD;
 }
 
-.profile-details-form .update-profile{
+.profile-details-form .update-profile,
+.save-address-modal .confirm-btn{
     background: #223142;
     border-radius: 12px;
     width: 100%;
     margin-top: 48px;
     font-weight: bold;
-font-size: 20px;
-line-height: 32px;
-color: #F7FAFC;
+    font-size: 20px;
+    line-height: 32px;
+    color: #F7FAFC;
+}
+
+.save-address-modal .address{
+    background: #F7F7F7;
+    border-radius: 10px;
+    padding: 17px 20px;
+    position: relative;
+}
+
+.save-address-modal .address h5{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    color: #223142;
+}
+
+.save-address-modal .address p{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #223142;
+    margin-bottom: 3px;
+}
+
+
+
+.save-address-modal .address .edit-icon{
+    top: 11px;
+    right: 20px;
+    border-radius: 6px;
+    background: #BDBDBD;
+    text-align: center;
+    line-height: 25px;
+    position: absolute;
+    padding: 2px 4px 4px 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.save-address-modal .address .remove-icon{
+    border-radius: 6px;
+    background: #BDBDBD;
+    text-align: center;
+    line-height: 25px;
+    position: absolute;
+    padding: 3px 8px;
+    color: white;
+    cursor: pointer;
+    bottom: 11px;
+    right: 20px;
+}
+
+.save-address-modal .add-new-address{
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #223142;
+    margin-top: 80px;
+
+}
+
+.save-address-modal .confirm-btn{
+    margin-top: 10px;
 }
