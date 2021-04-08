@@ -147,9 +147,11 @@ const SignUpForm = (props) => {
                     {showForm1 &&
                         <div className="reg1-contents">
                         <Container fluid>
-                           {showMob &&
+                            {showMob &&
+                                <>
+                                   <p> Please enter your mobile number to create an account</p>
                                 <Row>
-                                <p> Please enter your mobile number to create an account</p>
+                             
                                     <Col xs={2} sm={2} md={2} className="icon">
                                     <i class="fas fa-phone" style={{fontSize:"19px"}}></i>
                                     </Col>
@@ -170,6 +172,7 @@ const SignUpForm = (props) => {
                                     ) : null}
                                     </Col>
                                 </Row>
+                                </>
                             }
                             
                             {showOtp &&

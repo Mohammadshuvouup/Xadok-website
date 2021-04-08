@@ -18,6 +18,7 @@ import {Navbar,Row,Col,Nav,Container,Modal,Badge,Toast,Button,Form,Card,Carousel
 import "../App.css";
 import './../css/setting_general.css'
 import PersonalInfo from './Modals/settings page/personal_info';
+import SavedAddresses from './Modals/settings page/saved_addresses';
 
 export default function Settings() {
   const [num ,setNum] = useState(1);
@@ -152,7 +153,7 @@ export default function Settings() {
 
 
 
-            {/* --------------------Setting Modals--------------------- */}
+          
 
                  {/* <Modal className="set-m-1" style={{border:"none",width:"350px",height:"120vh",
                  marginLeft:"40%",marginTop:"-2%"}} 
@@ -218,54 +219,16 @@ export default function Settings() {
       </Modal>
             */}
             
+              {/* --------------------Setting Modals--------------------- */}
 
 
-           <PersonalInfo shows={shows} handleCloses={handleCloses}/>
+            <PersonalInfo shows={shows} handleCloses={handleCloses} />
+
+            <SavedAddresses shows1={shows1} handleCloses1={handleCloses1}/>
 
 
 
-      <Modal show={shows1} className="set-m-2" style={{border:"none",width:"350px",
-      borderRadius:"15px",marginLeft:"40%"}} onHide={handleCloses1} animation={false} >
-       <Modal.Header style={{border:"none"}} closeButton>
-         <Modal.Title style={{border:"none"}}>Saved addresses</Modal.Title>
-       </Modal.Header>
-       <Modal.Body style={{border:"none"}}>
-        
-         <div className="p-2 mt-2 " style={{background:"#F6F6F6",borderRadius:"10px", justifyContent:"space-between"
-         ,width:"100%",display:"flex",height:"90px"}}>
-           <div><h6 className="pl-2">Home</h6>
-           <p className="pl-2" style={{fontSize:"15px"}}>Sn Francisco CA 94103 <br></br>94103</p>
-           </div>
-           <div style={{display:"flex",flexDirection:"column"}}>
-             <button style={{borderRadius:"5px",width:"30px",height:"32px",border:"none",
-             background:"silver",fontSize:"14px",color:"white"}}><i class="far fa-edit"></i></button>
-             <button style={{marginTop:"10%",borderRadius:"5px",width:"30px",height:"32px",border:"none",
-             background:"silver",fontSize:"12px",color:"white"}}><i class="fas fa-redo"></i></button>
-
-           </div>
-         </div>
-         <div className="p-2 mt-2" style={{height:"90px",background:"#F6F6F6",borderRadius:"10px", justifyContent:"space-between"
-         ,width:"100%",display:"flex"}}>
-           <div><h6 className="pl-2">Office</h6>
-           <p className="pl-2" style={{fontSize:"13px"}}>Sn Francisco CA 94103 <br></br>94103</p>
-           </div>
-           <div style={{display:"flex",flexDirection:"column"}}>
-             <button style={{borderRadius:"5px",width:"30px",height:"32px",border:"none",
-             background:"silver",fontSize:"14px",color:"white"}}><i class="far fa-edit"></i></button>
-             <button style={{marginTop:"10%",borderRadius:"5px",width:"30px",height:"32px",border:"none",
-             background:"silver",fontSize:"12px",color:"white"}}><i class="fas fa-redo"></i></button>
-
-           </div>
-         </div>
-       </Modal.Body>
-       <h6 className="pl-4  pt-4" style={{fontWeight:"bold",marginTop:"12%"}}>+ Add new addresses</h6>
-
-       <Modal.Footer style={{border:"none"}}>
-    <Button style={{background:"#223142",border:"none",borderRadius:"7px"}} size="lg" block>
-    Confirm
-  </Button>
-       </Modal.Footer>
-     </Modal>
+      
 
 
 
