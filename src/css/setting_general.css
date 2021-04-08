@@ -1,0 +1,66 @@
+.personal-info .modal-content {
+    
+    width: 49%;
+    margin: 0 auto;
+}
+.personal-info   .upload-img-box{
+    align-items: center;
+}
+.personal-info .img-icon img{
+    border-radius: 8px;
+
+}
+.personal-info .box{
+    background: #E3424B;
+  
+    
+}
+.personal-info .up{
+    margin-right: 16px;
+    min-width: 116px;
+    min-height: 40px;
+    background:#E3424B;
+    border: none;
+    border-radius: 8px;
+
+
+}
+.personal-info .up:hover{
+    background: #c9323a;
+}
+.personal-info .delete{
+    
+    min-width: 116px;
+    min-height: 40px;
+    background: #BDBDBD;
+    border: none;
+    border-radius: 8px;
+    
+}
+
+.personal-info .delete:hover{
+    background: rgb(26, 25, 25);
+}
+
+.profile-details{
+    margin-top: 50px;
+    font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 24px;
+
+
+color: #BDBDBD;
+
+}
+
+.profile-details-form .update-profile{
+    background: #223142;
+    border-radius: 12px;
+    width: 100%;
+    margin-top: 48px;
+    font-weight: bold;
+font-size: 20px;
+line-height: 32px;
+color: #F7FAFC;
+}
