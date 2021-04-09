@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,useRef } from 'react'
 import '../../../css/setting_general.css'
 import { Navbar, Row, Col, Nav, Container, Modal, Badge, Toast, Button, Form, Card, Carousel, Accordion,Image } from 'react-bootstrap'
 import profile from '../../../xadok/download.png';
@@ -40,6 +40,28 @@ const PersonalInfo = (props) => {
       
     });
 
+    const inputFile = useRef(null);
+    const [image, setImage] = useState('');
+    
+    var data = '';
+    var binaryData = [];
+    binaryData.push(image);
+    window.URL.createObjectURL(new Blob(binaryData, {type: "image/png, image/jpeg"}))
+
+    const upload_file = (e) => {
+   
+        inputFile.current.click();
+        // setImage([...image, window.URL.createObjectURL(e.target.files)]);
+        binaryData.push(e.target.files);
+        setImage(binaryData);
+    
+    };
+
+    // function deleteFile(e) {
+    //     const s = file.filter((item, index) => index !== e);
+    //     setFile(s);
+    //     console.log(s);
+    //   }
 
     return (
         <Modal className="personal-info" 
@@ -53,12 +75,13 @@ const PersonalInfo = (props) => {
                 <Container>
                     <Row className="upload-img-box">
                     <Col className="img-icon" md={3}>
-                       <Image src={profile} alt=""/>
+                       <Image src={(image ? image: profile)} alt=""/>
 
                     </Col>
 
                         <Col claasName="box justify-content-between" md={8}>
-                            <Button className="up">Upload</Button>
+                            <input type='file' id='file' ref={inputFile} onChange={(e)=>upload_file(e)} style={{display:'none'}} accept="image/png, image/jpeg"/>
+                            <Button className="up" onClick={upload_file} >Upload</Button>
                             <Button className="delete">Delete</Button>
 
                     </Col>
@@ -135,7 +158,8 @@ const PersonalInfo = (props) => {
                                     ) : null}
                                     </Col>
                                </Row>
-                                    <Button className="update-profile p-3 top-spacing" type="submit" value="submit">Update Profile</Button>
+                            <Button className="update-profile p-3 top-spacing" type="submit" value="submit">Update Profile</Button>
+                            
                                    
              
                                 </Container>

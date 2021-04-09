@@ -1,8 +1,14 @@
 import React from 'react';
+
 import { Navbar, Row, Col, Nav, Container, Modal, Badge, Toast, Button, Form, Card, Carousel, Accordion, Image } from 'react-bootstrap';
 import '../../../css/setting_general.css';
+import NewAddress from './add_address';
 
 const SavedAddresses = (props) => {
+
+    const [show2, setShow2] = useState(false);
+    const handleShow2= () => setShow2(true);
+    const handleClose2 = () => setShow2(false);
 
     const address_list = [
         {
@@ -16,6 +22,9 @@ const SavedAddresses = (props) => {
             code: '94103'
         }
     ];
+
+   
+
 
     return (
         <Modal show={props.shows1} className="save-address-modal" style={{border:"none"}} onHide={props.handleCloses1} animation={false} >
@@ -42,9 +51,10 @@ const SavedAddresses = (props) => {
                         );
                     })}
 
-                    <p className="add-new-address">+ Add new addresses</p>
+                    <p className="add-new-address" onClick={handleShow2}>+ Add new addresses</p>
                     <Button className="confirm-btn p-3" type="submit" value="submit">Update Profile</Button>
-               
+                  
+               <NewAddress show2={show2} setShow2={setShow2} handleClose2={handleClose2} />
                 </Container>
 
                
