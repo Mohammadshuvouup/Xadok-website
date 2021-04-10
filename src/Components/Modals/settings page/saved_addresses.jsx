@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Navbar, Row, Col, Nav, Container, Modal, Badge, Toast, Button, Form, Card, Carousel, Accordion, Image } from 'react-bootstrap';
 import '../../../css/setting_general.css';
+
 import NewAddress from './add_address';
 
 const SavedAddresses = (props) => {
@@ -23,17 +24,21 @@ const SavedAddresses = (props) => {
         }
     ];
 
-   
+    const handleAddNewAddress = () => {
+        handleShow2();
+        props.handleCloses1();
+   }
 
 
     return (
+        <React.Fragment>
         <Modal show={props.shows1} className="save-address-modal" style={{border:"none"}} onHide={props.handleCloses1} animation={false} >
             <Modal.Header style={{border:"none"}} closeButton>
                 <Modal.Title style={{border:"none"}}>Saved addresses</Modal.Title>
             </Modal.Header>
 
             <Modal.Body style={{ border: "none" }}>
-                <Container>
+                {/* <Container> */}
 
                     {address_list && address_list.length > 0 && address_list.map((value, index) => {
                         return (
@@ -51,16 +56,19 @@ const SavedAddresses = (props) => {
                         );
                     })}
 
-                    <p className="add-new-address" onClick={handleShow2}>+ Add new addresses</p>
+                    <p className="add-new-address" onClick={handleAddNewAddress}>+ Add new addresses</p>
                     <Button className="confirm-btn p-3" type="submit" value="submit">Update Profile</Button>
-                  
-               <NewAddress show2={show2} setShow2={setShow2} handleClose2={handleClose2} />
-                </Container>
+              
+                {/* </Container> */}
 
                
             
             </Modal.Body>
        </Modal>
+        
+            
+        <NewAddress show2={show2} setShow2={setShow2} handleShow2={handleShow2} handleClose2={handleClose2} />
+    </React.Fragment>
     );
 }
 

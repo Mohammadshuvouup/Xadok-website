@@ -40,51 +40,14 @@ export default function Sidebar() {
   const [shopCategory, setShopCategory] = useState("All");
   let filtered_item=[...shops];
 
- const updateLocation={
+ let updateLocation={
    lat:26.1109803,
    lng:50.5156726
  }
-/*  ================== GET USER GEOGRAPHIC LOCATION ================= */
-
-// const getLocation=()=>{
-   
-//   navigator.geolocation.getCurrentPosition(function(position) {
-
-//    const updateLocation={
-//       lat: position.coords.latitude,
-//       lng:position.coords.longitude
-//     };
-
-//     console.log("location", updateLocation);
-//     axios.post('https://ristsys.store/api/homeContentWeb',updateLocation)
-//     .then(response=>{
-//       const category_length = (response.data.data.category).length;
-//       for(let i=0;i<category_length;i++){
-       
-//         setCategoryList([...response.data.data.category]);
-//       }
 
 
-//       const shop_list_length = (response.data.data.shops).length;
-//       for(let i=0;i<shop_list_length;i++){
-       
-//         setShops([...response.data.data.shops]);
-       
-//       }
-//       // console.log("shop response",shops)
-   
-//     })
-//     .catch(error=>{
-//       console.log(error);
-//     });
-   
-//   });
-
-
-// }
   useEffect(()=>{
-
-    // getLocation();
+    
  
     axios.get('https://ristsys.store/api/GetSliders')
     .then(response=>{

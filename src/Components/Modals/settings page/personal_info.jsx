@@ -43,17 +43,17 @@ const PersonalInfo = (props) => {
     const inputFile = useRef(null);
     const [image, setImage] = useState('');
     
-    var data = '';
-    var binaryData = [];
-    binaryData.push(image);
-    window.URL.createObjectURL(new Blob(binaryData, {type: "image/png, image/jpeg"}))
+    // var data = '';
+    // var binaryData = [];
+    // binaryData.push(image);
+    // window.URL.createObjectURL(new Blob(binaryData, {type: "image/png, image/jpeg"}))
 
     const upload_file = (e) => {
    
         inputFile.current.click();
         // setImage([...image, window.URL.createObjectURL(e.target.files)]);
-        binaryData.push(e.target.files);
-        setImage(binaryData);
+        // binaryData.push(e.target.files);
+        // setImage(binaryData);
     
     };
 
@@ -72,7 +72,7 @@ const PersonalInfo = (props) => {
          <p className="pl-4 mt-2" style={{color:"silver",fontSize:"14px"}}>Profile Image</p>
 
             <Modal.Body >
-                <Container>
+                {/* <Container> */}
                     <Row className="upload-img-box">
                     <Col className="img-icon" md={3}>
                        <Image src={(image ? image: profile)} alt=""/>
@@ -95,7 +95,7 @@ const PersonalInfo = (props) => {
                     </Row>
 
                     <form className="sign_up_form profile-details-form" onSubmit={formik.handleSubmit}>
-                                <Container>
+                                {/* <Container> */}
                                     <Row className="mt-4">
                                         <Col xs={2} sm={2} md={2} className="icon">
                              
@@ -162,10 +162,10 @@ const PersonalInfo = (props) => {
                             
                                    
              
-                                </Container>
+                                {/* </Container> */}
                             </form>
                     
-                </Container>
+                {/* </Container> */}
                 
        
 

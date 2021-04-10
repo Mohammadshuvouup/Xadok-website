@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {Navbar,Row,Col,Nav,Badge,Card,Toast,Button,Modal,Accordion} from 'react-bootstrap'
 import delivery from "../topbar/delivery address.svg";
@@ -11,7 +11,28 @@ import OpenCart from './openCart';
 
 import "../App.css";
 
-const TopBar=()=>{
+const TopBar = () => {
+
+
+  let geo_location = {
+    lat: '',
+    lng:''
+  }
+  
+  useEffect(() => {
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+
+      geo_location = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+    
+    })
+
+
+  },[])
+
     const [show, setShow]  = useState(false);
     const [show1,setShow1] = useState(false);
     const [show2,setShow2] = useState(false);

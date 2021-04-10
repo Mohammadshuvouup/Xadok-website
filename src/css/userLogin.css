@@ -14,6 +14,8 @@
     width: 48%;
     float: right;
     left: 22%;
+    padding-bottom: 60px;
+    /* height: 100vh; */
 }
 
 /* .modal.modal-dialog {

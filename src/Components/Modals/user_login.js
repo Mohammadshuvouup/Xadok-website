@@ -1,4 +1,5 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
+import Notifications, {notify} from 'react-notify-toast';
 import {Row,Col,Button,Modal,Container} from 'react-bootstrap'
 import '../../css/userLogin.css';
 import { useFormik } from 'formik';
@@ -94,21 +95,18 @@ const UserLoginModal=(props)=>{
         props.setShow1(false);
     }
      
-        
-       
-        
-    //   },
+
       
     });
        
-  // const openregisterationModal = () => {
- 
-  //   return (
-  //     // <Openregister/>
-  //     <h1>hi</h1>
-  //   );
+  const loggedIn = () =>{
     
-  // }
+    handleClose1();
+    let myColor = { background: '#0E1717', text: "#FFFFFF" };
+    notify.show("Succesfully logged in!", "success", 6000, myColor);
+  
+}
+
 
   const handelClick = () => {
     
@@ -118,7 +116,7 @@ const UserLoginModal=(props)=>{
     }
     return(
       <React.Fragment>
-        
+          <Notifications options={{top: '30px', right:'0'}}/>
             <Modal className="welcome"
               onHide={handleClose1} show={props.show1}>
                 <Modal.Header closeButton>
@@ -127,7 +125,7 @@ const UserLoginModal=(props)=>{
                 <p className="pl-4 ml-3" style={{color:"silver",fontSize:"12px"}}>Sign in to your account to continue</p>
 
                 <form className="sign_in_form" onSubmit={formik.handleSubmit}>
-                    <Container className="container-padding">
+                    <div className="container-padding">
                         <Row>
                             <Col xs={2} sm={2} md={2} className="icon">
                                <i class="fas fa-phone" style={{fontSize:"19px"}}></i>
@@ -168,12 +166,12 @@ const UserLoginModal=(props)=>{
                                 ) : null}
                             </Col>
                         </Row>
-                        <Button className="btn-danger btn-block p-3 top-spacing" type="submit" value="submit">Sign in</Button>
+                        <Button className="btn-danger btn-block p-3 top-spacing" onClick={loggedIn} type="submit" value="submit">Sign in</Button>
                           <h6 onClick={handleShow118} className="mt-4">Forgot password? </h6>
-                    {/* <Link to='/register'> */}
+               
                         <Button className="btn-primary btn-block p-3 mt-4 top-spacing create_account_btn" onClick={handelClick}> Create an account</Button>
-                    {/* </Link> */}
-                    </Container>
+        
+                    </div>
                 </form>
    
             </Modal>

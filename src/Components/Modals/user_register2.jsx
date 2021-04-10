@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Notifications, {notify} from 'react-notify-toast';
 import { Row, Col, Button, Modal, Container } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -134,10 +135,17 @@ const SignUpForm = (props) => {
      
     }
 
+    const registeredAccount = () => {
+        handleModalClose();
+        let myColor = { background: '#0E1717', text: "#FFFFFF" };
+        notify.show("Account created succesfully!", "success", 6000, myColor);
+    }
+
     
     return (
      
-        <>
+        <React.Fragment>
+            <Notifications options={{top: '30px', right:'0'}}/>
             <Modal className="signup_modal" show={props.show_reg} onHide={handleModalClose}>
             <Modal.Header closeButton>
                 <Modal.Title className="reg_model">Create an account!</Modal.Title>
@@ -146,7 +154,7 @@ const SignUpForm = (props) => {
              
                     {showForm1 &&
                         <div className="reg1-contents">
-                        <Container fluid>
+                     
                             {showMob &&
                                 <>
                                    <p> Please enter your mobile number to create an account</p>
@@ -210,7 +218,7 @@ const SignUpForm = (props) => {
                                 }
                             </Row>
                          
-                        </Container>
+                    
                         
                         </div>
                     }
@@ -219,7 +227,7 @@ const SignUpForm = (props) => {
                         <div className="reg2-contents">
                             <p> Please create an account to continue using our service</p>
                             <form className="sign_up_form" onSubmit={formik.handleSubmit}>
-                                <Container className="container-padding">
+                             
                                     <Row>
                                         <Col xs={2} sm={2} md={2} className="icon">
                              
@@ -304,10 +312,9 @@ const SignUpForm = (props) => {
                                     </Row>
                             
                           
-                                    <Button className="btn-danger btn-block p-3 top-spacing" type="submit" value="submit">Create account</Button>
+                                    <Button className="btn-danger btn-block p-3 top-spacing" onClick={registeredAccount} type="submit" value="submit">Create account</Button>
                                     <h6 className="mt-4">Already have an account? <span className="sign_in" onClick={handleSignIn}>Sign in</span></h6>
              
-                                </Container>
                             </form>
                         </div>
                     }
@@ -317,7 +324,7 @@ const SignUpForm = (props) => {
     
             </Modal>
             {/* <UserLoginModal show1={handleShow_login} handleClose1={handleClose_login}/> */}
-        </>
+        </React.Fragment>
         
         
     );

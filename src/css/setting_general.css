@@ -2,6 +2,13 @@
 .save-address-modal .modal-content {
     width: 49%;
     margin: 0 auto;
+    padding: 0 20px 40px 20px;
+    /* height: 96vh; */
+}
+
+.personal-info .modal, 
+.save-address-modal .modal{
+/* overflow-y: hidden; */
 }
 
 .personal-info .modal-title,
@@ -135,3 +142,67 @@
 .save-address-modal .confirm-btn{
     margin-top: 10px;
 }
+.new-addresses label{
+    font-family:sans-serif;
+font-style: normal;
+font-weight: bold;
+font-size: 11px;
+line-height: 16px;
+/* identical to box height, or 145% */
+
+letter-spacing: 1px;
+text-transform: uppercase;
+
+/* #4F4F4F */
+
+color: #223142;
+display: block;
+margin-top: 34px;
+}
+.new-addresses input{
+        /* line-break: strict; */
+        border: none;
+        border-bottom: 1px solid rgba(163, 163, 164, 0.16);
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+    }
+    .new-addresses select{
+        color: #BDBDBD;
+        border: none;
+        border-bottom: 1px solid rgba(163, 163, 164, 0.16);
+        display: block;
+        font-family: sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        width: 100%;
+        background: none;
+        padding: 8px 0;
+        -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    }
+
+    .new-addresses .select-div{
+        position: relative;
+    }
+
+    .new-addresses .select-div::after{
+      
+    content:"❯";
+    position: absolute;
+     top: 11px;
+     right: 0;
+     color:  #A3A3A4;
+    }
+    
+    .new-addresses select:focus{
+        outline: none;
+    }
+
+
+
+
