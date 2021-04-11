@@ -7,6 +7,10 @@
 
 }
 
+.card-image-box{
+  height: 35vh;
+}
+
 .explore-banner img{
     max-width: 10%;
   }

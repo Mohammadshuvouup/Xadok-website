@@ -116,7 +116,7 @@ const UserLoginModal=(props)=>{
     }
     return(
       <React.Fragment>
-          <Notifications options={{top: '30px', right:'0'}}/>
+        <Notifications />
             <Modal className="welcome"
               onHide={handleClose1} show={props.show1}>
                 <Modal.Header closeButton>

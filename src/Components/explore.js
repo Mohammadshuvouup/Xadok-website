@@ -512,8 +512,10 @@ export default function Explore(props) {
         { offer.length===0 ? (<h4 className="ml-5">No Offers</h4>) : offer.map((value,index)=>(
           // return(
             <Link>
-                <Card className="offer-item mr-4" key={index}>
+            <Card className="offer-item mr-4" key={index}>
+              <div className="card-image-box">
                    <Card.Img variant="top" src={`${API_PREFIX_URL}${value.booklet_image}`} />
+                   </div>
                    <Card.Text className="text-muted pl-2 mt-2">{value.booklet_title_en}</Card.Text>
                 </Card>
             </Link>
@@ -528,7 +530,7 @@ export default function Explore(props) {
     let prevPrice=0.00;
     const SimilarProducts=()=>{
       return(
-        <React.Fragment>
+        <Row>
         {similarProd && similarProd.length>0 && similarProd.map((value,index)=>{
 
           if(value.pro_special_price==0.000){
@@ -563,7 +565,7 @@ export default function Explore(props) {
           );
         })}
 
-        </React.Fragment>
+        </Row>
       );
     }
     
@@ -688,11 +690,11 @@ export default function Explore(props) {
          <h2 className="explore-sub-title mb-4">Similar Products</h2>
        </Row>
         
-        <Row>
+        {/* <Row> */}
          
           <SimilarProducts/>
 
-       </Row> 
+       {/* </Row>  */}
        </Col>
       </Row>
  </Container>

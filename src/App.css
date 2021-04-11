@@ -19,7 +19,9 @@ Button:focus{
 .mainnavbartop .form-inline{
   width: 49%;
 }
-
+.toast-notification{
+  transform: translate(75%,36px)  !important;
+}
 .mainnavbartop .input-group{
   width: 100% !important;
 }

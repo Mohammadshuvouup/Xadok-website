@@ -128,3 +128,7 @@
 .reg1-contents .icon .fas{
     line-height: 56px;
 }
+
+.toast-notification{
+    transform: translate(75%,36px)  !important;
+}

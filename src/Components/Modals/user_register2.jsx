@@ -145,7 +145,7 @@ const SignUpForm = (props) => {
     return (
      
         <React.Fragment>
-            <Notifications options={{top: '30px', right:'0'}}/>
+            <Notifications />
             <Modal className="signup_modal" show={props.show_reg} onHide={handleModalClose}>
             <Modal.Header closeButton>
                 <Modal.Title className="reg_model">Create an account!</Modal.Title>

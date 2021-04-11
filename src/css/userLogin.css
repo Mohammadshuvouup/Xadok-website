@@ -84,3 +84,7 @@
     border: none;
     border-radius: 7px;
 }
+
+.toast-notification{
+    transform: translate(75%,36px)  !important;
+}

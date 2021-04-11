@@ -11,8 +11,8 @@ import elec from "../category/electronics.svg";
 import restaurants from "../category/restaurants.svg";
 import sup from "../black/supermarket.svg";
 import taxi from "../category/delivery taxi.svg";
-import Footer from "../Components/footer"
-import SideDrawer from '../Components/SideDrawer/SideDrawer'
+import Footer from "./footer"
+import SideDrawer from './SideDrawer/SideDrawer'
 import TopBar from './topBar'
 import {Link} from 'react-router-dom';
 import {Row,Col,Container,Image,Button,Carousel} from 'react-bootstrap'

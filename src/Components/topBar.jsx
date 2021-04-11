@@ -26,8 +26,11 @@ const TopBar = () => {
       geo_location = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
+
       };
     
+      localStorage.setItem('current_location_lat', JSON.stringify(geo_location.lat));
+      localStorage.setItem('current_location_lng', JSON.stringify(geo_location.lng));
     })
 
 
