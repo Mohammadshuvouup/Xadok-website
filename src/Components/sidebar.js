@@ -19,6 +19,20 @@ import {Row,Col,Container,Image,Button,Carousel} from 'react-bootstrap'
 import "../App.css";
 import axios from 'axios';
 
+import { Trans ,useTranslation} from 'react-i18next';
+
+import { create } from 'jss';
+import rtl from 'jss-rtl';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import {createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import CustomTheme from '../assets/custom_theme';
+// Configure JSS
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+
+const theme = createMuiTheme({
+  direction: 'rtl', // Both here and <body dir="rtl">
+});
+
 export default function Sidebar() {
   // const [num ,setNum] = useState(1);
   // const plus = () => {
@@ -45,8 +59,27 @@ export default function Sidebar() {
    lng:50.5156726
  }
 
+ let language = localStorage.getItem("language");
+  console.log("LANGUAGE SELECTED", language);
 
-  useEffect(()=>{
+  const { t, i18n } = useTranslation();
+
+  // if (language && language.length !== 0) {
+  //   i18n.changeLanguage(language)
+  // }
+
+
+  useEffect(() => {
+    
+    // let language = localStorage.getItem("language");
+
+    // console.log("LANGUAGE SELECTED", language);
+  
+    // if (language && language.length !== 0) {
+    //   i18n.changeLanguage(language)
+    // }
+
+
     
  
     axios.get('https://ristsys.store/api/GetSliders')
@@ -190,7 +223,14 @@ export default function Sidebar() {
     );
   }
 
-    return (
+  
+
+
+  return (
+      
+    <ThemeProvider theme={theme}>
+      <StylesProvider jss={jss}>
+        
   <React.Fragment>
     <Container fluid>
       <Row>
@@ -208,8 +248,11 @@ export default function Sidebar() {
                 className="exp ml-4"
                 style={{ color: "black", fontWeight: "bold", marginTop: "30px" }}
               >
-          
-              Explore Catagories
+                <Trans i18nKey="page-heading">
+                      Explore Catagories
+                </Trans>
+                    <div>{t("page-heading")}</div>
+            
             </h3>
 
             <Col xs={12} sm={12} lg={12}>
@@ -232,6 +275,9 @@ export default function Sidebar() {
 
     <Footer className="mt-4" />
   
-  </React.Fragment>
+        </React.Fragment>
+        
+        </StylesProvider>
+      </ThemeProvider>
  );
 }

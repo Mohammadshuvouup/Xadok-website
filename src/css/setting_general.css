@@ -13,7 +13,8 @@
 
 .personal-info .modal-title,
 .save-address-modal .modal-title,
-.new-address-modal .modal-title{
+.new-address-modal .modal-title,
+.main{
     font-weight: bold;
     font-size: 24px;
     line-height: 32px;
@@ -215,6 +216,29 @@ margin-top: 34px;
         outline: none;
     }
 
+    .main-box .modal-content{
+        width: 400px;
+        margin: 0 auto;
+        
+
+    }
+    .update-btn{
+        background: #223142 !important;
+        border-radius: 12px;
+    }
+    .main-box input{
+        width: 19px;
+        height: 19px;
+        margin-right: 13px;
+    
+    }
 
 
+    input[type=checkbox]:checked{
+        background-color: red;
+      }
 
+      /* .form-check-input:checked{
+        background-color: #a77e2d !important;
+        color: #ffffff !important; 
+      } */

@@ -11,6 +11,8 @@ import OpenCart from './openCart';
 
 import "../App.css";
 
+import { Trans ,useTranslation} from 'react-i18next';
+
 const TopBar = () => {
 
 
@@ -114,7 +116,12 @@ const TopBar = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
+  // const { t, i18n } = useTranslation();
 
+  // const changeLanguage = (language) => {
+  //   i18n.changeLanguage(language)
+    
+  // }
 
     const [num ,setNum] = useState(1);
     const plus = () => {
@@ -128,7 +135,16 @@ const TopBar = () => {
       }
     };
 
-    const cart_qty = (localStorage.getItem('cart_quantity'));
+  const cart_qty = (localStorage.getItem('cart_quantity'));
+  
+  const assign_language = (e) => {
+
+    localStorage.setItem("language", e.target.value);
+
+    // const { t, i18n } = useTranslation();
+    // i18n.changeLanguage(e.target.value)
+    // window.location.reload();
+  }
 
     return(
     <div>
@@ -143,9 +159,9 @@ const TopBar = () => {
                         <img src={deal} style={{height:"3vh"}} className="mr-2"/> Best deals
                     </Nav.Link>
 
-                    <select id="EN" className="mr-4" style={{ background:"#E3424B",color:"white",borderRadius:"8px",border:"3px solid #E3424B "}}>
-                    <option value="EN">EN</option>
-                    <option value="ع">"ع"</option>
+                    <select onChange={(e) => assign_language(e)}  className="mr-4" style={{ background:"#E3424B",color:"white",borderRadius:"8px",border:"3px solid #E3424B "}}>
+                      <option onClick={(e) => assign_language(e)} value="en">EN</option>
+                      <option  onClick={(e) => assign_language(e)} value="ar">"ع"</option>
                     </select>
                 </div>
 

@@ -19,12 +19,21 @@ import SideDrawer from './Components/SideDrawer/SideDrawer'
 import{BrowserRouter as Router,Route,Switch,useRouteMatch } from "react-router-dom"
 // changes 
 
-import React, { Component } from 'react';
+import React from 'react';
+import { create } from 'jss';
+import rtl from 'jss-rtl';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import CustomTheme from './assets/custom_theme';
+// Configure JSS
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 
 const App=()=>{
   
-  return(
+  return (
+    <ThemeProvider theme={CustomTheme}>
+    <StylesProvider jss={jss}>
     <div>
       <Router>
      <Switch>
@@ -50,7 +59,9 @@ const App=()=>{
             </Router>  
 
 
-    </div>
+      </div>
+      </StylesProvider>
+      </ThemeProvider>
   );
 }
 
