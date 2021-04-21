@@ -59,25 +59,20 @@ export default function Sidebar() {
    lng:50.5156726
  }
 
- let language = localStorage.getItem("language");
-  console.log("LANGUAGE SELECTED", language);
+
 
   const { t, i18n } = useTranslation();
-
-  // if (language && language.length !== 0) {
-  //   i18n.changeLanguage(language)
-  // }
 
 
   useEffect(() => {
     
-    // let language = localStorage.getItem("language");
+    let language = localStorage.getItem("language");
 
     // console.log("LANGUAGE SELECTED", language);
   
-    // if (language && language.length !== 0) {
-    //   i18n.changeLanguage(language)
-    // }
+    if (language && language.length !== 0) {
+      i18n.changeLanguage(language)
+    }
 
 
     
@@ -161,7 +156,7 @@ export default function Sidebar() {
     return(
       <>
         {filtered_item && filtered_item.length && filtered_item.map((value,index)=>{
-          console.log("shop",value);
+          // console.log("shop",value);
           const img_url=`https://deliveryxadok.s3.us-east-2.amazonaws.com/${value.shop_img}`;
           const gallery_url=`https://deliveryxadok.s3.us-east-2.amazonaws.com/${value.gallery[0].gallery_image}`;
           return(
@@ -248,10 +243,10 @@ export default function Sidebar() {
                 className="exp ml-4"
                 style={{ color: "black", fontWeight: "bold", marginTop: "30px" }}
               >
-                <Trans i18nKey="page-heading">
+                {/* <Trans i18nKey="page-heading">
                       Explore Catagories
-                </Trans>
-                    <div>{t("page-heading")}</div>
+                </Trans> */}
+                {t("home.explore-categories")}
             
             </h3>
 

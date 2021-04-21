@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React , {useState,useEffect} from "react";
 import {Image,Navbar,Row,Col,Nav} from 'react-bootstrap'
 import {Link} from 'react-router-dom';
 import logo from "../logo/logo.svg";
@@ -8,12 +8,28 @@ import message from "../logo/messages.svg";
 import order from "../logo/orders.svg";
 import fav from "../logo/favourites.svg";
 import '../../css/sideDrawer.css';
+import { Trans, useTranslation } from 'react-i18next';
 
 const SideDrawer = props => {
+  const { t, i18n } = useTranslation();
+   
+
+    useEffect(() => {
+      
+      let language = localStorage.getItem("language");
+  
+      // console.log("LANGUAGE SELECTED", language);
+    
+      if (language && language.length !== 0) {
+        i18n.changeLanguage(language)
+      }
+  
+    },[]);
 
   const [isOpen,setOpen]= useState(false);
   const [isClose,setClose]=useState(false); 
-  const [is_AdClose,setAdClose]=useState(false);
+  const [is_AdClose, setAdClose] = useState(false);
+  
 
   const expandMenu=()=>{
     if(isOpen===false){
@@ -34,6 +50,8 @@ const SideDrawer = props => {
     if(is_AdClose===false){
       setAdClose(true);
     }
+    
+  
   }
 
 
@@ -49,7 +67,7 @@ return(
           <Image src={logo} className="logo-img" style={{ height: "10vh" }} />
       </Navbar.Brand>
       <Nav defaultActiveKey="" className="flex-column pt-4">
-        <Nav.Link href="/"><i class="fas fa-home house-s"></i>Home</Nav.Link>
+        <Nav.Link href="/"><i class="fas fa-home house-s"></i>{t("sideDrawer.Home")}</Nav.Link>
 
         <Link to="/exploring" style={{textDecoration:"none"}}>
         <Nav.Link href="/exploring" eventKey="/exploring"><Image src={explore} />Explore</Nav.Link>

@@ -7,6 +7,15 @@ Button:focus{
   outline: none !important;
 }
 
+ .footer-text{
+
+  font-Size: 14px;
+  font-weight: normal;
+  text-align: left;
+  max-width: 72%;
+  margin-top: 15px;
+}
+
 .left-nav-item{
   display: flex;
   align-items: center;
@@ -704,6 +713,10 @@ justify-content: space-evenly;
 .mainnavbartop .input-group {
   width: 100% !important;
 }
+
+.footer-text{
+  max-width: 100%;
+}
 }
 
 
@@ -716,7 +729,11 @@ justify-content: space-evenly;
 }
 @media screen and (max-width:767px){
 
- 
+ .footer-text{
+    max-width: 100%;
+    text-align: center;
+  }
+  
   
   .category-card{
     height: auto;
@@ -1098,12 +1115,9 @@ justify-content: space-evenly;
     margin: 0 auto;
     padding-left: 0;
  }
- .ll{
 
-    font-Size: 10px !important;
-    text-align: center;
- 
- }
+
+
  .abc{
    font-size:12px;
    text-align: center;

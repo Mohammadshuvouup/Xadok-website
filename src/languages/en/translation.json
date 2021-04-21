@@ -1,4 +1,51 @@
 {
-    "page-heading": "Explore Categories"
- 
+    "home": {
+        "explore-categories": "Explore Categories"
+    },
+
+    "explore":{
+        "offers" : "Offers",
+        "similar-products": "Similar Products",
+        "add-to-cart": "Add to cart"
+    },
+   
+    "footer": {
+        "latest-offers": "Latest Offers",
+        "national-day-set": "National Day Set",
+        "footer-welcome":"Welcome! This website is (quite obviously) a small text generator.Its fairly self explanatory",
+        "weekende-offer":"Weekende Offer",
+        "camping-seasons":"Camping Seasons",
+        "categories":"Categories",
+        "boutique":"Boutique",
+        "electronics":"Electronics",
+        "supermarket":"Supermarket",
+        "delivery-taxi":"Delivery Taxi",
+        "about-us":"About Us",
+        "help":"Help",
+        "custom-service":"Custom Service",
+        "contacts":"Contacts",
+        "Copyright":"Copyright 2020 www.xadok.com All Right Reserved."
+        
+
+    },
+
+    "subCategory":{
+        "categories":"Categories :",
+        "description":"Description",
+        "add-to-cart_note":"physical product for the most accurate information and warnings. For additional information contact the retailer. Actual weight may based on seasonality and other factors.Estimated price is approimate and provided only for refrence"
+
+    },
+    "topBar":{
+        "Best-deals":"Best deals",
+        "Sen-Francisain-California":"Sen Francisain California",
+        "Search-for-anything":"Search for anything... "
+    },
+    "sideDrawer":{
+        "Home":"Home"
+    }
 }
+
+
+
+
+

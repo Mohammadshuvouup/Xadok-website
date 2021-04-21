@@ -1,4 +1,46 @@
 {
-    "page-heading": "Marhaba"
+    "home":{
+        "explore-categories": "مرحبا"
+    },
+ 
+    "explore":{
+        "offers" : "عروض"  ,
+        "similar-products": "منتجات مماثلة",
+        "add-to-cart": "أضف إلى السلة"
+    },
+
+    "footer": {
+        "latest-offers": "أحدث عرض",
+        "national-day-set": "تعيين اليوم الوطني",
+        "footer-welcome":"مرحبا! هذا الموقع (من الواضح تمامًا) هو منشئ نص صغير. إنه شرح ذاتي إلى حد ما",
+        "weekende-offer":"عرض عطلة نهاية الأسبوع",
+        "camping-seasons":"مواسم التخييم",
+        "categories":"فئات",
+        "boutique":"متجر",
+        "electronics":"إلكترونيات",
+        "supermarket":"سوبر ماركت",
+        "delivery-taxi":"تاكسي التوصيل",
+        "about-us":"معلومات عنا",
+        "help":"مساعدة",
+        "custom-service":"خدمة مخصصة",
+        "contacts":"جهات الاتصال",
+        "Copyright":"حقوق الطبع والنشر 2020 www.xadok.com جميع الحقوق محفوظة."
+        
+    },
+    "subCategory":{
+        "categories":": فئات",
+        "description":"وصف",
+        "add-to-cart_note":"منتج مادي للحصول على أدق المعلومات والتحذيرات. للحصول على معلومات إضافية اتصل ببائع التجزئة. قد يعتمد الوزن الفعلي على الموسمية وعوامل أخرى. السعر المقدر مناسب ويتم توفيره فقط للتبريد"
+
+
+    },
+    "topBar":{
+        "Best-deals":"الشريط العلوى",
+        "Sen-Francisain-California":"سين فرانسيسين كاليفورنيا",
+        "Search-for-anything":" ابحث عن أي شيء"
+    },
+    "sideDrawer":{
+        "Home":"منزل، بيت"
+    }
  
 }

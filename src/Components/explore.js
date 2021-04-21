@@ -9,7 +9,8 @@ import axios from 'axios';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
-import {Link,useParams} from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { Trans ,useTranslation} from 'react-i18next';
 
 const API_PREFIX_URL=`https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 
@@ -405,10 +406,19 @@ export default function Explore(props) {
       })
     } 
 
-    const [shops,setShops]=useState([]);
+  const [shops, setShops] = useState([]);
+  
+  const { t, i18n } = useTranslation();
 
     useEffect(()=>{
 
+    let language = localStorage.getItem("language");
+
+    // console.log("LANGUAGE SELECTED", language);
+  
+    if (language && language.length !== 0) {
+      i18n.changeLanguage(language)
+    }
       
     axios.post('https://ristsys.store/api/homeContentWeb',updateLocation)
     .then(response=>{
@@ -557,7 +567,7 @@ export default function Explore(props) {
           </div>
       
           <p className="item-description">{value.pro_name_en}</p>
-          <button className="addcart_btn" onClick={()=>handleAddCart(value)}><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+              <button className="addcart_btn" onClick={() => handleAddCart(value)}><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
         </Col>  
 
   
@@ -680,14 +690,14 @@ export default function Explore(props) {
        </Row>
 
        <Row>
-       <h2 className="explore-sub-title mb-4">{Params.shop_name} Offers</h2>
+       <h2 className="explore-sub-title mb-4">{Params.shop_name}  {t("explore.offers")}</h2>
           <Col xs={12} sm={12} lg={12} >
            <Offers />
           </Col> 
        </Row>
 
        <Row>
-         <h2 className="explore-sub-title mb-4">Similar Products</h2>
+         <h2 className="explore-sub-title mb-4">{t("explore.similar-products")}</h2>
        </Row>
         
         {/* <Row> */}

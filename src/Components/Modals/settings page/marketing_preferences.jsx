@@ -15,10 +15,10 @@ const MarketingPreferences = (props) => {
       
       onHide={props.handleCloses2} animation={false} >
       
-      <Modal.Header   closeButton>
+      <Modal.Header  style={{border: "none"}} closeButton>
 
             <Modal.Title >
-              Marketing perferences
+              Marketing preferences
             </Modal.Title>
 
       </Modal.Header>
@@ -48,6 +48,10 @@ const MarketingPreferences = (props) => {
                   <Form.Check aria-label="option 1" />
                   <span >Discount and offers</span>
             </div>
+
+            <Button className="mt-4 update-btn" size="lg" block>
+                Update perferences
+            </Button>
                               
       </Form>
             
@@ -56,14 +60,14 @@ const MarketingPreferences = (props) => {
 
 
       </Modal.Body>
-
+{/* 
       <Modal.Footer >
 
             <Button className="update-btn" size="lg" block>
                 Update perferences
             </Button>
         
-      </Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
   );
 }

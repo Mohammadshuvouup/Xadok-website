@@ -14,7 +14,7 @@
 .personal-info .modal-title,
 .save-address-modal .modal-title,
 .new-address-modal .modal-title,
-.main{
+.main-box .modal-title{
     font-weight: bold;
     font-size: 24px;
     line-height: 32px;
