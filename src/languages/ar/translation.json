@@ -40,7 +40,21 @@
         "Search-for-anything":" ابحث عن أي شيء"
     },
     "sideDrawer":{
-        "Home":"منزل، بيت"
+        "Home":"منزل، بيت",
+        "Explore":"يستكشف",
+        "Favourite":"المفضل",
+        "Orders":"ترتيب",
+        "Messages":"رسائل",
+        "Settings":"إعدادات",
+        "delivery":"توصيل مجاني لجميع الطلبات أكثر",
+        "offer":"إنه عرض محدود سينتهي قريبًا",
+        "Order":"اطلب الان"
+    },
+    "exploring":{
+        "Best-Deals":"الاستكشاف",
+        "See-All":" اظهار الكل",
+        "New-Arrival":"قادم جديد",
+        "Top-Seller":"أعلى بائع"
     }
  
 }

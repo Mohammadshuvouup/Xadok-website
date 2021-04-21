@@ -70,28 +70,28 @@ return(
         <Nav.Link href="/"><i class="fas fa-home house-s"></i>{t("sideDrawer.Home")}</Nav.Link>
 
         <Link to="/exploring" style={{textDecoration:"none"}}>
-        <Nav.Link href="/exploring" eventKey="/exploring"><Image src={explore} />Explore</Nav.Link>
+          <Nav.Link href="/exploring" eventKey="/exploring"><Image src={explore} />{t("sideDrawer.Explore")}</Nav.Link>
         </Link>
         <Link to="/favorite" style={{textDecoration:"none"}}>
-        <Nav.Link href="/favorite" eventKey="/favourite"><Image style={{ width:"16px"}} src={fav} />Favourite</Nav.Link>
+          <Nav.Link href="/favorite" eventKey="/favourite"><Image style={{ width: "16px" }} src={fav} />{t("sideDrawer.Favourite")}</Nav.Link>
         </Link>
         <Link to="/orders" style={{textDecoration:"none"}}>
-        <Nav.Link href="/orders" eventKey="/orders"><Image src={order} />Orders</Nav.Link>
+          <Nav.Link href="/orders" eventKey="/orders"><Image src={order} />{t("sideDrawer.Orders")}</Nav.Link>
         </Link>
         <Link to="/messages" style={{textDecoration:"none"}}>
-        <Nav.Link href="/messages" eventKey="/messages"><Image src={message} />Messages<span className="number">2</span></Nav.Link>
+          <Nav.Link href="/messages" eventKey="/messages"><Image src={message} />{t("sideDrawer.Messages")}<span className="number">2</span></Nav.Link>
         </Link>
         <Link to="/settings" style={{textDecoration:"none"}}>
-        <Nav.Link href="/settings" eventKey="/settings"><Image src={setting} />Settings</Nav.Link>
+        <Nav.Link href="/settings" eventKey="/settings"><Image src={setting} />{t("sideDrawer.Settings")}</Nav.Link>
         </Link>
       </Nav>
 
       <div className={`free-delivery d-flex flex-column align-items-center ${is_AdClose ? "hideAd" : ""}`}>
         <i className="fas fa-times" onClick={closeAd}></i>
         <i className="fas fa-fire fire"></i>
-        <h5>Free delivery on all orders over <span>$25</span></h5>
-        <p>it is a limited offer that will expire soon</p>
-        <a href="#" className="order-now-btn">Order Now <i class="fas fa-long-arrow-alt-right"></i></a>
+        <h5>{t("sideDrawer.delivery")} <span>$25</span></h5>
+        <p>{t("sideDrawer.offer")}</p>
+        <a href="#" className="order-now-btn">{t("sideDrawer.Order")} <i class="fas fa-long-arrow-alt-right"></i></a>
           <i class="fas fa-times" onClick={closeMenu}></i>
       </div>
   </Col>
@@ -105,12 +105,12 @@ return(
           </Navbar.Brand>
           
           <Nav defaultActiveKey="/" className="flex-column pt-4">
-            <Nav.Link href="/"><i class="fas fa-home house-s"></i>Home</Nav.Link>
-            <Nav.Link href="/exploring" eventKey="/exploring"><Image src={explore} />Explore</Nav.Link>
-            <Nav.Link href="/favorite" eventKey="/favourite"><Image style={{ width:"16px"}} src={fav} />Favourite</Nav.Link>
-            <Nav.Link href="/orders" eventKey="/orders"><Image src={order} />Orders</Nav.Link>
-            <Nav.Link href="/messages" eventKey="/messages"><Image src={message} />Messages<span className="number">2</span></Nav.Link>
-            <Nav.Link href="/settings" eventKey="/settings"><Image src={setting} />Settings</Nav.Link>
+            <Nav.Link href="/"><i class="fas fa-home house-s"></i>{t("sideDrawer.Home")}</Nav.Link>
+            <Nav.Link href="/exploring" eventKey="/exploring"><Image src={explore} />{t("sideDrawer.Explore")}</Nav.Link>
+            <Nav.Link href="/favorite" eventKey="/favourite"><Image style={{ width:"16px"}} src={fav} />{t("sideDrawer.Favourite")}</Nav.Link>
+            <Nav.Link href="/orders" eventKey="/orders"><Image src={order} />{t("sideDrawer.Orders")}</Nav.Link>
+            <Nav.Link href="/messages" eventKey="/messages"><Image src={message} />{t("sideDrawer.Messages")}<span className="number">2</span></Nav.Link>
+        <Nav.Link href="/settings" eventKey="/settings"><Image src={setting} />{t("sideDrawer.Settings")}</Nav.Link>
           </Nav>
   </div>
 

@@ -41,7 +41,22 @@
         "Search-for-anything":"Search for anything... "
     },
     "sideDrawer":{
-        "Home":"Home"
+        "Home":"Home",
+        "Explore":"Explore",
+        "Favourite":"Favourite",
+        "Orders":"Orders",
+        "Messages":"Messages",
+        "Settings":"Settings",
+        "delivery":"Free delivery on all orders over",
+        "offer":"it is a limited offer that will expire soon",
+        "Order":"Order Now"
+    
+    },
+    "exploring":{
+        "Best-Deals":"Best Deals",
+        "See-All":"See All",
+        "New-Arrival":"New Arrival",
+        "Top-Seller":"Top Seller"
     }
 }
 

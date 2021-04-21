@@ -1,14 +1,31 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import Footer from "../Components/footer";
 import img from "../xadok/pexels-photo-102104.jpeg"
 import TopBar from './topBar';
 import SideDrawer from './SideDrawer/SideDrawer';
 // import img from "../xadok/pexels-photo-102104.jpeg"
 import "../css/exploring.css";
-import {Image,Row,Col,Container,Modal,Card,CardDeck,Button,Carousel} from 'react-bootstrap'
+import { Image, Row, Col, Container, Modal, Card, CardDeck, Button, Carousel } from 'react-bootstrap'
+import { Trans, useTranslation } from 'react-i18next';
 import "../App.css";
 
 function MyVerticallyCenteredModal(props) {
+
+  const { t, i18n } = useTranslation();
+   
+
+    useEffect(() => {
+      
+      let language = localStorage.getItem("language");
+  
+      // console.log("LANGUAGE SELECTED", language);
+    
+      if (language && language.length !== 0) {
+        i18n.changeLanguage(language)
+      }
+  
+    },[]);
+
   const [num ,setNum] = useState(1);
   const plus = () => {
     setNum(num + 1);
@@ -98,7 +115,7 @@ function MyVerticallyCenteredModal(props) {
      position:"relative",marginTop:"-17%",
      border:"none",background:"#FFDD73", color:"black"}}>
        <i class="fas fa-shopping-cart"></i> &nbsp;
-        Add to Cart</Button>
+       {t("explore.add-to-cart")}</Button>
      <Button className="button-heart addcartbutton-h" style={{border:"none",color:"#BDBDBD",
      position:"absolute",marginTop:"-4.5%", marginLeft:"2%",
      background:"#F6F6F6"}}>
@@ -129,7 +146,7 @@ function MyVerticallyCenteredModal(props) {
  <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
  Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px",}}>
@@ -144,7 +161,7 @@ function MyVerticallyCenteredModal(props) {
  <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
  Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px",}}>
@@ -159,7 +176,7 @@ function MyVerticallyCenteredModal(props) {
  <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
  Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px"}}>
@@ -174,7 +191,7 @@ function MyVerticallyCenteredModal(props) {
  <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
  Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 </CardDeck>
@@ -193,7 +210,7 @@ function MyVerticallyCenteredModal(props) {
  <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
  Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px",}}>
@@ -208,7 +225,7 @@ function MyVerticallyCenteredModal(props) {
  <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
  Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px",}}>
@@ -223,7 +240,7 @@ function MyVerticallyCenteredModal(props) {
  <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
  Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px",}}>
@@ -238,7 +255,7 @@ function MyVerticallyCenteredModal(props) {
  <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
  Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+  <small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 </CardDeck>
@@ -270,7 +287,7 @@ function MyVerticallyCenteredModal(props) {
 <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
 Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px",}}>
@@ -285,7 +302,7 @@ Milk & Hazelnut</p>
 <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
 Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px",}}>
@@ -300,7 +317,7 @@ Milk & Hazelnut</p>
 <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
 Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px"}}>
@@ -315,7 +332,7 @@ Milk & Hazelnut</p>
 <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
 Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 </CardDeck>
@@ -334,7 +351,7 @@ Milk & Hazelnut</p>
 <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
 Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px",}}>
@@ -349,7 +366,7 @@ Milk & Hazelnut</p>
 <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
 Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px",}}>
@@ -364,7 +381,7 @@ Milk & Hazelnut</p>
 <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
 Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 <Card style={{border:"0",borderTopLeftRadius:"10px",borderTopRightRadius:"10px",}}>
@@ -379,7 +396,7 @@ Milk & Hazelnut</p>
 <p className="pt-2" style={{color:"#223142",fontSize:"11px",fontWeight:"bold",textAlign:"center"}}>Digestive Choco 200g With<br></br>
 Milk & Hazelnut</p>
 <Card.Footer style={{border:"0",borderBottomLeftRadius:"10px",background:"#FBDB73",borderBottomRightRadius:"10px"}}>
-<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;Add to cart</small>
+<small style={{background:"#FBDB73",fontSize:"15px",color:"black"}}><i class="fas fa-shopping-cart"></i> &nbsp; &nbsp;{t("explore.add-to-cart")}</small>
 </Card.Footer>
 </Card>
 </CardDeck>
@@ -392,6 +409,20 @@ Milk & Hazelnut</p>
 }
 
 export default function Exploring() {
+  const { t, i18n } = useTranslation();
+   
+
+    useEffect(() => {
+      
+      let language = localStorage.getItem("language");
+  
+      // console.log("LANGUAGE SELECTED", language);
+    
+      if (language && language.length !== 0) {
+        i18n.changeLanguage(language)
+      }
+  
+    },[]);
   
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -414,7 +445,7 @@ export default function Exploring() {
 
           <Row className="mt-4">
             <Col>
-              <h3 className="pl-4 ml-3">Best Deals<span>See All > </span></h3>
+                <h3 className="pl-4 ml-3">{t("exploring.Best-Deals")}<span>{t("exploring.See-All")} > </span></h3>
             </Col>
           </Row>
 
@@ -430,7 +461,7 @@ export default function Exploring() {
               </div>
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
           
             <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -447,7 +478,7 @@ export default function Exploring() {
               </div>
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
           
             <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -461,7 +492,7 @@ export default function Exploring() {
               </div>
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
           
             <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -475,7 +506,7 @@ export default function Exploring() {
               </div>
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
           
             <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -489,7 +520,7 @@ export default function Exploring() {
               </div>
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
           </Row>
 
@@ -497,7 +528,7 @@ export default function Exploring() {
 
           <Row className="mt-4 peach-bg">
             <Col>
-              <h3 className="pl-4 ml-3">New Arrival<span>See All > </span></h3>
+                <h3 className="pl-4 ml-3">{t("exploring.New-Arrival")}<span>{t("exploring.See-All")} > </span></h3>
             </Col>
           </Row>
 
@@ -514,7 +545,7 @@ export default function Exploring() {
               </div>
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
             
             <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -531,7 +562,7 @@ export default function Exploring() {
               </div>
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
             
             <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -545,7 +576,7 @@ export default function Exploring() {
               </div>
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
             
             <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -559,7 +590,7 @@ export default function Exploring() {
               </div>
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
             
             <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -573,7 +604,7 @@ export default function Exploring() {
               </div>
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
           </Row>
 
@@ -581,7 +612,7 @@ export default function Exploring() {
 
           <Row className="mt-4">
             <Col>
-              <h3 className="pl-4 ml-3">Top Seller<span>See All > </span></h3>
+              <h3 className="pl-4 ml-3">{t("exploring.Top-Seller")}<span>{t("exploring.See-All")} > </span></h3>
             </Col>
           </Row>
 
@@ -597,7 +628,7 @@ export default function Exploring() {
           </div>
       
           <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
         </Col>
       
         <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -614,7 +645,7 @@ export default function Exploring() {
           </div>
       
           <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
         </Col>
       
         <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -628,7 +659,7 @@ export default function Exploring() {
           </div>
       
           <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
         </Col>
       
         <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -642,7 +673,7 @@ export default function Exploring() {
           </div>
       
           <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
         </Col>
       
         <Col sm={5} md={4} lg={3} xl={2} className="item">
@@ -656,7 +687,7 @@ export default function Exploring() {
           </div>
       
           <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
         </Col>
       </Row>
       </Col>
