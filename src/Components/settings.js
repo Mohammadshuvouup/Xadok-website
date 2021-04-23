@@ -22,6 +22,11 @@ import SavedAddresses from './Modals/settings page/saved_addresses';
 import SideDrawer from './SideDrawer/SideDrawer'
 import TopBar from '../Components/topBar'
 import MarketingPreferences from './Modals/settings page/marketing_preferences';
+import PaymentMethods from './Modals/settings page/payment-methods';
+import MyCards from './Modals/settings page/my-cards';
+import Support from './Modals/settings page/support'
+import InviteFriend from './Modals/settings page/invite-a-friend';
+
 
 export default function Settings() {
   const [num ,setNum] = useState(1);
@@ -228,7 +233,11 @@ export default function Settings() {
             <PersonalInfo shows={shows} handleCloses={handleCloses} />
 
             <SavedAddresses shows1={shows1} handleCloses1={handleCloses1} />
-            <MarketingPreferences shows2={shows2} handleCloses2={handleCloses2}/>
+            <MarketingPreferences shows2={shows2} handleCloses2={handleCloses2} />
+            <PaymentMethods shows3={shows3} handleCloses3={handleCloses3} />
+            <MyCards shows4={shows4} handleCloses4={handleCloses4} />
+            <Support shows5={shows5} handleCloses5={handleCloses5} />
+            <InviteFriend shows6={shows6} handleCloses6={handleCloses6}/>
            
 
 
@@ -278,7 +287,7 @@ export default function Settings() {
 
 
 
-     <Modal show={shows3} className="set-m-2 mt-4 " style={{border:"none",width:"340px",
+     {/* <Modal show={shows3} className="set-m-2 mt-4 " style={{border:"none",width:"340px",
       borderRadius:"15px",marginLeft:"40%"}} onHide={handleCloses3} animation={false} >
        <Modal.Header style={{border:"none"}} closeButton>
          <Modal.Title style={{border:"none"}}>Payment methods</Modal.Title>
@@ -298,11 +307,11 @@ export default function Settings() {
     Update perferences
   </Button>
        </Modal.Footer>
-     </Modal>
+     </Modal> */}
         
  {/* ------------------------- cart  2 ------------------------- */}
  
-     <Modal show={shows4} className="set-m-2 mt-4 " style={{border:"none",width:"340px",
+     {/* <Modal show={shows4} className="set-m-2 mt-4 " style={{border:"none",width:"340px",
       borderRadius:"15px",marginLeft:"40%"}} onHide={handleCloses4} animation={false} >
        <Modal.Header style={{border:"none"}} closeButton>
          <Modal.Title style={{border:"none"}}>My cards <span style={{fontSize:"12px"}}>  (1)</span></Modal.Title>
@@ -318,10 +327,10 @@ export default function Settings() {
   </div>
   </div>
        </Modal.Body>
-     </Modal>
+     </Modal> */}
 
 
-     <Modal show={shows5} className="set-m-2 mt-4 " style={{border:"none",width:"340px",
+     {/* <Modal show={shows5} className="set-m-2 mt-4 " style={{border:"none",width:"340px",
       borderRadius:"15px",marginLeft:"40%"}} onHide={handleCloses5} animation={false} >
        <Modal.Header style={{border:"none"}} closeButton>
          <Modal.Title style={{border:"none"}}>Support</Modal.Title>
@@ -382,9 +391,9 @@ export default function Settings() {
        <Modal.Footer style={{border:"none",marginTop:"2%"}}>
    
        </Modal.Footer>
-     </Modal>
+     </Modal> */}
 
-     <Modal show={shows6} className="set-m-2 mt-4 " style={{border:"none",width:"340px",
+     {/* <Modal show={shows6} className="set-m-2 mt-4 " style={{border:"none",width:"340px",
       borderRadius:"15px",marginLeft:"40%"}} onHide={handleCloses6} animation={false} >
        <Modal.Header style={{border:"none"}} closeButton>
          <Modal.Title style={{border:"none"}}>Invite a friend
@@ -436,7 +445,7 @@ export default function Settings() {
        <Modal.Footer style={{border:"none",marginTop:"2%"}}>
    
        </Modal.Footer>
-     </Modal>
+     </Modal> */}
 
      <Modal show={shows7} className="set-m-2 mt-4 " style={{border:"none",width:"300px",
       borderRadius:"15px",marginLeft:"40%"}} onHide={handleCloses7} animation={false} >

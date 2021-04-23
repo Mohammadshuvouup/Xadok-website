@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import {  Modal, Button, Form} from 'react-bootstrap';
-import '../../../css/setting_general.css'
 
-const PaymentMethods = () => {
+
+const PaymentMethods = (props) => {
+    const [show3, setShow3] = useState(false);
+   
+
     return (
-        <Modal show={shows3} className="set-m-2 mt-4 "  onHide={handleCloses3} animation={false} >
+        <Modal show={props.shows3} className="set-m-2 mt-4 "  onHide={props.handleCloses3} animation={false} >
             <Modal.Header  closeButton>
                 <Modal.Title>
                     Payment methods
@@ -35,3 +38,4 @@ const PaymentMethods = () => {
      </Modal>
     );
 }
+export default PaymentMethods;
