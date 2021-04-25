@@ -1,5 +1,6 @@
-import React, { useState ,useRef } from 'react'
+import React, { useState ,useRef,useEffect } from 'react'
 import '../../../css/setting_general.css'
+import { Trans, useTranslation } from 'react-i18next';
 import { Navbar, Row, Col, Nav, Container, Modal, Badge, Toast, Button, Form, Card, Carousel, Accordion,Image } from 'react-bootstrap'
 import profile from '../../../xadok/download.png';
 import { useFormik } from 'formik';
@@ -8,6 +9,20 @@ import * as Yup from 'yup';
 
 
 const PersonalInfo = (props) => {
+    const { t, i18n } = useTranslation();
+   
+
+    useEffect(() => {
+      
+      let language = localStorage.getItem("language");
+  
+      // console.log("LANGUAGE SELECTED", language);
+    
+      if (language && language.length !== 0) {
+        i18n.changeLanguage(language)
+      }
+  
+    },[]); 
 
     
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -67,7 +82,7 @@ const PersonalInfo = (props) => {
         <Modal className="personal-info" 
         show={props.shows} onHide={props.handleCloses}>
         <Modal.Header style={{border:"none"}} closeButton>
-          <Modal.Title style={{border:"none",marginTop:"4%",fontWeight:"bold"}}>Personal information</Modal.Title>
+                <Modal.Title style={{ border: "none", marginTop: "4%", fontWeight: "bold" }}>{t("Personal_information.Personal-information")}</Modal.Title>
         </Modal.Header>
          <p className="pl-4 mt-2" style={{color:"silver",fontSize:"14px"}}>Profile Image</p>
 

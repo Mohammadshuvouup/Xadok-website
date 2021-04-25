@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect}from 'react';
 import '../../../css/setting_general.css';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Trans, useTranslation } from 'react-i18next';
 import { Navbar, Row, Col, Nav, Container, Modal, Badge, Toast, Button, Form, Card, Carousel, Accordion, Image } from 'react-bootstrap';
 
 const NewAddress = (props) => {
+ 
+    const { t, i18n } = useTranslation();
+   
+
+    useEffect(() => {
+      
+      let language = localStorage.getItem("language");
+  
+      // console.log("LANGUAGE SELECTED", language);
+    
+      if (language && language.length !== 0) {
+        i18n.changeLanguage(language)
+      }
+  
+    },[]); 
 
     let current_lat = localStorage.getItem('current_location_lat');
     let current_lng = localStorage.getItem('current_location_lng');
@@ -16,14 +32,14 @@ const NewAddress = (props) => {
     return (
         <Modal show={props.show2} className="new-address-modal" style={{ border: "none" }} onHide={props.handleClose2} animation={false} >
             <Modal.Header style={{ border: "none" }} closeButton>
-                <Modal.Title style={{ border: "none" }}>New addresses</Modal.Title>
+                <Modal.Title style={{ border: "none" }}>{t("add_address.New-addresses")}</Modal.Title>
                
                 
                
                 </Modal.Header>
             <Modal.Body className="new-addresses" style={{ border: "none" }}>
                     {/* <Container className="new-addresses"> */}
-                <p>Edit location on the map</p>
+                <p>{t("add_address.Edit-location-on-the-map")}</p>
                 <Map
                     initialCenter={{ lat: current_lat , lng : current_lng}}
                     google={props.google}
@@ -38,25 +54,25 @@ const NewAddress = (props) => {
                     <form>
                       <label >
                             
-                            TYPE 
+                        {t("add_address.TYPE")}
                              {/* <div className="select-div"> */}
                              <select className="type" name="address_type">
                        
-                              <option value="Flat">Select address type</option>
-                                 <option value="Villa">Villa</option>
-                                 <option value="Showroom">Showroom</option>
-                                <option value="Office">Office</option>
-                                <option value="Office">Compounds</option>
+                            <option value="Flat">{t("add_address.Select-address-type")}</option>
+                            <option value="Villa">{t("add_address.Villa")}</option>
+                            <option value="Showroom">{t("add_address.Showroom")}</option>
+                            <option value="Office"> {t("add_address.Office")}</option>
+                            <option value="Office">{t("add_address.Compounds")}</option>
                                 </select>
                                 {/* </div> */}
                     </label>
 
                     <label>
-                        FULL ADDRESS<input type="text" name="full_address" />
+                        {t("add_address.FULL-ADDRESS")}<input type="text" name="full_address" />
                     </label>
 
                     <label>
-                    ADDRESS NOTE<input type="text" name="full_address" />
+                        {t("add_address.ADDRESS-NOTE")}<input type="text" name="full_address" />
                     </label>
                     
                         {/* <label>   
@@ -72,7 +88,7 @@ const NewAddress = (props) => {
                             FLAT NUMBER<input type="number" name="FLAT" />
                         </label> */}
                         <label>
-                            ADDRESS MARK<input type="number" name="FLAT" />
+                        {t("add_address.ADDRESS-MARK")}<input type="number" name="FLAT" />
                         </label>
                         {/* <label>
                             STATE
@@ -94,7 +110,7 @@ const NewAddress = (props) => {
                   
 
                     
-                    <Button className="save-btn p-3" type="submit" value="submit" onClick={props.handleClose2} >Save</Button>
+                <Button className="save-btn p-3" type="submit" value="submit" onClick={props.handleClose2} > {t("add_address.Save")}</Button>
                   
        
                 {/* </Container> */}

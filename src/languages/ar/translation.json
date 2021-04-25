@@ -55,6 +55,28 @@
         "See-All":" اظهار الكل",
         "New-Arrival":"قادم جديد",
         "Top-Seller":"أعلى بائع"
+    },
+    "add_address":{
+        "New-addresses":"عناوين جديدة",
+        "Edit-location-on-the-map":"تحرير الموقع على الخريطة",
+        "TYPE":"يكتب",
+        "Select-address-type":"حدد نوع العنوان",
+        "Villa":"فيلا",
+        "Showroom":"قاعة عرض",
+        "Office":"مكتب",
+        "Compounds":"مجمعات سكنية",
+        "FULL-ADDRESS":"العنوان الكامل",
+        "ADDRESS-NOTE":"ملاحظة العنوان",
+        "ADDRESS-MARK":"علامة العنوان",
+        "Save":"يحفظ"
+    },
+    "Saved_addresses":{
+        "Saved-addresses":"العناوين المحفوظة",
+        "Add-new-addresses":"+ أضف عناوين جديدة",
+        "Update Profile":"تحديث الملف"
+    },
+    "Personal_information":{
+        "Personal-information":"معلومات شخصية"
     }
  
 }

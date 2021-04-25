@@ -26,7 +26,7 @@ import PaymentMethods from './Modals/settings page/payment-methods';
 import MyCards from './Modals/settings page/my-cards';
 import Support from './Modals/settings page/support'
 import InviteFriend from './Modals/settings page/invite-a-friend';
-
+import Discounts from './Modals/settings page/discounts'
 
 export default function Settings() {
   const [num ,setNum] = useState(1);
@@ -237,7 +237,8 @@ export default function Settings() {
             <PaymentMethods shows3={shows3} handleCloses3={handleCloses3} />
             <MyCards shows4={shows4} handleCloses4={handleCloses4} />
             <Support shows5={shows5} handleCloses5={handleCloses5} />
-            <InviteFriend shows6={shows6} handleCloses6={handleCloses6}/>
+            <InviteFriend shows6={shows6} handleCloses6={handleCloses6} />
+            <Discounts shows7={shows7} handleCloses7={handleCloses7}/>
            
 
 
@@ -447,7 +448,7 @@ export default function Settings() {
        </Modal.Footer>
      </Modal> */}
 
-     <Modal show={shows7} className="set-m-2 mt-4 " style={{border:"none",width:"300px",
+     {/* <Modal show={shows7} className="set-m-2 mt-4 " style={{border:"none",width:"300px",
       borderRadius:"15px",marginLeft:"40%"}} onHide={handleCloses7} animation={false} >
        <Modal.Header style={{border:"none"}} closeButton>
          <Modal.Title style={{border:"none"}}>Discounts</Modal.Title>
@@ -464,7 +465,7 @@ export default function Settings() {
   <p style={{fontSize:"12px",color:"silver",}}>+ valid until 15 Nov 2020</p>
 </div>
        </Modal.Body>
-     </Modal>
+     </Modal> */}
 
 
     <Container fluid>

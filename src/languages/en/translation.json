@@ -57,6 +57,29 @@
         "See-All":"See All",
         "New-Arrival":"New Arrival",
         "Top-Seller":"Top Seller"
+    },
+    "add_address":{
+        "New-addresses":"New addresses",
+        "Edit-location-on-the-map":"Edit location on the map",
+        "TYPE":"TYPE ",
+        "Select-address-type":"Select address type",
+        "Villa":"Villa",
+        "Showroom":"Showroom",
+        "Office":"Office",
+        "Compounds":"Compounds",
+        "FULL-ADDRESS":"FULL ADDRESS",
+        "ADDRESS-NOTE":"ADDRESS NOTE",
+        "ADDRESS-MARK":"ADDRESS MARK",
+        "Save":"Save"
+    
+    },
+    "Saved_addresses":{
+        "Saved-addresses":"Saved addresses",
+        "Add-new-addresses":"+ Add new addresses",
+        "Update Profile":"Update Profile"
+    },
+    "Personal_information":{
+        "Personal-information":"Personal information"
     }
 }
 
