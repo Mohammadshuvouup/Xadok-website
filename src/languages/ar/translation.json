@@ -76,7 +76,12 @@
         "Update Profile":"تحديث الملف"
     },
     "Personal_information":{
-        "Personal-information":"معلومات شخصية"
+        "Personal-information":"معلومات شخصية",
+        "Profile-Image":"صورة الملف الشخصي",
+        "Upload":"تحميل",
+        "Delete":"حذف",
+        "Profile-details":"تفاصيل الملف الشخصي",
+        "Full-Name":"الاسم بالكامل"
     }
  
 }

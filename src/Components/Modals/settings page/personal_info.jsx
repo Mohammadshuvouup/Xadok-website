@@ -84,7 +84,7 @@ const PersonalInfo = (props) => {
         <Modal.Header style={{border:"none"}} closeButton>
                 <Modal.Title style={{ border: "none", marginTop: "4%", fontWeight: "bold" }}>{t("Personal_information.Personal-information")}</Modal.Title>
         </Modal.Header>
-         <p className="pl-4 mt-2" style={{color:"silver",fontSize:"14px"}}>Profile Image</p>
+         <p className="pl-4 mt-2" style={{color:"silver",fontSize:"14px"}}>{t("Personal_information.Profile-Image")}</p>
 
             <Modal.Body >
                 {/* <Container> */}
@@ -96,8 +96,8 @@ const PersonalInfo = (props) => {
 
                         <Col claasName="box justify-content-between" md={8}>
                             <input type='file' id='file' ref={inputFile} onChange={(e)=>upload_file(e)} style={{display:'none'}} accept="image/png, image/jpeg"/>
-                            <Button className="up" onClick={upload_file} >Upload</Button>
-                            <Button className="delete">Delete</Button>
+                        <Button className="up" onClick={upload_file} >{t("Personal_information.Upload")}</Button>
+                        <Button className="delete">{t("Personal_information.Delete")}</Button>
 
                     </Col>
                     </Row>
@@ -105,7 +105,7 @@ const PersonalInfo = (props) => {
                     
                     <Row className="profile-details">
                         <Col md={12}>
-                            <p>Profile details</p>
+                        <p>{t("Personal_information.Profile-details")}</p>
                         </Col>
                     </Row>
 
@@ -117,7 +117,7 @@ const PersonalInfo = (props) => {
                                             <i class="far fa-user" style={{ fontSize: "19px" }}></i>
                                         </Col>
                                         <Col xs={10} sm={10} md={10} className="d-flex flex-column">
-                                            <label htmlFor="email">Full Name</label>
+                            <label htmlFor="email">{t("Personal_information.Full-Name")}</label>
                                 
                                             <input
                                                 id="name"

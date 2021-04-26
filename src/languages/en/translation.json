@@ -79,7 +79,12 @@
         "Update Profile":"Update Profile"
     },
     "Personal_information":{
-        "Personal-information":"Personal information"
+        "Personal-information":"Personal information",
+        "Profile-Image":"Profile Image",
+        "Upload":"Upload",
+        "Delete":"Delete",
+        "Profile-details":"Profile details",
+        "Full-Name":"Full Name"
     }
 }
 

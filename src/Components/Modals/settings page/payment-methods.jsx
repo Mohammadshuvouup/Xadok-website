@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import {  Modal, Button, Form} from 'react-bootstrap';
+import { Modal, Button, Form ,Row, Col} from 'react-bootstrap';
+import '../../../css/setting_paymentmethods.css';
 
 
 const PaymentMethods = (props) => {
@@ -7,7 +8,7 @@ const PaymentMethods = (props) => {
    
 
     return (
-        <Modal show={props.shows3} className="set-m-2 mt-4 "  onHide={props.handleCloses3} animation={false} >
+        <Modal show={props.shows3} className="main-box"  onHide={props.handleCloses3} animation={false} >
             <Modal.Header  closeButton>
                 <Modal.Title>
                     Payment methods
@@ -15,23 +16,27 @@ const PaymentMethods = (props) => {
             </Modal.Header>
             
                 <Modal.Body>
-                        <Button className="p-3 mt-3" style={{background:"#E3424B",border:"none",borderRadius:"7px"}} size="lg" block>
-                            <i class="far fa-address-card"></i>
+                        <Button className="option" size="lg" block>
+                    
+                             <i class="far fa-credit-card"></i>
                         </Button>
                 
-                        <div>
-                            <Button>
-                                <i class="fas fa-money-bill-wave"></i>
-                            </Button>
-                    
-                            <Button>
-                                <i class="fab fa-paypal"></i>
-                            </Button>
-                        </div>
+                <Row>
+                    <Col md={6} className="btn-bg">
+                        
+                    <i class="fas fa-dollar-sign"></i>
+             
+                    </Col>
+                    <Col md={6} className="btn-bg">
+                      
+                        <i class="fab fa-paypal"></i>
+                     
+                    </Col>
+                        </Row>
                 </Modal.Body>
 
                 <Modal.Footer>
-                <Button className="p-3 mt-2" size="lg" block>
+                <Button className="footer" size="lg" block>
                    Update perferences
                </Button>
                 </Modal.Footer>

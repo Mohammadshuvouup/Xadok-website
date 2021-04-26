@@ -16,7 +16,9 @@ import img from "../xadok/pexels-photo-102104.jpeg"
 import {Link} from 'react-router-dom';
 import {Navbar,Row,Col,Nav,Container,Modal,Badge,Toast,Button,Form,Card,Carousel,Accordion} from 'react-bootstrap'
 import "../App.css";
-import './../css/setting_general.css'
+import './../css/setting_general.css';
+import './../css/setting_paymentmethods.css';
+import './../css/setting_mycards.css';
 import PersonalInfo from './Modals/settings page/personal_info';
 import SavedAddresses from './Modals/settings page/saved_addresses';
 import SideDrawer from './SideDrawer/SideDrawer'
