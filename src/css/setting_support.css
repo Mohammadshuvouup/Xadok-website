@@ -1,0 +1,62 @@
+
+.support-box .modal-content{
+    margin: 0 auto;
+    width: 400px;
+    background: #FFFFFF;
+    border-radius: 16px;
+}
+.support-box .support-icon{
+    font-size: 25px;
+    padding: 12px 12px;
+    background: #F7F7F7;
+    border-radius: 10px;
+}
+.support-box .support-gap{
+    padding: 10px 10px;
+}
+
+.support-box .support-text{
+    font-family: sans-serif;
+font-style: normal;
+font-weight: bold;
+font-size: 11px;
+line-height: 16px;
+/* identical to box height, or 145% */
+
+letter-spacing: 1px;
+text-transform: uppercase;
+
+/* #4F4F4F */
+
+color: #223142;
+
+
+}
+.support-box p{
+    font-family: sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+
+/* #BDBDBD */
+
+color: #BDBDBD;
+
+}
+.support-box .titel{
+    font-family: sans-serif;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 32px;
+/* identical to box height, or 133% */
+
+
+/* #4F4F4F */
+
+color: #223142;
+
+}

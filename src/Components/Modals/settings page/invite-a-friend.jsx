@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import {  Modal, Button, Form} from 'react-bootstrap';
+import { Modal, Button, Form,Row,Col } from 'react-bootstrap';
+import '../../../css/setting_invite_a_friend.css';
+import f1 from '../../../xadok/download (1).png';
+import f2 from '../../../xadok/download.png';
 
 
 const InviteFriend = (props) => {
@@ -9,66 +12,54 @@ const InviteFriend = (props) => {
     return (
 
 
-        <Modal show={props.shows6} className="set-m-2 mt-4 " style={{
-            border: "none", width: "340px",
-            borderRadius: "15px", marginLeft: "40%"
-        }} onHide={props.handleCloses6} animation={false} >
-            <Modal.Header style={{ border: "none" }} closeButton>
-                <Modal.Title style={{ border: "none" }}>Invite a friend
-         </Modal.Title>
+        <Modal show={props.shows6} className="friend-list "  onHide={props.handleCloses6} animation={false} >
+            <Modal.Header>
+                            <Modal.Title className="friend-title">
+                                Invite a friend
+                            </Modal.Title>
             </Modal.Header>
-            <Modal.Body style={{ border: "none" }}>
-                <div style={{
-                    display: "flex",
-                    justifyContent: "", marginTop: "1%",
-                    height: "40px"
-                }}>
+            <Modal.Body >
+                <Row >
   
-                    <Button style={{
-                        color: "#223142",
-                        background: "#F6F6F6",
-                        borderRadius: "7px", border: "none"
-                    }}>
+                    <Col className="friend-img" md={2} >
                         <i class="fas fa-plus"></i>
-                    </Button>
-                    <div style={{ marginLeft: "5%", marginTop: "3%" }}>
-                        <h6 style={{ fontSize: "14px" }}>Send a invite to a friend</h6>
-                    </div>
-                </div>
-                <h6 style={{ color: "silver", marginTop: "8%", fontSize: "13px" }}>Invited friends (2)</h6>
-                <div style={{
-                    display: "flex",
-                    justifyContent: "", marginTop: "5%",
-                    height: "45px"
-                }}>
-                    <img src={props.f1} style={{ width: "40px", height: "40px", borderRadius: "6px" }} />
+                    </Col>
+                    <Col md={10}>
+                        <h6>Send a invite to a friend</h6>
+                    </Col>
+                </Row>
 
-                    <div style={{ marginLeft: "5%" }}>
-                        <h6 style={{ fontSize: "12px", fontWeight: "bold" }}>Kate Simpson</h6>
-                        <p style={{ fontSize: "12px", color: "silver" }}>katesimpson@outlook.com</p>
-                    </div>
-                    <Button style={{ color: "silver", background: "none", border: "none", marginLeft: "24%" }}>
-                        <i class="fas fa-chevron-right"></i></Button>
+                <Row>
+                    <h6>Invited friends (2)</h6>
+                </Row> 
+                
+                <Row >
+                    <Col className="friend-img" md={2}>
+                        <img  src={f1} />
+                    </Col>
 
-                </div>
-                <div style={{
-                    display: "flex",
-                    justifyContent: "", marginTop: "5%",
-                    height: "45px"
-                }}>
-                    <img src={props.f2} style={{ width: "40px", height: "40px", borderRadius: "6px" }} />
+                    <Col md={10}>
+                        <h6>Kate Simpson</h6>
+                        <p>katesimpson@outlook.com</p>
+                        {/* <i class="fas fa-chevron-right"></i> */}
+                    </Col>
+                    
+                    </Row>
+                <Row >
+                    <Col className="friend-img" md={2}>
+                        <img  src={f2} />
+                    </Col>
 
-                    <div style={{ marginLeft: "5%" }}>
-                        <h6 style={{ fontSize: "12px", fontWeight: "bold" }}>Andrew Smith</h6>
-                        <p style={{ fontSize: "12px", color: "silver" }}>andrewsmith@outlook.com</p>
-                    </div>
-                    <Button style={{ color: "silver", background: "none", border: "none", marginLeft: "24%" }}>
-                        <i class="fas fa-chevron-right"></i></Button>
+                    <Col md={10}>
+                        <h6>Andrew Smith</h6>
+                        <p>andrewsmith@outlook.com</p>
+                        {/* <i class="fas fa-chevron-right"></i> */}
+                    </Col>
+                </Row>
 
-                </div>
             </Modal.Body>
 
-            <Modal.Footer style={{ border: "none", marginTop: "2%" }}>
+            <Modal.Footer>
    
             </Modal.Footer>
         </Modal>

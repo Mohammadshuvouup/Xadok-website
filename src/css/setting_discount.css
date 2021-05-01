@@ -1,0 +1,61 @@
+.discount-list .modal-content{
+    margin: 0 auto;
+    width: 400px;
+    background: #FFFFFF;
+    border-radius: 16px;
+}
+.discount-list .discount-box{
+    padding: 16px 16px;
+    margin: 10px 10px;
+    background: #F7F7F7;
+    border: 1px dashed #A3A3A4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+.discount-list .title{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: #223142;
+}
+.discount-list .modal-header {
+   
+    border-bottom: 0;
+}
+.discount-list .discount-box h6{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    color: #223142;
+
+}
+.discount-list .discount-box .red{
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    color: #E3424B;
+
+}
+.discount-list .discount-box p{
+    font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 11px;
+line-height: 16px;
+/* identical to box height, or 145% */
+
+text-align: center;
+
+/* #BDBDBD */
+
+color: #BDBDBD;
+}

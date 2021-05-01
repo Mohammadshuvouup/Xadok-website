@@ -1,0 +1,9 @@
+.friend-list .modal-content{
+    margin: 0 auto;
+    width: 400px;
+    background: #FFFFFF;
+    border-radius: 16px;
+}
+.friend-list .friend-img{
+    font-size: 30px;
+}

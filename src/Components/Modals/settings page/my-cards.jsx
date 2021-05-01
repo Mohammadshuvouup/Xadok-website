@@ -9,22 +9,22 @@ const MyCards = (props) => {
     return (
    
 
-        <Modal show={props.shows4} className="main-content " style={{
-            border: "none", width: "340px",
-            borderRadius: "15px", marginLeft: "40%"
-        }} onHide={props.handleCloses4} animation={false} >
+        <Modal show={props.shows4} className="main-content "
+         onHide={props.handleCloses4} animation={false} >
             <Modal.Header style={{ border: "none" }} closeButton>
-                <Modal.Title >My cards <span>  (1)</span></Modal.Title>
+                <Modal.Title className="title">My cards <span>  (1)</span></Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ border: "none" }}>
  
-                <Row className="main-box">
-                    <Col className="box" md={6}
-                        > <i class="fas fa-plus"></i></Col>
-                    <Col className="box" md={6} >
+                <Row className="card-box justify-content-between">
+                       <div className="card d-flex justify-content-center align-items-center">
+                               <i class="fas fa-plus"></i>
+                        </div>
+               
+                    <div className="card" >
                         <img src={master} 
                          />
-                    </Col>
+                    </div>
                 </Row>
                 
             </Modal.Body>

@@ -21,17 +21,17 @@ const PaymentMethods = (props) => {
                              <i class="far fa-credit-card"></i>
                         </Button>
                 
-                <Row>
-                    <Col md={6} className="btn-bg">
+                <Row className="currency-options justify-content-between">
+                    <div className="btn-bg">
                         
                     <i class="fas fa-dollar-sign"></i>
              
-                    </Col>
-                    <Col md={6} className="btn-bg">
+                    </div>
+                    <div className="btn-bg">
                       
                         <i class="fab fa-paypal"></i>
                      
-                    </Col>
+                    </div>
                         </Row>
                 </Modal.Body>
 

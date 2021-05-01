@@ -8,6 +8,23 @@
     border-radius: 12px;
     margin-bottom: 1rem;
 }
+
+.main-box .option:hover{
+background-color: #c02e35 ;
+}
+.main-box .footer:hover{
+    background-color:  #192635;
+}
+.main-box .modal-header {
+    border-bottom: 0;
+}
+.main-box .modal-footer {
+    
+    border-top: 0;
+    padding: 1rem;
+    
+}
+
 .main-box .modal-body{
     text-align: center;
 }
@@ -17,12 +34,14 @@
     cursor: pointer;
     color:#A3A3A4, 100%;
     padding: 16px 60px;
+    width: 47%;
     
 }
+
 .main-box .footer{
     background: #223142;
     border-radius: 12px;
-    margin-top: 48px;
+    margin-top: 7px;
 }
 .btn-bg .fas{
     font-size: 40px;
@@ -30,4 +49,8 @@
 .btn-bg .fab{
     font-size: 40px;
 
+}
+
+.currency-options{
+    padding: 0 1rem;
 }

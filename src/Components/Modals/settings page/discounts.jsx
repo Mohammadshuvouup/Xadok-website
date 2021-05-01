@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import {  Modal, Button, Form} from 'react-bootstrap';
+import { Modal, Button, Form,Row } from 'react-bootstrap';
+import '../../../css/setting_discount.css';
 
 
 const Discounts = (props) => {
@@ -8,24 +9,24 @@ const Discounts = (props) => {
 
     return (
 
-        <Modal show={props.shows7} className="set-m-2 mt-4 " style={{
-            border: "none", width: "300px",
-            borderRadius: "15px", marginLeft: "40%"
-        }} onHide={props.handleCloses7} animation={false} >
-            <Modal.Header style={{ border: "none" }} closeButton>
-                <Modal.Title style={{ border: "none" }}>Discounts</Modal.Title>
+        <Modal show={props.shows7} className="discount-list" onHide={props.handleCloses7} animation={false} >
+            <Modal.Header closeButton>
+                <Modal.Title className="title">Discounts</Modal.Title>
             </Modal.Header>
-            <Modal.Body style={{ border: "none" }}>
- 
+            <Modal.Body>
+                <Row className="discount-box flex-column">
+                        <h6>KL7L24</h6>
+                        <p>+ valid until 30 Sep 2020</p>
+               </Row>
 
-                <div style={{ textAlign: "center", width: "100%", height: "100px", background: "#F6F6F6", borderRadius: "5px", border: "1px dotted silver" }}>
-                    <h6 style={{ fontSize: "15px", marginTop: "10%", fontWeight: "bold" }}>KL7L24</h6>
-                    <p style={{ fontSize: "12px", color: "silver", }}>+ valid until 30 Sep 2020</p>
-                </div>
-                <div style={{ textAlign: "center", width: "100%", marginTop: "7%", height: "100px", background: "#F6F6F6", borderRadius: "5px", border: "1px dotted silver" }}>
-                    <h6 style={{ fontSize: "15px", marginTop: "4%", color: "#E3424B", marginTop: "10%", fontWeight: "bold" }}>AQ1P70</h6>
-                    <p style={{ fontSize: "12px", color: "silver", }}>+ valid until 15 Nov 2020</p>
-                </div>
+                <Row className="discount-box flex-column">
+                        
+                            <h6 className="red">AQ1P70</h6>
+                            <p>+ valid until 15 Nov 2020</p>
+                        
+                </Row>
+               
+
             </Modal.Body>
         </Modal>
     );

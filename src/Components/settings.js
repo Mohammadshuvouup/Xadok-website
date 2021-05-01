@@ -18,7 +18,10 @@ import {Navbar,Row,Col,Nav,Container,Modal,Badge,Toast,Button,Form,Card,Carousel
 import "../App.css";
 import './../css/setting_general.css';
 import './../css/setting_paymentmethods.css';
+import './../css/setting_discount.css';
 import './../css/setting_mycards.css';
+import './../css/setting_support.css';
+import './../css/setting_invite_a_friend.css'
 import PersonalInfo from './Modals/settings page/personal_info';
 import SavedAddresses from './Modals/settings page/saved_addresses';
 import SideDrawer from './SideDrawer/SideDrawer'
