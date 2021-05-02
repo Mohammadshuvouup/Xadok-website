@@ -15,6 +15,23 @@ import { Trans ,useTranslation} from 'react-i18next';
 const API_PREFIX_URL=`https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 
 function MyVerticallyCenteredModal(props) {
+  
+  const { t, i18n } = useTranslation();
+   
+
+  useEffect(() => {
+    
+    let language = localStorage.getItem("language");
+
+    // console.log("LANGUAGE SELECTED", language);
+  
+    if (language && language.length !== 0) {
+      i18n.changeLanguage(language)
+    }
+
+  },[]);
+
+
  
   const [num ,setNum] = useState(1);
   const plus = () => {
@@ -34,14 +51,14 @@ function MyVerticallyCenteredModal(props) {
               </Col>
               <Col md={6}>
                 <Modal.Title>{props.cartData.product}</Modal.Title> 
-                <h6 className="mt-5">Category : <span>{props.cartData.category}</span></h6>
-                <h6 className="mt-2">Description : <span>{props.cartData.pro_desc_en}</span></h6>
+                <h6 className="mt-5">{t("subCategory.categories")} : <span>{props.cartData.category}</span></h6>
+                <h6 className="mt-2">{t("subCategory.description")} <span>{props.cartData.pro_desc_en}</span></h6>
                 <del className="text-muted mt-3">{props.cartData.pro_price}</del>
                 <div className="d-flex align-items-center price-box mt-1">
                   <span className="current-price mr-1">{props.cartData.pro_price}</span><span className="currency">BHD</span>
                   <div className="discount">25%</div>
                 </div>
-                <p className="note mt-2">physical product for the most accurate information and warnings. For additional information contact the retailer. Actual weight may based on seasonality and other factors.Estimated price is approimate and provided only for refrence</p>
+                <p className="note mt-2">{t("subCategory.add-to-cart_note")}</p>
                
                <div className="cart-options d-flex align-items-center">
                   <div className="input-group plus-minus-input">
@@ -58,7 +75,7 @@ function MyVerticallyCenteredModal(props) {
                     </div>
                   </div>
 
-                  <button className="modal_addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+                  <button className="modal_addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}   </button>
                   <i class="fas fa-heart favourite-icon"></i>
                 </div>
 
@@ -68,7 +85,7 @@ function MyVerticallyCenteredModal(props) {
           </Modal.Header>
           <Modal.Body>
             {/* =============== Alternnative Products ========== */}
-            <h2>Alternative Products</h2>
+            <h2>{t("subCategory.Alternative-Products")}</h2>
             <Row className="modal-carousel-row">
             <Carousel classname="alternative-items-carousel">
                 { !props.slide_product
@@ -91,7 +108,7 @@ function MyVerticallyCenteredModal(props) {
                               </div>
                               <p className="item_description">{val.pro_name}</p>
                               </Card.Text>
-                              <button className="addcartBtn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+                              <button className="addcartBtn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
                             </Card.Body>
                           </Card>
                         )
@@ -105,7 +122,7 @@ function MyVerticallyCenteredModal(props) {
             </Row>
 
             {/* =============== Similar Products ========== */}
-            <h2 className="mt-3">Similar Products</h2>
+            <h2 className="mt-3">{t("explore.similar-products")}</h2>
             <Row className="modal-carousel-row">
             <Carousel classname="alternative-items-carousel">
                 {props.cartSimilar_Product && props.cartSimilar_Product.length>0 && props.cartSimilar_Product.map((value,index)=>{
@@ -127,7 +144,7 @@ function MyVerticallyCenteredModal(props) {
                               </div>
                               <p className="item_description">{val.pro_name}</p>
                               </Card.Text>
-                              <button className="addcartBtn"><i className="fas fa-shopping-cart mr-2"></i> Add to cart  </button>
+                              <button className="addcartBtn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
                             </Card.Body>
                           </Card>
               

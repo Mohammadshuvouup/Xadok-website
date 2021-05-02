@@ -16,39 +16,19 @@ import { Trans, useTranslation } from 'react-i18next';
 
 const TopBar = () => {
 
-  const [en_selected, setEn_selected] = useState(false);
-  const [ar_selected, setAr_selected] = useState(false);
-
   let geo_location = {
     lat: '',
     lng:''
   }
-  {}
+  
+  const [selected_val, setSelect_val] = useState('');
+
   useEffect(() => {
     
 
     const selected_langauge = localStorage.getItem("language");
+    setSelect_val(selected_langauge);
 
-    console.log("selected lang", selected_langauge)
-
-    if (selected_langauge == "en") {
-      setEn_selected(true);
-      setAr_selected(false);
-      console.log("===1===")
-    }
-    else if (selected_langauge == "ar") {
-      setAr_selected(true);
-      setEn_selected(false);
-      console.log("===2===")
-      console.log(en_selected);
-      console.log(ar_selected);
-    }
-    else {
-      setEn_selected(true);
-      setAr_selected(false);
-      console.log("===3===")
-    }
-    
     navigator.geolocation.getCurrentPosition(function (position) {
 
       geo_location = {
@@ -62,7 +42,7 @@ const TopBar = () => {
     })
 
 
-  },[en_selected , ar_selected])
+  },[])
 
     const [show, setShow]  = useState(false);
     const [show1,setShow1] = useState(false);
@@ -161,20 +141,16 @@ const TopBar = () => {
       }
     };
 
-                    {/* <div> */}
+              
   const cart_qty = (localStorage.getItem('cart_quantity'));
-
-  // const { t, i18n } = useTranslation();
   
   const assign_language = (e) => {
 
     localStorage.setItem("language", e.target.value);
 
-  
+    setSelect_val(e.target.value);
     i18n.changeLanguage(e.target.value)
-    // window.location.reload();
-
-    console.log("targeted value", e.target.value);
+    window.location.reload();
   }
 
     return(
@@ -190,9 +166,9 @@ const TopBar = () => {
                         <img src={deal} style={{height:"3vh"}} className="mr-2"/> {t("topBar.Best-deals")}
                     </Nav.Link>
 
-                    <select onChange={(e) => assign_language(e)}  className="mr-4" style={{ background:"#E3424B",color:"white",borderRadius:"8px",border:"3px solid #E3424B "}}>
-                    <option value="en" {...en_selected ? "selected" : ""}>EN</option>
-                      <option  value="ar" {...ar_selected ? "selected" : ""}>"ع"</option>
+                    <select value={`${selected_val || ''}`} onChange={(e) => assign_language(e)}  className="mr-4" style={{ background:"#E3424B",color:"white",borderRadius:"8px",border:"3px solid #E3424B "}}>
+                      <option value="en">EN</option>
+                      <option  value="ar">"ع"</option>
                     </select>
                 </div>
 

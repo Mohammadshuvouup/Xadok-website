@@ -91,9 +91,7 @@ function MyVerticallyCenteredModal(props) {
  </div>
   </div>
 
-  <p style={{fontSize:"13px",color:"silver"}}>physical product for the most accurate information and warnings. For additional
-     information contact the retailer. Actual weight may based on 
-     seasonality and other factors.Estimated price is approimate and provided only for refrence</p>
+  <p style={{fontSize:"13px",color:"silver"}}>{t("subCategory.add-to-cart_note")}</p>
       <div className="button-add" style={{display:"flex",marginLeft:"30%",marginTop:"2%"}}>
        <Button style={{background:"#F6F6F6",
        color:"black",
@@ -128,7 +126,7 @@ function MyVerticallyCenteredModal(props) {
       </Modal.Header > 
       <Modal.Body style={{border:"none"}}>
         <div  style={{background:"#F6F6F6",marginTop:"-2%"}}>
-      <h4 className="pl-4 pt-2 ml-2">Alternative Products</h4>
+      <h4 className="pl-4 pt-2 ml-2">{t("subCategory.Alternative-Products")}</h4>
 
       <Carousel  style={{background:"#F6F6F6"}}>
   <Carousel.Item style={{background:"#F6F6F6"}}>
@@ -267,7 +265,7 @@ function MyVerticallyCenteredModal(props) {
 {/* =========================New ArivaL----------------------- */}
 
       </Modal.Body>
-        <h4 className="pl-4">Similar Products</h4>
+        <h4 className="pl-4">{t("explore.similar-products")}</h4>
       <Modal.Footer style={{border:"none"}}>
     
 

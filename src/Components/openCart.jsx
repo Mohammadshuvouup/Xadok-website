@@ -1,11 +1,26 @@
-import React,{useState} from 'react';
-import {Button,Modal} from 'react-bootstrap';
+import React,{useState,useEffect} from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { Trans ,useTranslation} from 'react-i18next';
 import '../css/openCart.css';
 
 
 const API_PREFIX_URL=`https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 
-const OpenCart=(props)=>{
+const OpenCart = (props) => {
+  const { t, i18n } = useTranslation();
+   
+
+  useEffect(() => {
+    
+    let language = localStorage.getItem("language");
+
+    // console.log("LANGUAGE SELECTED", language);
+  
+    if (language && language.length !== 0) {
+      i18n.changeLanguage(language)
+    }
+
+  },[]);
 
 //     const [show, setShow]  = useState(false);
 //     const [show1,setShow1] = useState(false);
@@ -109,20 +124,20 @@ const OpenCart=(props)=>{
             <Modal className="cart  art" style={{border:"none"}} show={props.show2} 
 onHide={props.handleClose2}>
         <Modal.Header style={{border:"none"}} closeButton>
-          <Modal.Title style={{border:"none",fontWeight:"bold"}}>My cart 
+            <Modal.Title style={{ border: "none", fontWeight: "bold" }}>{t("openCart.My-cart")}
           <span>&nbsp;{`(${cart_qty} items)`}
             </span></Modal.Title>
         </Modal.Header>
         <Modal.Body style={{border:"none"}}>
        
-        <h6 style={{color:"red",fontSize:"12px",fontWeight:"bold"}}>DELIVER TO </h6>
+            <h6 style={{ color: "red", fontSize: "12px", fontWeight: "bold" }}>{t("openCart.DELIVER-TO")} </h6>
         <h6 className="post" onClick={props.handleShow} 
          style={{position:"relative",
          cursor: "pointer"}} >300 Post Street San Francisco, CA 
         <span style={{color:"silver",position:"absolute",right:"0",marginTop:"-2%"}}><i class="fas fa-chevron-right"></i></span></h6>
 
         <h3 className="mt-3 pt-4" 
-         style={{paddingLeft:"21px",fontWeight:"bold"}}>Items</h3>
+         style={{paddingLeft:"21px",fontWeight:"bold"}}>{t("openCart.Items")}</h3>
         
               {cart_items && cart_items.length>0 && cart_items.map((value,index)=>{
               
@@ -168,7 +183,7 @@ onHide={props.handleClose2}>
 })}
       <h6   className="item-add"style={{fontSize:"20px",position:"absolute",
       left:"5%",paddingTop:"70px",color:"black"}
-      }>+ Add more items</h6>
+      }>{t("openCart.Add-more-items")}</h6>
         
         <div  className="item-addb"
 style={{
@@ -179,7 +194,7 @@ border:"none",color:"black",color:"#223142",
 background:"#F6F6F6",fontSize:"29px"}}>
   <i class="fas fa-motorcycle"></i></Button>
 <div style={{marginLeft:"10%"}}>
-              <h6 style={{fontWeight:"bold"}}>Delivery</h6>
+              <h6 style={{fontWeight:"bold"}}>{t("openCart.Delivery")}</h6>
               <h6>$0</h6>
             </div>
           </div>
@@ -193,7 +208,7 @@ border:"none",color:"#223142",
 background:"#F6F6F6",fontSize:"29px"}}>
  <i class="far fa-credit-card"></i></Button>
 <div style={{paddingLeft:"40px"}}>
-              <h6 style={{fontWeight:"bold",}}>Promo code</h6>
+              <h6 style={{fontWeight:"bold",}}>{t("openCart.Promo-Code")}</h6>
               <h6>HXFWO</h6>
             </div>
             <Button className="item-plus" 
@@ -207,7 +222,7 @@ background:"#F6F6F6",fontSize:"29px"}}>
            <Button className="p-3"  onClick={props.handleShow4} 
             style={{
            background:"#223142",border:"none",borderRadius:"7px",width:"91%"}} size="lg" block>
-    Checkout <span style={{fontSize:"12px"}}>(0.835 BHD)</span>
+    {t("openCart.Checkout")} <span style={{fontSize:"12px"}}>(0.835 BHD)</span>
   </Button>
         </Modal.Footer>
       </Modal>

@@ -32,6 +32,7 @@
     "subCategory":{
         "categories":"Categories :",
         "description":"Description",
+        "Alternative-Products":"Alternative Products",
         "add-to-cart_note":"physical product for the most accurate information and warnings. For additional information contact the retailer. Actual weight may based on seasonality and other factors.Estimated price is approimate and provided only for refrence"
 
     },
@@ -113,7 +114,7 @@
         "Welcome":"Welcome!",
         "Sign":"Sign in to your account to continue",
         "Password":"Password",
-        "Forgot-passw ord":"Forgot password",
+        "Forgot-password":"Forgot password",
        "Sign-in":"Sign in",
        "Create-an-account":"Create an account"
     },
@@ -126,6 +127,17 @@
         "OTP":"OTP",
         "GET-OTP":"GET OTP",
         "Continue":"Continue"
+    },
+    "openCart":{
+        "My-cart":"My cart ",
+        "DELIVER-TO":"DELIVER TO",
+        "Items":"Items",
+        "Add-more-items":"+ Add more items",
+        "Delivery":"Delivery",
+        "Promo-Code":"Promo-Code",
+        "Checkout":"Checkout"
+
+    
     }
 
 }

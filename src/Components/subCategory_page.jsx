@@ -113,7 +113,7 @@ function MyVerticallyCenteredModal(props) {
           </Modal.Header>
           <Modal.Body>
             {/* =============== Alternnative Products ========== */}
-            <h2>Alternative Products</h2>
+        <h2>{t("subCategory.Alternative-Products")}</h2>
             <Row className="modal-carousel-row">
             <Carousel classname="alternative-items-carousel">
                 { !props.slide_product
@@ -150,7 +150,7 @@ function MyVerticallyCenteredModal(props) {
             </Row>
 
             {/* =============== Similar Products ========== */}
-            <h2 className="mt-3">Similar Products</h2>
+            <h2 className="mt-3">{t("explore.similar-products")}</h2>
             <Row className="modal-carousel-row">
             <Carousel classname="alternative-items-carousel">
                 {props.cartSimilar_Product && props.cartSimilar_Product.length>0 && props.cartSimilar_Product.map((value,index)=>{
