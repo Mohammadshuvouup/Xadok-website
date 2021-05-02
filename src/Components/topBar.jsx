@@ -161,6 +161,7 @@ const TopBar = () => {
       }
     };
 
+                    {/* <div> */}
   const cart_qty = (localStorage.getItem('cart_quantity'));
 
   // const { t, i18n } = useTranslation();
@@ -205,8 +206,8 @@ const TopBar = () => {
             </form>
 
             <div id="fle" className="ml-2">
-            <i className="fas fa-user top-bar-icon ml-3" onClick={handleShow1}></i> 
-            <i className="fas fa-shopping-cart top-bar-icon ml-2" onClick={handleShow2}><span className="product_amount">{cart_qty>0 ? cart_qty: 0}</span></i>
+              <i className="fas fa-user top-bar-icon ml-3" onClick={handleShow1}></i> 
+              <i className="fas fa-shopping-cart top-bar-icon ml-2" onClick={handleShow2}><span className="product_amount">{cart_qty>0 ? cart_qty: 0}</span></i>
             </div> 
 
             </Nav>

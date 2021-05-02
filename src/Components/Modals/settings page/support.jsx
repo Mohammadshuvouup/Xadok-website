@@ -18,8 +18,8 @@ const Support = (props) => {
                         <i class="far fa-envelope"></i>
                     </Col>
                     <Col  className="support-text" md={10}>
-                        <h6 className="support">LIVE CHAT</h6>
-                        <p className="support">Waiting time:<b>5 min</b></p>
+                        <h6>LIVE CHAT</h6>
+                        <p>Waiting time:<b>5 min</b></p>
                         {/* <i class="fas fa-chevron-right"></i> */}
                     </Col>
                     
@@ -35,7 +35,7 @@ const Support = (props) => {
                     
                     <Col className="support-text" md={10}>
                         <h6>FAQ</h6>
-                        <p className="support">182 Park Row Street,Suit 8 </p>
+                        <p >182 Park Row Street,Suit 8 </p>
                         {/* <i class="fas fa-chevron-right"></i> */}
                     </Col>
                    
