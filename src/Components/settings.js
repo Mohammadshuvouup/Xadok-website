@@ -28,9 +28,9 @@ import SideDrawer from './SideDrawer/SideDrawer'
 import TopBar from '../Components/topBar'
 import MarketingPreferences from './Modals/settings page/marketing_preferences';
 import PaymentMethods from './Modals/settings page/payment-methods';
-import MyCards from './Modals/settings page/my-cards';
+// import MyCards from './Modals/settings page/my-cards';
 import Support from './Modals/settings page/support'
-import InviteFriend from './Modals/settings page/invite-a-friend';
+// import InviteFriend from './Modals/settings page/invite-a-friend';
 import Discounts from './Modals/settings page/discounts'
 
 export default function Settings() {
@@ -240,9 +240,9 @@ export default function Settings() {
             <SavedAddresses shows1={shows1} handleCloses1={handleCloses1} />
             <MarketingPreferences shows2={shows2} handleCloses2={handleCloses2} />
             <PaymentMethods shows3={shows3} handleCloses3={handleCloses3} />
-            <MyCards shows4={shows4} handleCloses4={handleCloses4} />
+            {/* <MyCards shows4={shows4} handleCloses4={handleCloses4} /> */}
             <Support shows5={shows5} handleCloses5={handleCloses5} />
-            <InviteFriend shows6={shows6} handleCloses6={handleCloses6} />
+            {/* <InviteFriend shows6={shows6} handleCloses6={handleCloses6} /> */}
             <Discounts shows7={shows7} handleCloses7={handleCloses7}/>
            
 

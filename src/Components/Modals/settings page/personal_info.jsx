@@ -138,7 +138,7 @@ const PersonalInfo = (props) => {
                                             <i class="far fa-envelope" style={{ fontSize: "19px" }}></i>
                                         </Col>
                                         <Col xs={10} sm={10} md={10} className="d-flex flex-column">
-                                            <label htmlFor="email">Email Address</label>
+                            <label htmlFor="email">{t("Personal_information.Email-Address")}</label>
                                             <input
                                                 id="email"
                                                 name="email"
@@ -158,7 +158,7 @@ const PersonalInfo = (props) => {
                                 <i class="fas fa-phone" style={{fontSize:"19px"}}></i>
                                 </Col>
                                 <Col xs={10} sm={10} md={10} className="d-flex flex-column">
-                                    <label htmlFor="email">Mobile Number</label>
+                            <label htmlFor="email">{t("Personal_information.Mobile-Number")}</label>
                                     
                                     <input
                                         id="mobile"
@@ -173,7 +173,7 @@ const PersonalInfo = (props) => {
                                     ) : null}
                                     </Col>
                                </Row>
-                            <Button className="update-profile p-3 top-spacing" type="submit" value="submit">Update Profile</Button>
+                    <Button className="update-profile p-3 top-spacing" type="submit" value="submit">{t("Personal_information.Update-Profile")}</Button>
                             
                                    
              

@@ -84,8 +84,50 @@
         "Upload":"Upload",
         "Delete":"Delete",
         "Profile-details":"Profile details",
-        "Full-Name":"Full Name"
+        "Full-Name":"Full Name",
+        "Email-Address":"Email Address",
+        "Mobile-Number":"Mobile Number",
+        "Update-Profile":"Update Profile"
+    },
+    "Marketing_preferences":{
+        "Marketing-preferences":"Marketing preferences",
+        "Promotional-emails":"Promotional emails",
+        "Monthly-newsletter":"Monthly newsletter",
+        "Feedback-collection":"Feedback collection",
+        "Discount-offers":"Discount and offers",
+        "Update-perferences":" Update perferences"
+    },
+    "Payment_methods":{
+        "Payment-methods":"Payment methods"
+    },
+    "Support":{
+        "Support":"Support",
+        "LIVE-CHAT":"LIVE CHAT",
+        "FAQ":"FAQ",
+        "PHONE-NUMBER":"PHONE NUMBER"
+    },
+    "Discounts":{
+        "Discounts":"Discounts"
+    },
+    "login":{
+        "Welcome":"Welcome!",
+        "Sign":"Sign in to your account to continue",
+        "Password":"Password",
+        "Forgot-passw ord":"Forgot password",
+       "Sign-in":"Sign in",
+       "Create-an-account":"Create an account"
+    },
+    "reg":{
+        "Create-account":"Create account",
+        "Please-enter-your-mobile-number-create-an-account":"Please enter your mobile number to create an account",
+        "Please-enter-your-OTP-to-verify":"Please enter your OTP to verify",
+        "Already-have-an-account":"Already have an account",
+        "Please-create-an-account-to-continue-using-our-service":"Please create an account to continue using our service",
+        "OTP":"OTP",
+        "GET-OTP":"GET OTP",
+        "Continue":"Continue"
     }
+
 }
 
 

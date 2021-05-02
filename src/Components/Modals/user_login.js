@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Notifications, {notify} from 'react-notify-toast';
 import {Row,Col,Button,Modal,Container} from 'react-bootstrap'
 import '../../css/userLogin.css';
@@ -8,9 +8,24 @@ import Service from '../../services/service';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import SignUpForm from './user_register2'
+import { Trans, useTranslation } from 'react-i18next';
 // import SignUp from './user_register2'SignUpForm
 
-const UserLoginModal=(props)=>{
+const UserLoginModal = (props) => {
+  const { t, i18n } = useTranslation();
+     
+  
+  useEffect(() => {
+    
+    let language = localStorage.getItem("language");
+
+    // console.log("LANGUAGE SELECTED", language);
+  
+    if (language && language.length !== 0) {
+      i18n.changeLanguage(language)
+    }
+
+  }, []); 
 
 
     const [show1,setShow1] = useState(false);
@@ -120,9 +135,9 @@ const UserLoginModal=(props)=>{
             <Modal className="welcome"
               onHide={handleClose1} show={props.show1}>
                 <Modal.Header closeButton>
-                <Modal.Title className="mt-3">Welcome!</Modal.Title>
+            <Modal.Title className="mt-3">{t("login.Welcome")}</Modal.Title>
                 </Modal.Header>
-                <p className="pl-4 ml-3" style={{color:"silver",fontSize:"12px"}}>Sign in to your account to continue</p>
+          <p className="pl-4 ml-3" style={{ color: "silver", fontSize: "12px" }}>{t("login.Sign")}</p>
 
                 <form className="sign_in_form" onSubmit={formik.handleSubmit}>
                     <div className="container-padding">
@@ -131,7 +146,7 @@ const UserLoginModal=(props)=>{
                                <i class="fas fa-phone" style={{fontSize:"19px"}}></i>
                             </Col>
                             <Col xs={10} sm={10} md={10} className="d-flex flex-column">
-                                <label htmlFor="email">Mobile Number</label>
+                                <label htmlFor="email">{t("Personal_information.Mobile-Number")}</label>
                                 
                                 <input
                                     id="mobile"
@@ -152,7 +167,7 @@ const UserLoginModal=(props)=>{
                             <i class="fas fa-key" style={{fontSize:"19px"}}></i>
                             </Col>
                             <Col xs={10} sm={10} md={10} className="d-flex flex-column">
-                                <label htmlFor="password">Password</label>
+                                  <label htmlFor="password">{t("login.Password")}</label>
                                 <input
                                     id="password"
                                     name="password"
@@ -166,10 +181,10 @@ const UserLoginModal=(props)=>{
                                 ) : null}
                             </Col>
                         </Row>
-                        <Button className="btn-danger btn-block p-3 top-spacing" onClick={loggedIn} type="submit" value="submit">Sign in</Button>
-                          <h6 onClick={handleShow118} className="mt-4">Forgot password? </h6>
+              <Button className="btn-danger btn-block p-3 top-spacing" onClick={loggedIn} type="submit" value="submit">{t("login.Sign-in")}</Button>
+              <h6 onClick={handleShow118} className="mt-4">{t("login.Forgot-password")} </h6>
                
-                        <Button className="btn-primary btn-block p-3 mt-4 top-spacing create_account_btn" onClick={handelClick}> Create an account</Button>
+                        <Button className="btn-primary btn-block p-3 mt-4 top-spacing create_account_btn" onClick={handelClick}> {t("login.Create-an-account")}</Button>
         
                     </div>
                 </form>

@@ -1,13 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Notifications, {notify} from 'react-notify-toast';
 import { Row, Col, Button, Modal, Container } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import '../../css/signup.css';
+import { Trans, useTranslation } from 'react-i18next';
 import UserLoginModal from '../Modals/user_login'
 import axios from 'axios'
 
 const SignUpForm = (props) => {
+    const { t, i18n } = useTranslation();
+     
+  
+  useEffect(() => {
+    
+    let language = localStorage.getItem("language");
+
+    // console.log("LANGUAGE SELECTED", language);
+  
+    if (language && language.length !== 0) {
+      i18n.changeLanguage(language)
+    }
+
+  }, []); 
 
     const [show_login, setShow_login] = useState(false);
     const handleShow_login= () => setShow_login(true);
@@ -148,7 +163,7 @@ const SignUpForm = (props) => {
             <Notifications />
             <Modal className="signup_modal" show={props.show_reg} onHide={handleModalClose}>
             <Modal.Header closeButton>
-                <Modal.Title className="reg_model">Create an account!</Modal.Title>
+                <Modal.Title className="reg_model">{t("login.Create-an-account")}</Modal.Title>
             </Modal.Header>
             <Modal.Body className="reg_body">
              
@@ -157,14 +172,14 @@ const SignUpForm = (props) => {
                      
                             {showMob &&
                                 <>
-                                   <p> Please enter your mobile number to create an account</p>
+                            <p> {t("reg.Please-enter-your-mobile-number-create-an-account")}</p>
                                 <Row>
                              
                                     <Col xs={2} sm={2} md={2} className="icon">
                                     <i class="fas fa-phone" style={{fontSize:"19px"}}></i>
                                     </Col>
                                     <Col xs={10} sm={10} md={10} className="d-flex flex-column">
-                                        <label htmlFor="email">Mobile Number</label>
+                                        <label htmlFor="email">{t("Personal_information.Mobile-Number")}</label>
                                         
                                         <input
                                             id="mobile"
@@ -185,14 +200,14 @@ const SignUpForm = (props) => {
                             
                             {showOtp &&
                                 <>
-                                <p> Please enter your OTP to verify </p>
+                            <p> {t("reg.Please-enter-your-OTP-to-verify")}</p>
                                 <Row className="justify-content-center">
                                     <Col xs={2} sm={2} md={2} className="icon">
                                     <i class="fas fa-user-check" style={{fontSize:"19px"}}></i>
                                    </Col>
                                 
                                     <Col xs={10} sm={10} md={10} className="d-flex flex-column">
-                                        <label htmlFor="">OTP</label>
+                                        <label htmlFor="">{t("reg.OTP")}</label>
                                         
                                         <input
                                             id="otp"
@@ -210,11 +225,11 @@ const SignUpForm = (props) => {
                                 
                             <Row>
                                 {showOtpBtn &&
-                                    <button className="reg-form-btn mt-5" onClick={getOtp}>GET OTP</button>
+                                <button className="reg-form-btn mt-5" onClick={getOtp}>{t("reg.GET-OTP")}</button>
                                 }
 
                                 {showBtn &&
-                                    <button className="reg-form-btn mt-4" onClick={handleContinue}>Continue</button>
+                                <button className="reg-form-btn mt-4" onClick={handleContinue}>{t("reg.Continue")}</button>
                                 }
                             </Row>
                          
@@ -225,7 +240,7 @@ const SignUpForm = (props) => {
 
                     {showForm2 &&
                         <div className="reg2-contents">
-                            <p> Please create an account to continue using our service</p>
+                        <p> {t("reg.Please-create-an-account-to-continue-using-our-service")}</p>
                             <form className="sign_up_form" onSubmit={formik.handleSubmit}>
                              
                                     <Row>
@@ -234,7 +249,7 @@ const SignUpForm = (props) => {
                                             <i class="far fa-user" style={{ fontSize: "19px" }}></i>
                                         </Col>
                                         <Col xs={10} sm={10} md={10} className="d-flex flex-column">
-                                            <label htmlFor="email">Full Name</label>
+                                            <label htmlFor="email">{t("Personal_information.Full-Name")}</label>
                                 
                                             <input
                                                 id="name"
@@ -255,7 +270,7 @@ const SignUpForm = (props) => {
                                             <i class="far fa-envelope" style={{ fontSize: "19px" }}></i>
                                         </Col>
                                         <Col xs={10} sm={10} md={10} className="d-flex flex-column">
-                                            <label htmlFor="email">Email Address</label>
+                                            <label htmlFor="email">{t("Personal_information.Email-Address")}</label>
                                             <input
                                                 id="email"
                                                 name="email"
@@ -296,7 +311,7 @@ const SignUpForm = (props) => {
                                             <i class="fas fa-key" style={{ fontSize: "19px" }}></i>
                                         </Col>
                                         <Col xs={10} sm={10} md={10} className="d-flex flex-column">
-                                            <label htmlFor="password">Password</label>
+                                            <label htmlFor="password">{t("login.Password")}</label>
                                             <input
                                                 id="password"
                                                 name="password"
@@ -312,8 +327,8 @@ const SignUpForm = (props) => {
                                     </Row>
                             
                           
-                                    <Button className="btn-danger btn-block p-3 top-spacing" onClick={registeredAccount} type="submit" value="submit">Create account</Button>
-                                    <h6 className="mt-4">Already have an account? <span className="sign_in" onClick={handleSignIn}>Sign in</span></h6>
+                                    <Button className="btn-danger btn-block p-3 top-spacing" onClick={registeredAccount} type="submit" value="submit">{t("reg.Create-account")}</Button>
+                            <h6 className="mt-4">{t("reg.Already-have-an-account")} <span className="sign_in" onClick={handleSignIn}>{t("login.Sign-in")}</span></h6>
              
                             </form>
                         </div>

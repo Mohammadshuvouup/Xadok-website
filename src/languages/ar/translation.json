@@ -81,7 +81,48 @@
         "Upload":"تحميل",
         "Delete":"حذف",
         "Profile-details":"تفاصيل الملف الشخصي",
-        "Full-Name":"الاسم بالكامل"
+        "Full-Name":"الاسم بالكامل",
+        "Email-Address":"عنوان البريد الإلكتروني",
+        "Mobile-Number":"رقم الهاتف المحمول",
+        "Update-Profile":"تحديث الملف"
+    },
+    "Marketing_preferences":{
+        "Marketing-preferences":"تفضيلات التسويق",
+        "Promotional-emails":"رسائل البريد الإلكتروني الترويجية",
+        "Monthly-newsletter":"النشرة الشهرية",
+        "Feedback-collection":"جمع الملاحظات",
+        "Discount-offers":"الخصومات والعروض",
+        "Update-perferences":"تحديث البيانات"
+    },
+    "Payment_methods":{
+        "Payment-methods":"طرق الدفع"
+    },
+    "Support":{
+        "Support":"الدعم",
+        "LIVE-CHAT":"دردشة مباشرة",
+        "FAQ":"التعليمات",
+        "PHONE-NUMBER":"رقم الهاتف"
+    },
+    "Discounts":{
+        "Discounts":"خصم"
+    },
+    "login":{
+        "Welcome":"مرحبا",
+        "Sign":"تسجيل الدخول إلى حسابك للمتابعة",
+        "Password":"كلمه السر",
+        "Forgot-password":"هل نسيت كلمة السر",
+        "Sign-in":"تسجيل الدخول",
+        "Create-an-account":"إنشاء حساب"
+    },
+    "reg":{
+        "Create-account":"إنشاء حساب",
+        "Please-enter-your-mobile-number-create-an-account":"يرجى إدخال رقم هاتفك المحمول لإنشاء حساب",
+        "Please-enter-your-OTP-to-verify":"الرجاء إدخال OTP الخاص بك للتحقق",
+        "Already-have-an-account":"هل لديك حساب",
+        "Please-create-an-account-to-continue-using-our-service":"يرجى إنشاء حساب لمواصلة استخدام خدمتنا",
+        "OTP":"OTP",
+        "GET-OTP":"احصل على OTP",
+        "Continue":"يكمل"
     }
  
 }

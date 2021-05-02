@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
-import { Modal, Button, Form,Row } from 'react-bootstrap';
+import React, { useState,useEffect } from 'react';
+import { Modal, Button, Form, Row } from 'react-bootstrap';
+import { Trans, useTranslation } from 'react-i18next';
 import '../../../css/setting_discount.css';
 
 
 const Discounts = (props) => {
+    const { t, i18n } = useTranslation();
+     
+  
+    useEffect(() => {
+      
+      let language = localStorage.getItem("language");
+  
+      // console.log("LANGUAGE SELECTED", language);
+    
+      if (language && language.length !== 0) {
+        i18n.changeLanguage(language)
+      }
+  
+    }, []); 
     const [show3, setShow3] = useState(false);
    
 
@@ -11,7 +26,7 @@ const Discounts = (props) => {
 
         <Modal show={props.shows7} className="discount-list" onHide={props.handleCloses7} animation={false} >
             <Modal.Header closeButton>
-                <Modal.Title className="title">Discounts</Modal.Title>
+                <Modal.Title className="title">{t("Discounts.Discounts")}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Row className="discount-box flex-column">

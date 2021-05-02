@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
-import { Modal, Button, Form ,Row, Col} from 'react-bootstrap';
+import React, { useState,useEffect } from 'react';
+import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
+import { Trans, useTranslation } from 'react-i18next';
 import '../../../css/setting_paymentmethods.css';
 
 
 const PaymentMethods = (props) => {
+    
+        const { t, i18n } = useTranslation();
+     
+  
+      useEffect(() => {
+        
+        let language = localStorage.getItem("language");
+    
+        // console.log("LANGUAGE SELECTED", language);
+      
+        if (language && language.length !== 0) {
+          i18n.changeLanguage(language)
+        }
+    
+      },[]); 
     const [show3, setShow3] = useState(false);
    
 
@@ -11,7 +27,7 @@ const PaymentMethods = (props) => {
         <Modal show={props.shows3} className="main-box"  onHide={props.handleCloses3} animation={false} >
             <Modal.Header  closeButton>
                 <Modal.Title>
-                    Payment methods
+                    {t("Payment_methods.Payment-methods")}
                 </Modal.Title>
             </Modal.Header>
             
@@ -37,7 +53,7 @@ const PaymentMethods = (props) => {
 
                 <Modal.Footer>
                 <Button className="footer" size="lg" block>
-                   Update perferences
+                {t("Marketing_preferences.Update-perferences")}
                </Button>
                 </Modal.Footer>
      </Modal>
