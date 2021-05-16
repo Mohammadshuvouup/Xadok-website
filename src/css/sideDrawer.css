@@ -11,7 +11,7 @@ body{
 }
 
 .sideNav .nav-link{
-    padding: 15px 20px !important;
+    padding: 15px 7px !important;
     color: black;
     display: flex !important;
     align-items: center;

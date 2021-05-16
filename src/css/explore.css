@@ -1,5 +1,6 @@
 .sideNav .nav-link{
   display: block !important;
+  margin-right: 9px;
 }
 
 .sideNav .active {
@@ -8,11 +9,17 @@
 }
 
 .card-image-box{
-  height: 35vh;
+  /* height: 35vh; */
 }
 
 .explore-banner img{
-    max-width: 10%;
+    /* max-width: 10%; */
+    width: 100px;
+    border-radius: 100%;
+    height: 100px;
+    padding: 10px;
+    background: white;
+    object-fit: contain;
   }
   
   .explore-sub-title{
@@ -317,10 +324,15 @@
 
   .subcategory-nav{
     padding: 0;
+    border-right: 1px solid gray;
   }
 
   .side-bar-item .accordion .card-header .btn-link{
     color: black;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: -webkit-box;
   }
 
   .side-bar-item .accordion .card-header .btn-link:hover{
