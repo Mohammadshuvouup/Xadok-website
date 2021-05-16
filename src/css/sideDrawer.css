@@ -11,7 +11,7 @@ body{
 }
 
 .sideNav .nav-link{
-    padding: 15px 7px !important;
+    padding: 15px 0px 15px 0px !important;
     color: black;
     display: flex !important;
     align-items: center;
@@ -154,21 +154,10 @@ body{
     margin-left: 10px;
 }
 
-/* @media(min-width:980.5px){
-    .slide-menu,.expanded-menu{
-       display: none;
-       left: -2000px;
-    } 
-} */
-
 @media screen and (max-width:980px){
     .menu-item, .free-delivery{
         display: none ;
     }
-
-    /* .menu-icon{
-        display: block;
-    } */
 
     .logo{
         height:10vh !important;
@@ -178,6 +167,5 @@ body{
       .logo-img{
         width:100% !important;
         height:100% !important;
-        /* margin-left:-1% !important */
       }
 }

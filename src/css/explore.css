@@ -8,12 +8,7 @@
 
 }
 
-.card-image-box{
-  /* height: 35vh; */
-}
-
 .explore-banner img{
-    /* max-width: 10%; */
     width: 100px;
     border-radius: 100%;
     height: 100px;
@@ -27,7 +22,7 @@
     font-weight: bold;
     margin-top: 15px;
     margin-left: 20px;
-    font-size: 29px;
+    font-size: 24px;
   }
   .explore-banner{
     background-repeat: no-repeat !important;
@@ -324,7 +319,7 @@
 
   .subcategory-nav{
     padding: 0;
-    border-right: 1px solid gray;
+    border-right: 1px solid #BDBDBD;
   }
 
   .side-bar-item .accordion .card-header .btn-link{

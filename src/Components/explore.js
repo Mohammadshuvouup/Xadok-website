@@ -557,7 +557,7 @@ export default function Explore(props) {
     let prevPrice=0.00;
     const SimilarProducts=()=>{
       return(
-        <Row>
+        <Row className="justify-content-lg-between pl-4">
         {similarProd && similarProd.length>0 && similarProd.map((value,index)=>{
 
           if(value.pro_special_price==0.000){
@@ -570,13 +570,13 @@ export default function Explore(props) {
           }
           return(
             
-      <Col key={index} sm={6} md={4} lg={3} xl={3} className="item similar-item">
+      <Col key={index} sm={5} md={4} lg={2} xl={2} className="item similar-item">
         <div className="item-image">
         <Image src={`${API_PREFIX_URL}${value.pro_img}`} />
         </div>
           
+        <p className="pl-2 old-price"><del>{prevPrice}</del></p>
           <div  className="price-box">
-              <p className="pl-2 old-price"><del>{prevPrice}</del></p>
               <h4 className="pl-2 item-price">{recentPrice}<span className="currency-symbol">BDH</span></h4>
               <div className="discount" >
                   <p className="pt-1 pl-3 ptag">25%</p>
@@ -706,14 +706,14 @@ export default function Explore(props) {
         </Col>
        </Row>
 
-       <Row>
+       <Row className="pl-4">
        <h2 className="explore-sub-title mb-4">{Params.shop_name}  {t("explore.offers")}</h2>
           <Col xs={12} sm={12} lg={12} >
            <Offers />
           </Col> 
        </Row>
 
-       <Row>
+       <Row className="pl-4">
          <h2 className="explore-sub-title mb-4">{t("explore.similar-products")}</h2>
        </Row>
         

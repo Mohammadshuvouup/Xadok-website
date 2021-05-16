@@ -799,13 +799,8 @@ function loadItems(){
             loader={<div className="loader" key={0}>
              <Loader className="text-center" type="TailSpin" color="#e3424b" height={80} width={80} />
             </div>}
-            className="d-flex flex-wrap"
+            className="row justify-content-lg-between pl-5"
         >
-          {/* {subcat_list.length==0 &&
-    
-            <Loader className="text-center" type="TailSpin" color="#e3424b" height={80} width={80}></Loader>
-
-          } */}
 
 
         {subcat_list!==null && subcat_list.length>0 && subcat_list.map((value,index)=>{
@@ -822,7 +817,7 @@ function loadItems(){
               prevPrice= value.pro_price;
             }
             return(
-            <Col key={index} sm={6} md={4} lg={3} xl={3} className="item similar-item">
+            <Col key={index} sm={5} md={4} lg={2} xl={2} className="item similar-item">
               <div className="item-image">
               <Image src={`${API_PREFIX_URL}${value.pro_img}`} />
               </div>
@@ -864,7 +859,7 @@ function loadItems(){
       <Col className="menu-icon" sm={1} xs={1}>
         <i className="fas fa-bars" onClick={expandMenu}></i>
       </Col>
-      <Col sm={3} lg={3} className="sideNav subcategory-nav">
+      <Col sm={2} lg={2} className="sideNav subcategory-nav">
       
       <Navbar.Brand href="/" className="pt-2 logo" style={{ width: "100%" }}>
           <Image src={logo} className="logo-img" style={{ height: "10vh" }} />
@@ -944,7 +939,7 @@ function loadItems(){
       
      </div>
 
-       <Col xs={9} sm={9} lg={9} fluid>
+       <Col xs={10} sm={10} lg={10} fluid>
        <TopBar />
 
        <Row>
@@ -962,9 +957,9 @@ function loadItems(){
 
        <Row>
        
-       <h2 className="explore-sub-title mb-4">{subtitle==""? Params.subcat_name:"All"}</h2>
+       <h2 className="explore-sub-title mb-4 pl-4">{subtitle==""? Params.subcat_name:"All"}</h2>
           <Col xs={12} sm={12} lg={12}>
-                <div className={`btn-container d-flex flex-wrap`}>
+                <div className={`btn-container d-flex flex-wrap pl-4`}>
    
                 <Button className="filter_btn mb-4"
                   onClick={()=>subCategoryItems("All")}>

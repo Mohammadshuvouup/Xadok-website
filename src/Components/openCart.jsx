@@ -53,7 +53,9 @@ const OpenCart = (props) => {
             <Row>
               <Col md={12} className="deliver-to">
                     <h6 className="deliver-text1">{t("openCart.DELIVER-TO")} </h6>
-                    <h6 className="deliver-text2" onClick={props.handleShow} >300 Post Street San Francisco, CA <span><i class="fas fa-chevron-right"></i></span></h6>
+                <h6 className="deliver-text2" onClick={props.handleShow} >300 Post Street San Francisco, CA
+                    {/* <span><i class="text-right fas fa-chevron-right"></i></span> */}
+                </h6>
                     <h3 className="deliver-text3">{t("openCart.Items")}</h3>
               </Col>
             </Row>
@@ -70,7 +72,7 @@ const OpenCart = (props) => {
                   </Col>
                      <Col md={2} className="d-flex flex-column">
                      <Button className="plus" onClick={plus} >+</Button>
-                     <span className="text-center">{value.pro_qua}</span>
+                     <span className="text-center item-amount">{value.pro_qua}</span>
                      {/* background:"white"}}>{modal_cart_qty>1 ? modal_cart_qty : value.pro_qua}</Button> */}
                      <Button className="minus" onClick={minus}>-</Button>
                   </Col>
@@ -92,7 +94,8 @@ const OpenCart = (props) => {
               </Col>
               <Col md={2}></Col>
                </Row>
-            <Row >
+            {/* <Row className="shipping">
+            
 
               <Col className="card" md={2}>
                 <div>
@@ -113,7 +116,7 @@ const OpenCart = (props) => {
                   <i class="fas fa-plus"></i>
                 </div></Col>
                  
-               </Row>
+               </Row> */}
             </Modal.Body>
             <Modal.Footer>
                <Button className="cheackout"  onClick={props.handleShow4}size="lg" block>

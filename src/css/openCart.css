@@ -1,7 +1,7 @@
 
 .cart{
     width: 52% !important;
-    left: 65% !important;
+    left: 64.5% !important;
 }
 
 .cart .modal-dialog{
@@ -22,10 +22,6 @@
     padding-left: 0;
     color: #223142;
     margin-bottom: 54px;
-}
-
-.cart .modal-body{
-    padding: 0;
 }
 
 .cart .modal-title span{
@@ -94,9 +90,20 @@
     line-height: 24px;
     color: #223142;
     margin-bottom: 20px;
-
-
 }
+
+.cart .deliver-to::before{
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    top:13px;
+    right: 15px;
+    background-image: url('data:image/png;base64,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');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .cart .deliver-to .deliver-text3{
     font-family: Open Sans;
     font-style: normal;
@@ -108,24 +115,30 @@
 
 }
 .cart .plus{
-    left: 86.67%;
-    right: 10%;
-    top: 60%;
-    bottom: 37.01%;
-   
+  
     color: #BDBDBD;
     background: #F7F7F7;
     border-radius: 10px 10px 0px 0px;
+    padding: 13px;
+    border: none;
 }
 .cart .minus{
-    left: 86.67%;
-    right: 10%;
-    top: 60%;
-    bottom: 37.01%;
+   
     color: #BDBDBD;
     background: #F7F7F7;
     border-radius: 0px 0px 10px 10px;
+    padding: 13px;
+    border: none;
 }
+
+.cart .plus:hover, .cart .minus:hover{
+    background-color: #FFDD73;
+    color:#223142 ;
+}
+.cart .item-amount{
+    padding: 10px 0;
+}
+
 .cart .item-img{
     border-radius: 12px;
 }
@@ -158,7 +171,7 @@
     color: #BDBDBD;
 }
 .cart .motor{
-    background: #BDBDBD;
+    background: #F7F7F7;
     border-radius: 12px;
     padding: 18px 26px;
     font-size: 25px;
@@ -170,12 +183,13 @@
     padding: 18px 26px;
     font-size: 25px;
     
+    
 }
-.cart .more-item-text{
+.cart .more-item-text h6{
     font-family: sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 15px;
     line-height: 32px;
     color: #111213;
 
@@ -183,6 +197,7 @@
 .cart .cheackout{
   
 margin-top: 15px;
+margin-bottom: 43px;
 background: #223142;
 border-radius: 12px;
 }
@@ -191,12 +206,42 @@ border-radius: 12px;
     font-size: 35px;
     background: #223142;
     border-radius: 10px;
-    padding: 0 11px;
+    padding: 3px 8px 0px 8px;
+}
+.cart .item-add{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #223142;
+
 }
 .cart .api-box{
-    margin-bottom: 65px;
-    margin-top: 30px;
+    margin-bottom: 90px;
+    margin-top: 50px;
+    border: 1px solid #BDBDBD;
+    padding: 20px 0px;
+    background: #FFFFFF;
+    box-sizing: border-box;
 }
 .cart .shipping{
     margin-bottom: 15px;
+    padding: 15px;
+}
+.cart .modal-content {
+    padding: 0px 0px;
+}
+/* .cart .modal-body{
+    padding: 14px;
+} */
+.cart .modal-header {
+   padding: 15px;
+}
+.cart .modal-footer {
+    padding: 0px 15px;
+   
+}
+.cart .cheackout:hover{
+    background-color: #223142;
 }
