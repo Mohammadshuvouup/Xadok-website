@@ -10,7 +10,8 @@ import delivery from "../topbar/delivery address.svg";
 import deal from "../topbar/best deals.svg";
 import master from "../xadok/master.png";
 import img from "../xadok/pexels-photo-102104.jpeg"
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import UpcomingOrders from './Modals/orders page/upcoming-orders.jsx'
 import {Navbar,Row,Col,Nav,Container,ProgressBar,Card,CardDeck,Modal,Badge,Toast,Button,Form,FormControl,Carousel,Accordion} from 'react-bootstrap'
 import "../App.css";
 
@@ -116,7 +117,7 @@ export default function Orders() {
             <>
 
  {/* -----------------Cart modal 1---------------------- */}
- <Modal className="cart  art" style={{border:"none",marginLeft:"63.9%",width:"510px",marginTop:"-2.5%",height:"110vh"}} show={show2} 
+ {/* <Modal className="cart  art" style={{border:"none",marginLeft:"63.9%",width:"510px",marginTop:"-2.5%",height:"110vh"}} show={show2} 
 onHide={handleClose2}>
         <Modal.Header style={{border:"none"}} closeButton>
           <Modal.Title style={{border:"none",fontWeight:"bold",paddingLeft:"22px"}}>My cart 
@@ -146,10 +147,7 @@ onHide={handleClose2}>
             BHD</span></h4>
           </div>
           <div>
-            {/* <div>{
-         num < 1 && (<Alert>this is alert</Alert>)
-            }
-</div> */}
+            
           <Button onClick={plus} style={{background:"#F6F6F6",
        color:"gray",
        fontWeight:"bold",width:"40px",
@@ -212,7 +210,7 @@ background:"#F6F6F6",fontSize:"29px"}}>
     Checkout <span style={{fontSize:"12px"}}>(0.835 BHD)</span>
   </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
 {/* ------------------------------------cart modal 1 end-------------------- */}
 
 
@@ -1536,7 +1534,12 @@ fc5363fbeea51a1%3A0x74726bcd92d8edd2!2sKuwait!5e0!3m2!1sen!2s!4v1611979046409!5m
   </Button>
         </Modal.Footer>
       </Modal>   
-{/* -----------------------------------------------------Order Details--------------------------------------------------------------- */}
+            {/* -----------------------------------------------------Order Details--------------------------------------------------------------- */}
+            
+            <UpcomingOrders show119={show119} handleClose119={handleClose119}/>
+
+
+
 <Modal show={show119} className="orderhere " style={{borderRadius:"30px ",marginTop:"9.8%",
      width:"410px",marginLeft:"33%",background:"transparent",border:"none"}} onHide={handleClose119} animation={false} >
        <Modal.Header style={{borderRadius:"1rem ",background:"transparent",border:"none"}} closeButton>
@@ -1797,99 +1800,6 @@ borderRadius:"16px",}} id="no" className="tost">
 
 
 
-<div className="upcoming mt-4" style={{background:"#F6F6F6",width:"101%",height:"80vh"}}>
-<h4 className="upcomingheading" style={{paddingTop:"60px",
-fontWeight:"bold",fontSize:"25px"}} 
-className=" pl-4 ml-3">Upcoming Orders</h4> 
-{/* ----------------CARD NUMBER ONE--------------------- */}
-<CardDeck style={{width:"70%",marginLeft:"2%",background:"#F6F6F6"}}>
-
-{
-             show6?
-<Card className="ordercard1 orderupcomingcard" style={{marginLeft:"3%",marginTop:"4%",
-width:"35%",height:"42vh",border:"none",borderRadius:"12px"}}>
-
-
-  <Card.Header 
-  style={{border:"none",background:"white",borderRadius:"15px"}} >
-<div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
- <h6 style={{fontWeight:"bold",color:"#223142"}}>Ramez Shopping</h6>
-<Button style={{color:"silver",background:"white",
-fontSize:"12px",fontWeight:"bold",border:"none"}}>#1DF90E</Button></div>
-<div style={{display:"flex"}}>
-<i class="far fa-clock ml-2 mt-4" style={{color:"yellow",fontSize:"28px"}}></i>
-<Button style={{border:"none", background:"none",
-marginLeft:"1%",marginTop:"-3%", fontSize:"12px"}}>
-<b style={{color:"grey",fontWeight:"normal"}}> 
-Estimated Arrival</b> </Button>
-</div>
-<h3 className="ordertime" style={{fontWeight:"bold",marginLeft:"15%",marginTop:"-5%"}}>35 min</h3>
-  </Card.Header>
-  <div style={{width:"100%",display:"flex",justifyContent:"space-evenly"}}>
-  <ProgressBar variant="danger" now={100} style={{width:"12%",height:"0.9vh"}}/>
-  <ProgressBar variant="danger" now={100} style={{width:"18%",height:"0.9vh"}}/>
-  <ProgressBar variant="danger" now={60} style={{width:"60%",height:"0.9vh"}}/>
-  </div>
-  <Card.Body className="mt-4">
-    <Button  onClick={handleShow119} style={{width:"48%",border:"none",height:"7vh",
-    borderRadius:"8px",background:"#223142"}} >Details</Button>
-
-    <Button onClick={() => setShow6(false)} className="ml-2" style={{width:"48%"
-    ,color:"#223142",fontWeight:"bold",
-    border:"none",height:"7vh",borderRadius:"8px",
-    background:"#FCDE70"}} >Cancel</Button>
-    
-  </Card.Body>
-</Card>
-:null
-}
-{
-  show7?
-<Card  className="ordercard1 orderupcomingcard" style={{marginLeft:"3%",marginTop:"4%",
-width:"35%",height:"42vh",border:"none",borderRadius:"12px"}}>
-
-
-  <Card.Header 
-  style={{border:"none",background:"white",borderRadius:"15px"}} >
-<div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
- <h6 style={{fontWeight:"bold",color:"#223142"}}>Ramez Shopping</h6>
-<Button style={{color:"silver",background:"white",fontSize:"12px",fontWeight:"bold",border:"none"}}>#1DF90E</Button></div>
-<div style={{display:"flex"}}>
-<i class="far fa-clock ml-2 mt-4" style={{color:"yellow",fontSize:"28px"}}></i>
-
-<Button style={{border:"none", background:"none",
-marginLeft:"1%",marginTop:"-3%", fontSize:"12px"}}>
-<b style={{color:"grey",fontWeight:"normal"}}> 
-Estimated Arrival</b> </Button>
-</div>
-<h3  className="ordertime" style={{fontWeight:"bold"
-,marginLeft:"15%",marginTop:"-5%"}}>60 min</h3>
-
-  </Card.Header>
-  <div style={{width:"100%",display:"flex",justifyContent:"space-evenly"}}>
-  <ProgressBar variant="danger" now={100} style={{width:"12%",height:"0.9vh"}}/>
-  <ProgressBar variant="danger" now={100} style={{width:"18%",height:"0.9vh"}}/>
-  <ProgressBar variant="danger" now={60} style={{width:"60%",height:"0.9vh"}}/>
-  </div>
-
-  <Card.Body className="mt-4">
-
-    <Button  onClick={handleShow119}  style={{width:"48%",border:"none",height:"7vh",
-    borderRadius:"8px",background:"#223142"}} >Details</Button>
-    <Button onClick={() => setShow7(false)}  className="ml-2" style={{width:"48%"
-    ,color:"#223142",fontWeight:"bold",
-    border:"none",height:"7vh",borderRadius:"8px",
-    background:"#FCDE70"}} >Cancel</Button>
-  </Card.Body>
-
-
-</Card>
-:null
-}
-
-</CardDeck>
-
-</div>
 
 
 

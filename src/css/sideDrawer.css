@@ -103,6 +103,9 @@ body{
     padding: 40px 35px 32px 35px;
     margin-top: 58px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .free-delivery .fa-times{
@@ -159,13 +162,13 @@ body{
 } */
 
 @media screen and (max-width:980px){
-    .sideNav{
-        display: none;
+    .menu-item, .free-delivery{
+        display: none ;
     }
 
-    .menu-icon{
+    /* .menu-icon{
         display: block;
-    }
+    } */
 
     .logo{
         height:10vh !important;

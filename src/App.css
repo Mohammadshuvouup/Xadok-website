@@ -200,7 +200,7 @@ margin-right: 15px;
 } */
 
 .carousel-item  {
-  height: 386px;
+  min-height: 386px;
 }
 
  .carousel-item img {
@@ -1399,3 +1399,16 @@ height:100vh !important
 .ane{
   float: right !important;
 }
+
+@media (max-width:767px){
+  .carousel-item {
+    min-height: 166px;
+  }
+}
+
+@media (min-width:768px) and (max-width:1024px){
+  .carousel-item {
+    min-height: 273px;
+  }
+}
+

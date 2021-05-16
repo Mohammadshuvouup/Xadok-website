@@ -441,17 +441,16 @@ export default function Exploring() {
         <TopBar />
         {/*========================== Best deals ==========================*/}
 
-          <Row className="mt-4">
-            <Col>
-                <h3 className="pl-4 ml-3">{t("exploring.Best-Deals")}<span>{t("exploring.See-All")} > </span></h3>
-            </Col>
+          <Row className="mt-4 grey-bg ">
+                <h3>{t("exploring.Best-Deals")}<span>{t("exploring.See-All")} > </span></h3>
           </Row>
 
-          <Row className="item-list">
-            <Col sm={5} md={4} lg={3} xl={2} className="item">
-            <Image  onClick={() => setModalShow(true)} src={img} />
+          <Row className="item-list grey-bg justify-content-lg-between">
+            <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
               <div  className="price-box">
-                  <p className="pl-2 old-price"><del>1.200</del></p>
+                
                   <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
                   <div className="discount" >
                       <p className="pt-1 pl-3 ptag">25%</p>
@@ -462,13 +461,12 @@ export default function Exploring() {
               <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
           
-            <Col sm={5} md={4} lg={3} xl={2} className="item">
+            <Col sm={5} md={4} lg={2} xl={2} className="item">
               <div className="thumbnail">
                   <Image  onClick={() => setModalShow(true)} src={img} />
               </div>
-          
+              <p className="pl-2 old-price"><del>1.200</del></p>
               <div  className="price-box">
-                  <p className="pl-2 old-price"><del>1.200</del></p>
                   <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
                   <div className="discount" >
                       <p className="pt-1 pl-3 ptag">25%</p>
@@ -479,10 +477,10 @@ export default function Exploring() {
               <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
           
-            <Col sm={5} md={4} lg={3} xl={2} className="item">
-            <Image  onClick={() => setModalShow(true)} src={img} />
+            <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
               <div  className="price-box">
-                  <p className="pl-2 old-price"><del>1.200</del></p>
                   <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
                   <div className="discount" >
                       <p className="pt-1 pl-3 ptag">25%</p>
@@ -491,12 +489,12 @@ export default function Exploring() {
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
               <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
-            </Col>
-          
-            <Col sm={5} md={4} lg={3} xl={2} className="item">
-            <Image  onClick={() => setModalShow(true)} src={img} />
+              </Col>
+
+              <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
               <div  className="price-box">
-                  <p className="pl-2 old-price"><del>1.200</del></p>
                   <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
                   <div className="discount" >
                       <p className="pt-1 pl-3 ptag">25%</p>
@@ -505,12 +503,12 @@ export default function Exploring() {
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
               <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
-            </Col>
-          
-            <Col sm={5} md={4} lg={3} xl={2} className="item">
-            <Image  onClick={() => setModalShow(true)} src={img} />
+              </Col>
+
+              <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
               <div  className="price-box">
-                  <p className="pl-2 old-price"><del>1.200</del></p>
                   <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
                   <div className="discount" >
                       <p className="pt-1 pl-3 ptag">25%</p>
@@ -519,23 +517,22 @@ export default function Exploring() {
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
               <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
-            </Col>
+              </Col>
           </Row>
 
         {/*========================== New ArivaL ==========================*/}
 
-          <Row className="mt-4 peach-bg">
-            <Col>
-                <h3 className="pl-4 ml-3">{t("exploring.New-Arrival")}<span>{t("exploring.See-All")} > </span></h3>
-            </Col>
+          <Row className="peach-bg ">
+                <h3>{t("exploring.New-Arrival")}<span>{t("exploring.See-All")} > </span></h3>
           </Row>
 
-          <Row className="item-list peach-bg">
+          <Row className="item-list peach-bg justify-content-lg-between">
             
-            <Col sm={5} md={4} lg={3} xl={2} className="item">
-            <Image  onClick={() => setModalShow(true)} src={img} />
+          <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
               <div  className="price-box">
-                  <p className="pl-2 old-price"><del>1.200</del></p>
+                
                   <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
                   <div className="discount" >
                       <p className="pt-1 pl-3 ptag">25%</p>
@@ -545,14 +542,13 @@ export default function Exploring() {
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
               <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
-            
-            <Col sm={5} md={4} lg={3} xl={2} className="item">
+          
+            <Col sm={5} md={4} lg={2} xl={2} className="item">
               <div className="thumbnail">
                   <Image  onClick={() => setModalShow(true)} src={img} />
               </div>
-          
+              <p className="pl-2 old-price"><del>1.200</del></p>
               <div  className="price-box">
-                  <p className="pl-2 old-price"><del>1.200</del></p>
                   <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
                   <div className="discount" >
                       <p className="pt-1 pl-3 ptag">25%</p>
@@ -562,11 +558,11 @@ export default function Exploring() {
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
               <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
             </Col>
-            
-            <Col sm={5} md={4} lg={3} xl={2} className="item">
-            <Image  onClick={() => setModalShow(true)} src={img} />
+          
+            <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
               <div  className="price-box">
-                  <p className="pl-2 old-price"><del>1.200</del></p>
                   <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
                   <div className="discount" >
                       <p className="pt-1 pl-3 ptag">25%</p>
@@ -575,12 +571,12 @@ export default function Exploring() {
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
               <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
-            </Col>
-            
-            <Col sm={5} md={4} lg={3} xl={2} className="item">
-            <Image  onClick={() => setModalShow(true)} src={img} />
+              </Col>
+
+              <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
               <div  className="price-box">
-                  <p className="pl-2 old-price"><del>1.200</del></p>
                   <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
                   <div className="discount" >
                       <p className="pt-1 pl-3 ptag">25%</p>
@@ -589,12 +585,12 @@ export default function Exploring() {
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
               <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
-            </Col>
-            
-            <Col sm={5} md={4} lg={3} xl={2} className="item">
-            <Image  onClick={() => setModalShow(true)} src={img} />
+              </Col>
+
+              <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
               <div  className="price-box">
-                  <p className="pl-2 old-price"><del>1.200</del></p>
                   <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
                   <div className="discount" >
                       <p className="pt-1 pl-3 ptag">25%</p>
@@ -603,91 +599,90 @@ export default function Exploring() {
           
               <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
               <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
-            </Col>
+              </Col>
+           
           </Row>
 
         {/*========================== Top Seller ==========================*/}
 
-          <Row className="mt-4">
-            <Col>
-              <h3 className="pl-4 ml-3">{t("exploring.Top-Seller")}<span>{t("exploring.See-All")} > </span></h3>
-            </Col>
+        <Row className="grey-bg ">
+            <h3>{t("exploring.Top-Seller")}<span>{t("exploring.See-All")} > </span></h3>
           </Row>
 
-          <Row className="item-list">
-        <Col sm={5} md={4} lg={3} xl={2} className="item">
-        <Image  onClick={() => setModalShow(true)} src={img} />
-          <div  className="price-box">
-              <p className="pl-2 old-price"><del>1.200</del></p>
-              <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
-              <div className="discount" >
-                  <p className="pt-1 pl-3 ptag">25%</p>
+          <Row className="item-list grey-bg justify-content-lg-between">
+            <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
+              <div  className="price-box">
+                
+                  <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
+                  <div className="discount" >
+                      <p className="pt-1 pl-3 ptag">25%</p>
+                  </div>
               </div>
-          </div>
-      
-          <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
-        </Col>
-      
-        <Col sm={5} md={4} lg={3} xl={2} className="item">
-          <div className="thumbnail">
-              <Image  onClick={() => setModalShow(true)} src={img} />
-          </div>
-      
-          <div  className="price-box">
-              <p className="pl-2 old-price"><del>1.200</del></p>
-              <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
-              <div className="discount" >
-                  <p className="pt-1 pl-3 ptag">25%</p>
+          
+              <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
+            </Col>
+          
+            <Col sm={5} md={4} lg={2} xl={2} className="item">
+              <div className="thumbnail">
+                  <Image  onClick={() => setModalShow(true)} src={img} />
               </div>
-          </div>
-      
-          <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
-        </Col>
-      
-        <Col sm={5} md={4} lg={3} xl={2} className="item">
-        <Image  onClick={() => setModalShow(true)} src={img} />
-          <div  className="price-box">
               <p className="pl-2 old-price"><del>1.200</del></p>
-              <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
-              <div className="discount" >
-                  <p className="pt-1 pl-3 ptag">25%</p>
+              <div  className="price-box">
+                  <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
+                  <div className="discount" >
+                      <p className="pt-1 pl-3 ptag">25%</p>
+                  </div>
               </div>
-          </div>
-      
-          <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
-        </Col>
-      
-        <Col sm={5} md={4} lg={3} xl={2} className="item">
-        <Image  onClick={() => setModalShow(true)} src={img} />
-          <div  className="price-box">
-              <p className="pl-2 old-price"><del>1.200</del></p>
-              <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
-              <div className="discount" >
-                  <p className="pt-1 pl-3 ptag">25%</p>
+          
+              <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
+            </Col>
+          
+            <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
+              <div  className="price-box">
+                  <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
+                  <div className="discount" >
+                      <p className="pt-1 pl-3 ptag">25%</p>
+                  </div>
               </div>
-          </div>
-      
-          <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
-        </Col>
-      
-        <Col sm={5} md={4} lg={3} xl={2} className="item">
-        <Image  onClick={() => setModalShow(true)} src={img} />
-          <div  className="price-box">
-              <p className="pl-2 old-price"><del>1.200</del></p>
-              <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
-              <div className="discount" >
-                  <p className="pt-1 pl-3 ptag">25%</p>
+          
+              <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
+              </Col>
+
+              <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
+              <div  className="price-box">
+                  <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
+                  <div className="discount" >
+                      <p className="pt-1 pl-3 ptag">25%</p>
+                  </div>
               </div>
-          </div>
-      
-          <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
-          <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
-        </Col>
-      </Row>
+          
+              <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
+              </Col>
+
+              <Col sm={5} md={4} lg={2} xl={2} className="item">
+                <Image onClick={() => setModalShow(true)} src={img} />
+                <p className="pl-2 old-price"><del>1.200</del></p>
+              <div  className="price-box">
+                  <h4 className="pl-2 item-price">0.835<span className="currency-symbol">BDH</span></h4>
+                  <div className="discount" >
+                      <p className="pt-1 pl-3 ptag">25%</p>
+                  </div>
+              </div>
+          
+              <p className="item-description">Digestive Choco 200g With Milk & Hazelnut</p>
+              <button className="addcart_btn"><i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}  </button>
+              </Col>
+          </Row>
       </Col>
     </Row>
   </Container>

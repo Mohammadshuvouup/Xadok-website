@@ -68,4 +68,17 @@ color: #223142;
     border-top: 0;
 
  }
+
+
+@media (max-width: 900px) {
+    .support-box .modal-content {
+        width: 95%;
+    }
+    .modal-dialog {
+        max-width: 100% !important;
+    }
+
+
+}
+
     

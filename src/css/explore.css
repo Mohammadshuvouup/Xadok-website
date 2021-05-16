@@ -346,3 +346,17 @@
   .side-nav-catgory-list li:first-child{
     margin-top: 30px;
   }
+
+  @media screen and (max-width:1025px){
+    .offer-item .card-img-top {
+      
+      max-width: 39vh;
+      
+    }
+
+    
+
+   
+
+    
+}

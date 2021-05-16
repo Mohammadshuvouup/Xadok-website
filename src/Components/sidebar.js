@@ -16,7 +16,7 @@ import SideDrawer from './SideDrawer/SideDrawer'
 import TopBar from './topBar'
 import {Link} from 'react-router-dom';
 import {Row,Col,Container,Image,Button,Carousel} from 'react-bootstrap'
-import "../App.css";
+import "../App.css"
 import axios from 'axios';
 
 import { Trans ,useTranslation} from 'react-i18next';
@@ -115,7 +115,6 @@ export default function Sidebar() {
     return(
       <Carousel
             className="over mt-4"
-            id="car"
           >
         {category && category.length>0 && category.map((value,index)=>{
       
@@ -156,35 +155,28 @@ export default function Sidebar() {
     return(
       <>
         {filtered_item && filtered_item.length && filtered_item.map((value,index)=>{
-          // console.log("shop",value);
           const img_url=`https://deliveryxadok.s3.us-east-2.amazonaws.com/${value.shop_img}`;
           const gallery_url=`https://deliveryxadok.s3.us-east-2.amazonaws.com/${value.gallery[0].gallery_image}`;
           return(
            
-              <Col key={index} sm={12} md={4} lg={4} xl={4}
-              className="shop-card mb-4" 
-              style={{
+              <Col key={index} sm={12} md={4} >
+              <div className="shop-card mb-4 "
+                style={{
                 background: `url(${gallery_url})`,
                 backgroundSize: "cover",
                
-              }}
-              >
-                <Link to={{
-                  pathname: "/products" + "/" + value.name+ "/"+ value.shop_id +  "/" + value.cat_id +  "/" ,
+              }}>
+                  <Link to={{
+                    pathname: "/products" + "/" + value.name+ "/"+ value.shop_id +  "/" + value.cat_id +  "/" ,
+                    
+                }} 
                   
-                  }} 
-
-                  // href={
-                  //   "/products/" +
-                  //   value.name +
-                  //   value.shop_id +
-                  //   "/" 
-                  // }
-                  style={{textDecoration:"none"}}>
-                  <Image src={img_url} alt=""/>
-                  <h5>{value.name}</h5>
-                  <p>{value.cat_name}</p>
-                </Link>
+                    style={{textDecoration:"none"}}>
+                    <Image src={img_url} alt=""/>
+                    <h5>{value.name}</h5>
+                    <p>{value.cat_name}</p>
+                  </Link>
+                </div>
               </Col>
             
           );
@@ -243,9 +235,6 @@ export default function Sidebar() {
                 className="exp ml-4"
                 style={{ color: "black", fontWeight: "bold", marginTop: "30px" }}
               >
-                {/* <Trans i18nKey="page-heading">
-                      Explore Catagories
-                </Trans> */}
                 {t("home.explore-categories")}
             
             </h3>
@@ -261,7 +250,7 @@ export default function Sidebar() {
             </Col>
          </Row>
 
-         <Row className=" mt-4 ml-1">
+         <Row className="justify-content-md-between mt-4 ml-1">
             <DisplayShops/>
          </Row>
           </Col>

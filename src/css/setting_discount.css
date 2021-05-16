@@ -59,3 +59,14 @@ text-align: center;
 
 color: #BDBDBD;
 }
+
+@media (max-width: 900px) {
+    .discount-list .modal-content {
+        width: 95%;
+    }
+    .modal-dialog {
+        max-width: 100% !important;
+    }
+
+
+}
