@@ -8,37 +8,23 @@ const Discounts = (props) => {
 
   return (
 
-    <div className="upcoming mt-4" style={{ background: "#F6F6F6", width: "101%", height: "80vh" }}>
-      <h4 className="upcomingheading" style={{
-        paddingTop: "60px",
-        fontWeight: "bold", fontSize: "25px"
-      }}
-        className=" pl-4 ml-3">Upcoming Orders</h4>
+    <div className="upcoming mt-4">
+      <h4 className="upcomingheading" className=" pl-4 ml-3">Upcoming Orders</h4>
       {/* ----------------CARD NUMBER ONE--------------------- */}
-      <CardDeck style={{ width: "70%", marginLeft: "2%", background: "#F6F6F6" }}>
+      <CardDeck>
 
         {
           props.show6 ?
-            <Card className="ordercard1 orderupcomingcard" style={{
-              marginLeft: "3%", marginTop: "4%",
-              width: "35%", height: "42vh", border: "none", borderRadius: "12px"
-            }}>
+            <Card className="ordercard1 orderupcomingcard">
 
 
-              <Card.Header
-                style={{ border: "none", background: "white", borderRadius: "15px" }} >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <h6 style={{ fontWeight: "bold", color: "#223142" }}>Ramez Shopping</h6>
-                  <Button style={{
-                    color: "silver", background: "white",
-                    fontSize: "12px", fontWeight: "bold", border: "none"
-                  }}>#1DF90E</Button></div>
-                <div style={{ display: "flex" }}>
-                  <i class="far fa-clock ml-2 mt-4" style={{ color: "yellow", fontSize: "28px" }}></i>
-                  <Button style={{
-                    border: "none", background: "none",
-                    marginLeft: "1%", marginTop: "-3%", fontSize: "12px"
-                  }}>
+              <Card.Header>
+                <div>
+                  <h6>Ramez Shopping</h6>
+                  <Button>#1DF90E</Button></div>
+                <div>
+                  <i class="far fa-clock ml-2 mt-4"></i>
+                  <Button>
                     <b style={{ color: "grey", fontWeight: "normal" }}>
                       Estimated Arrival</b> </Button>
                 </div>

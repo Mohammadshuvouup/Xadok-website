@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { Button, Modal,Row,Col } from 'react-bootstrap';
 import { Trans, useTranslation } from 'react-i18next'
 // import './../css/opencart.css'
-import '../css/openCart.css';
+import '../css/open_cart.css';
 
 
 const API_PREFIX_URL=`https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
