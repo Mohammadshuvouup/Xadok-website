@@ -82,7 +82,21 @@ const TopBar = () => {
   const handleClose4 = () => setShow4(false);
   const handleShow4 = () => setShow4(true);
 
-  const handleClose5 = () => setShow5(false);
+  const handleClose5 = () => {
+    localStorage.removeItem("user_id")
+    localStorage.removeItem("user_mobile")
+    localStorage.removeItem("user_name")
+    localStorage.removeItem("user_email")
+    localStorage.removeItem("role_id")
+    localStorage.removeItem("state_id")
+    localStorage.removeItem("region_id")
+    localStorage.removeItem("user_street")
+    localStorage.removeItem("user_lat")
+    localStorage.removeItem("user_lng")
+    localStorage.removeItem("user_img")
+    setShow5(false);
+    window.location.reload();
+  }
   const handleShow5 = () => setShow5(true);
 
   const handleClose8 = () => setShow8(false);
@@ -153,9 +167,10 @@ const TopBar = () => {
     window.location.reload();
   }
 
+  const isLoggedIn = localStorage.getItem("user_id");
+  // console.log("isLoggedIn",isLoggedIn)
     return(
     <div>
-           
         <Navbar className="mainnavbartop b" style={{marginTop:"7px"}}>
             <Nav >
                 <div className="left-nav-item">
@@ -182,7 +197,10 @@ const TopBar = () => {
             </form>
 
             <div id="fle" className="ml-2">
+            { (isLoggedIn == null || isLoggedIn == "") ?
               <i className="fas fa-user top-bar-icon ml-3" onClick={handleShow1}></i> 
+              : <i className="fas fa-user top-bar-icon ml-3" onClick={handleShow5}></i> 
+            }
               <i className="fas fa-shopping-cart top-bar-icon ml-2" onClick={handleShow2}><span className="product_amount">{cart_qty>0 ? cart_qty: 0}</span></i>
             </div> 
 
