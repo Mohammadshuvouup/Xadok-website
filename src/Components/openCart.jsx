@@ -90,7 +90,7 @@ const OpenCart = (props) => {
                  
                   <Col md={8} className="more-item-text">
                      <h6>{t("openCart.Delivery")}</h6>
-                     <h6>$0</h6>
+                     <p>$0</p>
               </Col>
               <Col md={2}></Col>
                </Row>
