@@ -59,8 +59,8 @@ const SavedAddresses = (props) => {
                     {address_list && address_list.length > 0 && address_list.map((value, index) => {
                         return (
                             <Row key={index} className="mb-4">
-                                <Col md={12} className="address">
-                                    <i class="fas fa-edit edit-icon "></i>
+                                <Col md={12} className="address" onClick={props.handleCloses1} >
+                                    <i class="fas fa-edit edit-icon " onClick={handleAddNewAddress}></i>
 
                                     <h5>{value.address}</h5>
                                     <p>{value.city}</p>

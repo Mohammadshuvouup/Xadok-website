@@ -3,6 +3,7 @@ import { Button, Modal,Row,Col } from 'react-bootstrap';
 import { Trans, useTranslation } from 'react-i18next'
 // import './../css/opencart.css'
 import '../css/open_cart.css';
+import SavedAddresses from './Modals/settings page/saved_addresses.jsx'
 
 
 const API_PREFIX_URL=`https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
@@ -23,6 +24,9 @@ const OpenCart = (props) => {
 
   },[]);
 
+  const [shows1, setShows1] = useState(false);
+  const handleShows1 = () => setShows1(true);
+  const handleCloses1 = () => setShows1(false);
 
 
     const [num ,setNum] = useState(1);
@@ -43,6 +47,9 @@ const OpenCart = (props) => {
   
     return(
       <div className="open-cart-modal">
+
+        <SavedAddresses shows1={shows1} handleCloses1={handleCloses1} />
+        
          <Modal className="cart art"  show={props.show2} onHide={props.handleClose2}>
             <Modal.Header closeButton>
                <Modal.Title className="mycart">{t("openCart.My-cart")}
@@ -53,7 +60,7 @@ const OpenCart = (props) => {
             <Row>
               <Col md={12} className="deliver-to">
                     <h6 className="deliver-text1">{t("openCart.DELIVER-TO")} </h6>
-                <h6 className="deliver-text2" onClick={props.handleShow} >300 Post Street San Francisco, CA
+                <h6 className="deliver-text2" onClick={handleShows1} >300 Post Street San Francisco, CA
                     {/* <span><i class="text-right fas fa-chevron-right"></i></span> */}
                 </h6>
                     <h3 className="deliver-text3">{t("openCart.Items")}</h3>
