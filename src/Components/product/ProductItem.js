@@ -22,7 +22,11 @@ function ProductItem(props) {
       pro_qua: 1,
       pro_model: 0,
       product_price:
-        item.pro_special_price != 0 || item.pro_special_price != ""
+      (item.pro_special_price != null &&
+      item.pro_special_price != 0 &&
+      item.pro_special_price != "" &&
+      item.pro_special_price != 0.0 &&
+      item.pro_special_price != 0.0 )
           ? item.pro_special_price
           : item.pro_price,
       img: item.pro_img,
