@@ -159,9 +159,7 @@ const TopBar = () => {
   const cart_qty = (localStorage.getItem('cart_quantity'));
   
   const assign_language = (e) => {
-
     localStorage.setItem("language", e.target.value);
-
     setSelect_val(e.target.value);
     i18n.changeLanguage(e.target.value)
     window.location.reload();

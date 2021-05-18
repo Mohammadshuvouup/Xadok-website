@@ -5,29 +5,29 @@ import { Trans, useTranslation } from 'react-i18next'
 import '../css/open_cart.css';
 import SavedAddresses from './Modals/settings page/saved_addresses.jsx'
 
-
 const API_PREFIX_URL=`https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 
+
 const OpenCart = (props) => {
+  var localItems = JSON.parse(localStorage.getItem('products')) || [];
+  const [state, setState] = useState({
+    selectedProduct : localItems
+  });
+  const [cart_items, setCartItems] = useState(JSON.parse(localStorage.getItem('products')));
+
   const { t, i18n } = useTranslation();
-   
-
   useEffect(() => {
-    
     let language = localStorage.getItem("language");
-
     // console.log("LANGUAGE SELECTED", language);
-  
     if (language && language.length !== 0) {
       i18n.changeLanguage(language)
     }
-
   },[]);
-
   const [shows1, setShows1] = useState(false);
   const handleShows1 = () => setShows1(true);
   const handleCloses1 = () => setShows1(false);
-
+  // var newLocalItems = JSON.parse(localStorage.getItem('products')) || [];
+  // setState({ selectedProduct : newLocalItems});
 
     const [num ,setNum] = useState(1);
     const plus = () => {
@@ -41,15 +41,29 @@ const OpenCart = (props) => {
       }
     };
 
-    const cart_items = JSON.parse(localStorage.getItem('xadokCartItems'));
-    const cart_qty = (localStorage.getItem('cart_quantity'));
+    const updateQuanity = (props, type) => {
+      const newList = cart_items.map((item) => {
+        if (item.pro_id === props.pro_id) {
+          const updatedItem = {
+            ...item,
+            pro_qua: (type=="plus") ? parseInt(props.pro_qua) +1 : parseInt(props.pro_qua) -1 ,
+          };
+          return updatedItem;
+        }
+        return item;
+      });
+      setCartItems(newList);
+      localStorage.setItem("products", JSON.stringify(newList));
+    }
+
+    // cart_items = JSON.parse(localStorage.getItem('products'));
+    
+    const cart_qty = (localStorage.getItem('cart_count'));
     const modal_cart_qty = (localStorage.getItem('modal_cart_quantity'));
   
     return(
       <div className="open-cart-modal">
-
         <SavedAddresses shows1={shows1} handleCloses1={handleCloses1} />
-        
          <Modal className="cart art"  show={props.show2} onHide={props.handleClose2}>
             <Modal.Header closeButton>
                <Modal.Title className="mycart">{t("openCart.My-cart")}
@@ -71,17 +85,17 @@ const OpenCart = (props) => {
                <>
                <Row className="api-box">
                   <Col md={3}>
-                     <img   className="item-img" src={value.img}/>
+                     <img   className="item-img" src={`${API_PREFIX_URL}${value.img}`}/>
                   </Col>
                   <Col md={7}>
                      <h5  className="item-name">{value.pro_name}</h5>
-                     <h4 className="item-price">{value.product_price}<span>BHD</span></h4>
+                     <h4 className="item-price">{value.product_price}<span>&nbsp;{localStorage.getItem("country_currency")}</span></h4>
                   </Col>
                      <Col md={2} className="d-flex flex-column">
-                     <Button className="plus" onClick={plus} >+</Button>
+                     <Button className="plus" onClick={()=>updateQuanity(value, "plus")}>+</Button>
                      <span className="text-center item-amount">{value.pro_qua}</span>
                      {/* background:"white"}}>{modal_cart_qty>1 ? modal_cart_qty : value.pro_qua}</Button> */}
-                     <Button className="minus" onClick={minus}>-</Button>
+                     <Button className="minus" onClick={()=>updateQuanity(value, "minus")}>-</Button>
                   </Col>
                </Row>
                </>

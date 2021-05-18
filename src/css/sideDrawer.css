@@ -11,7 +11,7 @@ body{
 }
 
 .sideNav .nav-link{
-    padding: 15px 0px 15px 0px !important;
+    padding: 15px 0px 15px 18px !important;
     color: black;
     display: flex !important;
     align-items: center;
@@ -19,11 +19,25 @@ body{
     font-size: 1rem;
     border-radius: 10px;
 }
+.sideNav .active{
+    background: rgb(217 42 59) !important;
+    color: white !important;
+}
+
+.sideNav .nav-link svg{
+    fill: black;
+    padding: 2px;
+    margin-right: 7px;
+}
+.sideNav .active svg{
+    fill: white;
+    padding: 2px;
+    margin-right: 7px;
+}
 
 .sideNav .nav-link i, .nav-link img{
  margin-right: 10px;
 }
-
 .sideNav .nav-link i{
     font-size: 20px;
 }
@@ -101,7 +115,7 @@ body{
     box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);
     font-size: .875rem;
     padding: 40px 35px 32px 35px;
-    margin-top: 58px;
+    margin-top: 22px;
     position: relative;
     display: flex;
     flex-direction: column;

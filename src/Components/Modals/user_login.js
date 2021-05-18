@@ -170,9 +170,16 @@ const UserLoginModal = (props) => {
   let country_code = localStorage.getItem("country_code");
   if (country_code == null) {
     axios.get(`https://ristsys.store/api/GetSettings`).then((res) => {
-      // console.log(res.data.data.country_code);
+      // console.log(res.data);
       // console.log("-2-")
       localStorage.setItem("country_code", res.data.data.country_code);
+      localStorage.setItem("country_currency", res.data.data.country_currency);
+      localStorage.setItem("country_id", res.data.data.default_country.country_id);
+      localStorage.setItem("country_name", res.data.data.default_country.country_name);
+      localStorage.setItem("country_name_en", res.data.data.default_country.country_name_en);
+      localStorage.setItem("facebook", res.data.data.facebook);
+      localStorage.setItem("instagram", res.data.data.instagram);
+      localStorage.setItem("twitter", res.data.data.twitter);
       // setCode(res.data.data.country_code);
     });
   }

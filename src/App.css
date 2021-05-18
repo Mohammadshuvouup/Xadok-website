@@ -129,10 +129,11 @@ margin-right: 15px;
     color: #000 !important;
     border: none !important;
     font-size: 17px;
-    border-radius: 9px;
+    border-radius: 12px !important;
     margin-right: 10px;
     padding: 15px 40px !important;
-
+    font-weight: 500 !important;
+    line-height: 1.0 !important;
 }
 
 .filter_btn:focus,.filter_btn:active,.filter_btn:target{
@@ -145,7 +146,9 @@ margin-right: 15px;
 .shop-card{
   border-radius: 16px;
   padding: 30px;
-  background-position: center;
+  background-size: cover !important;
+  background-repeat:   no-repeat !important;
+  background-position: center center !important;        
 }
 
 .shop-card h5{
@@ -1424,4 +1427,14 @@ height:100vh !important
     min-height: 273px;
   }
 }
-
+.veritical-border {
+  padding: 0px !important;
+  border-left: 0.10rm solid #BDBDBD;
+  padding-right: 20px !important;
+}
+.remove-margin{
+  margin: 0px !important;
+}
+.bg-gray{
+  background:#f4f4f4
+}

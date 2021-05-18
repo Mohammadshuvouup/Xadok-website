@@ -145,6 +145,7 @@
 
 .cart .item-img{
     border-radius: 12px;
+    max-height: 140px;
 }
 .cart .item-name{
     font-family: Open Sans;
@@ -163,6 +164,7 @@
     display: flex;
     align-items: center;
     color: #BDBDBD;
+    margin-top:25px;
 }
 .cart .item-price span{
     font-family: Lato;
@@ -222,10 +224,10 @@ border-radius: 12px;
 
 }
 .cart .api-box{
-    margin-bottom: 90px;
-    margin-top: 50px;
+    /* margin-bottom: 90px;
+    margin-top: 50px; */
     border: 1px solid #BDBDBD;
-    padding: 20px 0px;
+    padding: 8px 0px;
     background: #FFFFFF;
     box-sizing: border-box;
 }

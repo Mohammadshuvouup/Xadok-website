@@ -192,7 +192,7 @@ const SignUpForm = (props) => {
             password: password,
             code: localStorage.getItem("country_code"),
         };
-        console.log(params);
+        // console.log(params);
         axios
         .post(`https://ristsys.store/api/registerStepTwo`, params)
         .then((res) => {
