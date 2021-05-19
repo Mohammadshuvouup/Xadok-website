@@ -15,10 +15,25 @@ const AfterLoginPopUp = (props) => {
     }
   }, []);
 
+  const logout = () => {
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("user_mobile");
+    localStorage.removeItem("user_name");
+    localStorage.removeItem("user_email");
+    localStorage.removeItem("role_id");
+    localStorage.removeItem("state_id");
+    localStorage.removeItem("region_id");
+    localStorage.removeItem("user_street");
+    localStorage.removeItem("user_lat");
+    localStorage.removeItem("user_lng");
+    localStorage.removeItem("user_img");
+    window.location.reload();
+  }
+
   return (
     <Modal className="profile" show={props.show5} onHide={props.handleClose5}>
       <Modal.Header style={{ border: "none", outline: "none" }} closeButton>
-        <Modal.Title className="mt-3 ml-3">Hi Talal...</Modal.Title>
+        <Modal.Title className="mt-3 ml-3">Hi {localStorage.getItem("user_name")}...</Modal.Title>
       </Modal.Header>
       <p className="pl-4 ml-2">Save your time and let's shop for you </p>
       <Modal.Body style={{ border: "none" }}>
@@ -30,7 +45,7 @@ const AfterLoginPopUp = (props) => {
         <h4>Setting</h4>
       </Modal.Body>
       <Modal.Footer style={{ border: "none" }}>
-        <Button onClick={props.handleClose5} className="p-3 logout-btn">
+        <Button onClick={logout} className="p-3 logout-btn">
           Logout
         </Button>
       </Modal.Footer>

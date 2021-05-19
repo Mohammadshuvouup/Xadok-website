@@ -12,7 +12,7 @@ import { Trans, useTranslation } from "react-i18next";
 import "../../css/forgot_password.css";
 
 const ForgotPassword = (props) => {
-  console.log(props);
+  // console.log(props);
   const { t, i18n } = useTranslation();
   const [msgEmail, setMsgEmail] = useState("");
   const [email, setEmail] = useState("");

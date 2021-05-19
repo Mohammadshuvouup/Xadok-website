@@ -130,18 +130,19 @@ const UserLoginModal = (props) => {
             if (res.data.status == 0) {
               setMsgPassword(res.data.message);
           } else {
+              // console.log(res.data.data.user_name);
               setMsgPassword("");
-              localStorage.setItem("user_id",res.data.data.user_id)
-              localStorage.setItem("user_mobile",res.data.data.user_mobile)
-              localStorage.setItem("user_name",res.data.data.user_name)
-              localStorage.setItem("user_email",res.data.data.user_email)
-              localStorage.setItem("role_id",res.data.data.role_id)
-              localStorage.setItem("state_id",res.data.data.state_id)
-              localStorage.setItem("region_id",res.data.data.region_id)
-              localStorage.setItem("user_street",res.data.data.user_street)
-              localStorage.setItem("user_lat",res.data.data.user_lat)
-              localStorage.setItem("user_lng",res.data.data.user_lng)
-              localStorage.setItem("user_img",res.data.data.user_img)
+              localStorage.setItem("user_id",res.data.data.user.user_id)
+              localStorage.setItem("user_mobile",res.data.data.user.user_mobile)
+              localStorage.setItem("user_name",res.data.data.user.user_name)
+              localStorage.setItem("user_email",res.data.data.user.user_email)
+              localStorage.setItem("role_id",res.data.data.user.role_id)
+              localStorage.setItem("state_id",res.data.data.user.state_id)
+              localStorage.setItem("region_id",res.data.data.user.region_id)
+              localStorage.setItem("user_street",res.data.data.user.user_street)
+              localStorage.setItem("user_lat",res.data.data.user.user_lat)
+              localStorage.setItem("user_lng",res.data.data.user.user_lng)
+              localStorage.setItem("user_img",res.data.data.user.user_img)
               let myColor = { background: "#0E1717", text: "#FFFFFF" };
               notify.show("Succesfully logged in!", "success", 6000, myColor);
               handleClose1();

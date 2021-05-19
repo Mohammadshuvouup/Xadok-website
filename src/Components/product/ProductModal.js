@@ -7,7 +7,7 @@ const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 var xadokCartItems = [];
 
 function ProductModal(props) {
-    console.log(props);
+    // console.log(props);
   const [num, setNum] = useState(1);
   const plus = () => {
     setNum(num + 1);

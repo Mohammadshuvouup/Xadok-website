@@ -389,11 +389,11 @@ export default function Explore(props) {
     axios
       .post("https://ristsys.store/api/GetProductInfo", modal_Param)
       .then((response) => {
-        console.log("cart data api", response.data.data.product);
-        console.log(
-          "cart alternative product api",
-          response.data.data.alternatives
-        );
+        // console.log("cart data api", response.data.data.product);
+        // console.log(
+        //   "cart alternative product api",
+        //   response.data.data.alternatives
+        // );
         setCartData(response.data.data.product);
         setSlide_product(response.data.data);
         // setAlternative_Product(response.data.data.alternatives);
@@ -444,7 +444,7 @@ export default function Explore(props) {
 
   const displaySubCategory = (prod_cat) => {
     let subcategory_arr = [];
-    console.log("Product cat", prod_cat);
+    // console.log("Product cat", prod_cat);
     product_Category_Param = {
       shop_id: shopID,
       procat_id: prod_cat,
@@ -455,7 +455,7 @@ export default function Explore(props) {
     axios
       .post("https://ristsys.store/api/GetShopProducts", product_Category_Param)
       .then((response) => {
-        console.log("sidebar subcat api", response.data.subs);
+        // console.log("sidebar subcat api", response.data.subs);
 
         setProduct_subcategory(response.data.subs);
       })
@@ -487,7 +487,7 @@ export default function Explore(props) {
             setShops(response.data.data.shops[i]);
           }
         }
-        console.log("shop response", shops);
+        // console.log("shop response", shops);
       })
       .catch((error) => {
         console.log(error);
@@ -510,7 +510,7 @@ export default function Explore(props) {
       })
       .catch((error) => console.log(error));
 
-    console.log("modal param", modal_Param);
+    // console.log("modal param", modal_Param);
   }, []);
 
   /*    ======================== SIDE CATEGORY BAR ======================== */

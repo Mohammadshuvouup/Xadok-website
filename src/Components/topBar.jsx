@@ -75,19 +75,7 @@ const TopBar = () => {
   const handleClose3 = () => setShow3(false);
   const handleClose4 = () => setShow4(false);
   const handleClose5 = () => {
-    localStorage.removeItem("user_id");
-    localStorage.removeItem("user_mobile");
-    localStorage.removeItem("user_name");
-    localStorage.removeItem("user_email");
-    localStorage.removeItem("role_id");
-    localStorage.removeItem("state_id");
-    localStorage.removeItem("region_id");
-    localStorage.removeItem("user_street");
-    localStorage.removeItem("user_lat");
-    localStorage.removeItem("user_lng");
-    localStorage.removeItem("user_img");
     setShow5(false);
-    window.location.reload();
   };
   const handleShow5 = () => setShow5(true);
   const handleClose8 = () => setShow8(false);
@@ -2434,7 +2422,7 @@ fc5363fbeea51a1%3A0x74726bcd92d8edd2!2sKuwait!5e0!3m2!1sen!2s!4v1611979046409!5m
           </Modal.Footer>
         </Modal>
 
-        <Modal
+        {/* <Modal
           className="welcome"
           style={{
             border: "none",
@@ -2555,7 +2543,7 @@ fc5363fbeea51a1%3A0x74726bcd92d8edd2!2sKuwait!5e0!3m2!1sen!2s!4v1611979046409!5m
               Logout
             </Button>
           </Modal.Footer>
-        </Modal>
+        </Modal> */}
 
         {/* <Modal
           className="forgot"
