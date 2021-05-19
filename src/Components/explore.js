@@ -21,6 +21,7 @@ import {
 import logo from "../logo/logo.svg";
 import Footer from "../Components/footer";
 import TopBar from "../Components/topBar";
+import ProductModal from "../Components/product/ProductModal";
 import Sidebar from "../Components/sidebar";
 import "../css/explore.css";
 import axios from "axios";
@@ -376,8 +377,6 @@ export default function Explore(props) {
 
   const handleAddCart = (data) => {
     // console.log("cart data", data)
-    setModalShow(true);
-
     const product_ID = data.pro_id;
 
     modal_Param = {
@@ -436,6 +435,7 @@ export default function Explore(props) {
           list[index] = n;
         }
         setCartSimilar_Product(list);
+        setModalShow(true);
       })
       .catch((error) => console.log(error));
   };
@@ -622,7 +622,8 @@ export default function Explore(props) {
               pro_special_price={value.pro_special_price}
               pro_stock={value.pro_stock}
               pro_id={value.pro_id}
-              procat_sub={value.procat_sub}>
+              procat_sub={value.procat_sub}
+              showProductModal={handleAddCart}>
               </ProductItem>
             );
           })}
@@ -633,7 +634,7 @@ export default function Explore(props) {
   return (
     <React.Fragment>
       <Container className="container-box" fluid>
-        <MyVerticallyCenteredModal
+        <ProductModal
           show={modalShow}
           onHide={() => setModalShow(false)}
           cartData={cartData}

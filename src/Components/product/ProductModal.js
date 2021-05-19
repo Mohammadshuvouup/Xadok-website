@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Col, Image, Modal, Row, Carousel, Card, CardDeck } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import ProductItem from "./ProductItem";
 
 const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 var xadokCartItems = [];
 
 function ProductModal(props) {
+    console.log(props);
   const [num, setNum] = useState(1);
   const plus = () => {
     setNum(num + 1);
@@ -144,22 +146,61 @@ function ProductModal(props) {
                     <CardDeck>
                       {product.map((val, index) =>
                         !val ? null : (
+                            // <ProductItem 
+                            //     className="alternative-item"
+                            //     index={index} 
+                            //     pro_img={value.pro_img} 
+                            //     pro_price={value.pro_price}
+                            //     pro_name={value.pro_name}
+                            //     pro_name_en={value.pro_name_en}
+                            //     pro_special_price={value.pro_special_price}
+                            //     pro_stock={value.pro_stock}
+                            //     pro_id={value.pro_id}
+                            //     procat_sub={value.procat_sub}>
+                            //     </ProductItem>
                           <Card className="alternative-item">
                             <Card.Img src={`${API_PREFIX_URL}${val.pro_img}`} />
                             <Card.Body>
                               <Card.Text>
-                                <p className="pl-2 old_price">
-                                  <del>{val.pro_price}</del>
-                                </p>
-                                <div className="priceBox">
-                                  <h4 className="pl-2 item_price">
-                                    {val.pro_special_price}
-                                    <span className="currency-symbol">BDH</span>
-                                  </h4>
-                                  <div className="discount">
-                                    <p className="pt-1 pl-3 ptag">25%</p>
-                                  </div>
-                                </div>
+                              {val.pro_special_price != null &&
+                                val.pro_special_price != 0 &&
+                                val.pro_special_price != "" &&
+                                val.pro_special_price != 0.0 &&
+                                val.pro_special_price != 0.0 ? (
+                                    <p className="pl-2 old-price">
+                                    <del>{val.pro_price}</del>
+                                    </p>
+                                ) : (
+                                    <p className="pl-2 old-price" style={{ color: "white" }}>
+                                    <del>&nbsp;</del>
+                                    </p>
+                                )}
+                                {val.pro_special_price != null &&
+                                    val.pro_special_price != 0 &&
+                                    val.pro_special_price != "" &&
+                                    val.pro_special_price != 0.0 &&
+                                    val.pro_special_price != 0.0 ? (
+                                        <div className="price-box">
+                                        <h4 className="pl-2 item-price">
+                                            {val.pro_special_price}
+                                            <span className="currency-symbol">
+                                            {localStorage.getItem("country_currency")}
+                                            </span>
+                                        </h4>
+                                        <div className="discount">
+                                            <p className="pt-1 pl-3 ptag">25%</p>
+                                        </div>
+                                        </div>
+                                    ) : (
+                                        <div className="price-box">
+                                        <h4 className="pl-2 item-price">
+                                            {val.pro_price}
+                                            <span className="currency-symbol">
+                                            {localStorage.getItem("country_currency")}
+                                            </span>
+                                        </h4>
+                                        </div>
+                                    )}
                                 <p className="item_description">
                                   {val.pro_name}
                                 </p>

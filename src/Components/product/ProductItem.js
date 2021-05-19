@@ -4,12 +4,16 @@ import { useTranslation } from "react-i18next";
 import Notifications, { notify } from "react-notify-toast";
 
 function ProductItem(props) {
-  const { t } = useTranslation();
-  const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
-  var localItems = JSON.parse(localStorage.getItem('products')) || [];
-  const [state, setState] = useState({
-    selectedProduct : localItems
- });
+    const { t } = useTranslation();
+    const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
+    var localItems = JSON.parse(localStorage.getItem('products')) || [];
+    const [state, setState] = useState({
+        selectedProduct : localItems
+    });
+
+    const showModal = () => {
+        props.showProductModal(props)
+    }
 
   const handleAddCart = (item) => {
     //   console.log("handleAddCart")
@@ -56,6 +60,7 @@ function ProductItem(props) {
 
       let myColor = { background: "#0E1717", text: "#FFFFFF" };
       notify.show("Product added in the cart!", "success", 1000, myColor);
+      const cart_qty = localStorage.getItem("cart_count");
       return {
         selectedProduct,
         isAdded: true,
@@ -78,7 +83,7 @@ function ProductItem(props) {
       xl={2}
       className="item similar-item"
     >
-      <div className="item-image">
+      <div className="item-image" props={props} onClick={showModal}>
         <Image src={`${API_PREFIX_URL}${props.pro_img}`} />
       </div>
 

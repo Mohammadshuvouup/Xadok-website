@@ -1,0 +1,73 @@
+.profile .modal-content {
+  background: #ffffff;
+  width: 400px;
+  margin-left: auto;
+  float: right;
+  left: 22%;
+}
+.profile .modal-header .close {
+  margin: 6px 0px;
+  background: #f7f7f7;
+  border-radius: 10px;
+}
+.profile .btn {
+  margin-top: 10%;
+  background: rgb(227, 66, 75);
+  border: none;
+  border-radius: 7px;
+  /* width: 80%; */
+  /* margin-right: 10%; */
+}
+
+.profile .modal-title {
+  border: none;
+  font-size: 33px;
+}
+
+.profile p {
+  color: silver;
+  font-size: 13px;
+}
+
+.profile .modal-body {
+  padding-left: 8%;
+}
+
+.profile h4 {
+  font-size: 17px;
+  font-weight: normal;
+  height: 38px;
+  cursor: pointer;
+}
+
+.profile .modal-footer {
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-bottom: 5rem;
+}
+
+.profile .logout-btn {
+  margin-top: 10%;
+  background: rgb(227, 66, 75);
+  border: none;
+  border-radius: 7px;
+  width: 100%;
+}
+
+.profile .logout-btn:hover {
+  background: rgb(206, 57, 65);
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .profile .modal-content {
+    left: 2%;
+  }
+}
+
+@media (max-width: 767px) {
+  .profile .modal-content {
+    float: unset;
+    left: 0;
+    margin: 0 auto;
+  }
+}

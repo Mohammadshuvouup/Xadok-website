@@ -41,7 +41,10 @@ const UserLoginModal = (props) => {
   const handleShow_reg = () => setShow_reg(true);
   const handleClose_reg = () => setShow_reg(false);
 
-  const handleShow118 = () => props.setShow118(true);
+  const handleShow118 = () => {
+    props.setShow118(true);
+    // handleClose1();
+  }
 
   const [code, setCode] = useState("");
   const [mobileNo, setMobileNo] = useState("");
@@ -244,7 +247,7 @@ const UserLoginModal = (props) => {
               {t("login.Sign-in")}
             </Button>
             <h6 onClick={handleShow118} className="mt-4">
-              {t("login.Forgot-password")}{" "}
+              {t("login.Forgot-password")}?{" "}
             </h6>
 
             <Button

@@ -45,6 +45,7 @@
   .offer-item .card-img-top{
     border-radius: 10px;
     max-width: 35vh;
+    height: 23vh;
   }
   
   .offer-item:hover .offer-item .card-text{
@@ -61,6 +62,7 @@
   .item-image{
       height: 170px;
       text-align: center;
+      cursor: pointer;
   }
 
   .similar-item .item-image img{
@@ -213,7 +215,7 @@
     padding: 25px 0 42px 0;
   }
   .card-body{
-    margin-top: 10rem !important;
+    /* margin-top: 10rem !important; */
     padding: 0 !important;
   }
   .alternative-item img{
