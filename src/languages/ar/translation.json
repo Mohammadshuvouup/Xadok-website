@@ -69,7 +69,8 @@
         "FULL-ADDRESS":"العنوان الكامل",
         "ADDRESS-NOTE":"ملاحظة العنوان",
         "ADDRESS-MARK":"علامة العنوان",
-        "Save":"يحفظ"
+        "Save":"يحفظ",
+        "Edit-addresses":"تعديل العنوان"
     },
     "Saved_addresses":{
         "Saved-addresses":"العناوين المحفوظة",

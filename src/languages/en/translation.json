@@ -64,6 +64,7 @@
         "Edit-location-on-the-map":"Edit location on the map",
         "TYPE":"TYPE ",
         "Select-address-type":"Select address type",
+        "flat":"Flat",
         "Villa":"Villa",
         "Showroom":"Showroom",
         "Office":"Office",
@@ -71,7 +72,8 @@
         "FULL-ADDRESS":"FULL ADDRESS",
         "ADDRESS-NOTE":"ADDRESS NOTE",
         "ADDRESS-MARK":"ADDRESS MARK",
-        "Save":"Save"
+        "Save":"Save",
+        "Edit-addresses":"Edit addresses"
     
     },
     "Saved_addresses":{
