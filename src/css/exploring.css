@@ -107,7 +107,7 @@ text-align: center;
 }
 
 .grey-bg{
-    background-color: #E0E0E0;
+    background-color: rgb(246, 246, 246);
     padding-left: 30px;
     padding-right: 30px;
     /* padding-top: 50px; */

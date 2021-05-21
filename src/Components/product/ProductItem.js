@@ -2,23 +2,25 @@ import React, { useState } from "react";
 import { Col, Image } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import Notifications, { notify } from "react-notify-toast";
+import "../../css/subCategory.css";
+import "../../App.css";
 
 function ProductItem(props) {
-    const { t } = useTranslation();
-    const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
-    var localItems = JSON.parse(localStorage.getItem('products')) || [];
-    const [state, setState] = useState({
-        selectedProduct : localItems
-    });
+  const { t } = useTranslation();
+  const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
+  var localItems = JSON.parse(localStorage.getItem("products")) || [];
+  const [state, setState] = useState({
+    selectedProduct: localItems,
+  });
 
-    const showModal = () => {
-        props.showProductModal(props)
-    }
+  const showModal = () => {
+    props.showProductModal(props);
+  };
 
   const handleAddCart = (item) => {
     //   console.log("handleAddCart")
-    var newLocalItems = JSON.parse(localStorage.getItem('products')) || [];
-    setState({ selectedProduct : newLocalItems});
+    var newLocalItems = JSON.parse(localStorage.getItem("products")) || [];
+    setState({ selectedProduct: newLocalItems });
     // console.log("state value",state)
     const obj = {
       pro_id: item.pro_id,
@@ -26,11 +28,11 @@ function ProductItem(props) {
       pro_qua: 1,
       pro_model: 0,
       product_price:
-      (item.pro_special_price != null &&
-      item.pro_special_price != 0 &&
-      item.pro_special_price != "" &&
-      item.pro_special_price != 0.0 &&
-      item.pro_special_price != 0.0 )
+        item.pro_special_price != null &&
+        item.pro_special_price != 0 &&
+        item.pro_special_price != "" &&
+        item.pro_special_price != 0.0 &&
+        item.pro_special_price != 0.0
           ? item.pro_special_price
           : item.pro_price,
       img: item.pro_img,
@@ -43,18 +45,20 @@ function ProductItem(props) {
 
   const addToCart = (obj) => {
     setState((prevState) => {
-        // console.log("prevState");
-        // console.log(prevState);
-        // console.log(prevState.selectedProduct);
+      // console.log("prevState");
+      // console.log(prevState);
+      // console.log(prevState.selectedProduct);
       const found = prevState.selectedProduct.some(
         (el) => el.pro_id === obj.pro_id
       );
-      const arrayproduct =  prevState.selectedProduct;
-    //   console.log("arrayproduct",arrayproduct)
-    //   console.log("found",found)
-    //   console.log("pro_id",obj.pro_id)
-      const selectedProduct = found ? prevState.selectedProduct : arrayproduct.push(obj);
-    //   console.log("selectedProduct",selectedProduct);
+      const arrayproduct = prevState.selectedProduct;
+      //   console.log("arrayproduct",arrayproduct)
+      //   console.log("found",found)
+      //   console.log("pro_id",obj.pro_id)
+      const selectedProduct = found
+        ? prevState.selectedProduct
+        : arrayproduct.push(obj);
+      //   console.log("selectedProduct",selectedProduct);
       localStorage.setItem("cart_count", selectedProduct.length);
       localStorage.setItem("products", JSON.stringify(selectedProduct));
 
@@ -66,13 +70,15 @@ function ProductItem(props) {
         isAdded: true,
       };
     });
-  }
+  };
 
-  function removeProduct(productId){
-    let storageProducts = JSON.parse(localStorage.getItem('products'));
-    let products = storageProducts.filter(product => product.pro_id !== productId );
-    localStorage.setItem('products', JSON.stringify(products));
-}
+  function removeProduct(productId) {
+    let storageProducts = JSON.parse(localStorage.getItem("products"));
+    let products = storageProducts.filter(
+      (product) => product.pro_id !== productId
+    );
+    localStorage.setItem("products", JSON.stringify(products));
+  }
 
   return (
     <Col

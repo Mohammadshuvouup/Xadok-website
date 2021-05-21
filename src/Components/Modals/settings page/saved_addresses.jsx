@@ -30,7 +30,7 @@ const SavedAddresses = (props) => {
       user_id: localStorage.getItem("user_id"),
     };
     axios.post(`https://ristsys.store/api/getAddresses`, params).then((res) => {
-      console.log(res);
+    //   console.log(res);
       if (res.data.status === 1) {
         setAddressList(res.data.data);
       }
@@ -49,12 +49,12 @@ const SavedAddresses = (props) => {
   };
 
   const handleRemoveAddress = (id) => {
-      console.log("id",id);
+    //   console.log("id",id);
         let params = {
             address_id: id,
         };
       axios.post(`https://ristsys.store/api/removeAddress`, params).then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.status === 1) {
             refreshAddressList()
         }

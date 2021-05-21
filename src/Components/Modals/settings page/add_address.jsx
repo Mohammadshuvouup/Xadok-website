@@ -25,7 +25,7 @@ import {
 } from "react-bootstrap";
 
 const NewAddress = (props) => {
-    console.log("NewAddress", props);
+    // console.log("NewAddress", props);
   const { t, i18n } = useTranslation();
   const [addAddress, setAddAddress] = useState("");
   const [addMark, setAddMark] = useState("");
@@ -113,7 +113,7 @@ const NewAddress = (props) => {
   }
 
   useEffect(() => {
-      console.log(addressId);
+      // console.log(addressId);
     let language = localStorage.getItem("language");
     if (language && language.length !== 0) {
       i18n.changeLanguage(language);

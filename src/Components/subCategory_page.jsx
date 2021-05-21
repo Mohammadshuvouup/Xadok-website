@@ -23,6 +23,8 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import NoProduct from "./no_product_page";
 import { Trans, useTranslation } from "react-i18next";
+import '../css/subCategory.css';
+import '../App.css';
 
 const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 const page_size = 28;
