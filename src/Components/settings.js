@@ -172,7 +172,7 @@ export default function Settings() {
                 </Button>
               </div>
               <hr style={{ marginTop: "-1px" }}></hr>
-              <div
+              {/* <div
                 onClick={handleShows2}
                 style={{
                   display: "flex",
@@ -201,9 +201,9 @@ export default function Settings() {
                   <i class="fas fa-chevron-right"></i>
                 </Button>
               </div>
-              <hr style={{ marginTop: "-1px" }}></hr>
+              <hr style={{ marginTop: "-1px" }}></hr> */}
 
-              <h6
+              {/* <h6
                 style={{ color: "lightgray", marginTop: "3%", marginLeft: "%" }}
               >
                 Payments
@@ -236,14 +236,14 @@ export default function Settings() {
                 >
                   <i class="fas fa-chevron-right"></i>
                 </Button>
-              </div>
+              </div> */}
               {/* <hr style={{marginTop:"-1px"}}></hr>
     <div onClick={handleShows4} style={{display:"flex",justifyContent:"space-between",marginTop:"2%"}}>
     <Button style={{color:"#223142",background:"none",border:"none",marginLeft:"-1%"}}><i class="fas fa-credit-card"></i> &nbsp; <b>My cards</b></Button>
     <Button  style={{color:"#223142",background:"none",border:"none"}}>
       <i class="fas fa-chevron-right"></i></Button>
     </div> */}
-              <hr style={{ marginTop: "-1px" }}></hr>
+              {/* <hr style={{ marginTop: "-1px" }}></hr>
 
               <h6
                 style={{ color: "lightgray", marginTop: "3%", marginLeft: "%" }}
@@ -278,11 +278,7 @@ export default function Settings() {
                   <i class="fas fa-chevron-right"></i>
                 </Button>
               </div>
-              {/* <hr style={{marginTop:"-1px"}}></hr>
-    <div  onClick={handleShows6} style={{display:"flex",justifyContent:"space-between",marginTop:"2%"}}>
-    <Button style={{color:"#223142",background:"none",border:"none",marginLeft:"-1%"}}><i class="fas fa-user-plus"></i>&nbsp; <b>Invite a friend</b></Button>
-    <Button  style={{color:"#223142",background:"none",border:"none"}}><i class="fas fa-chevron-right"></i></Button>
-    </div> */}
+             
               <hr style={{ marginTop: "-1px" }}></hr>
               <div
                 onClick={handleShows7}
@@ -312,7 +308,7 @@ export default function Settings() {
                   <i class="fas fa-chevron-right"></i>
                 </Button>
               </div>
-              <hr style={{ marginTop: "-1px" }}></hr>
+              <hr style={{ marginTop: "-1px" }}></hr> */}
             </div>
           </Col>
         </Row>

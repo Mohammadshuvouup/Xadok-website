@@ -20,7 +20,7 @@ import {
 } from "react-bootstrap";
 import Notifications, { notify } from "react-notify-toast";
 import profile from "../../../xadok/download.png";
-import { useFormik } from "formik";
+import { useFormik,Formik, Field } from "formik";
 import * as Yup from "yup";
 
 const PersonalInfo = (props) => {
