@@ -23,11 +23,11 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import NoProduct from "./no_product_page";
 import { Trans, useTranslation } from "react-i18next";
-import '../css/subCategory.css';
-import '../App.css';
+import "../css/subCategory.css";
+import "../App.css";
 
 const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
-const page_size = 28;
+const page_size = 30;
 
 export default function Explore(props) {
   const [modalShow, setModalShow] = useState(false);
@@ -44,6 +44,7 @@ export default function Explore(props) {
   const [isOpen, setOpen] = useState(false);
   const [isClose, setClose] = useState(false);
   const [is_AdClose, setAdClose] = useState(false);
+  const [isSubcatLoaded, setIsSubcatLoaded] = useState(false);
 
   const expandMenu = () => {
     if (isOpen === false) {
@@ -143,7 +144,7 @@ export default function Explore(props) {
 
   useEffect(() => {
     let language = localStorage.getItem("language");
-    
+
     if (language && language.length !== 0) {
       i18n.changeLanguage(language);
     }
@@ -154,6 +155,10 @@ export default function Explore(props) {
         if (response.status === 0) {
           setLoadMore(false);
         }
+        localStorage.setItem(
+          "minimum_amount_for_free_shipping",
+          response.data.data.shop.minimum_amount_for_free_shipping
+        );
         setAppState({ loading: false, res: response });
         setShops(response.data.data.shop);
         setCategory(response.data.data.category);
@@ -163,6 +168,7 @@ export default function Explore(props) {
         console.log(error);
       });
 
+    setsubcat_list([]);
     if (Params.subcat_id == 0) {
       setAppState({ loading: true });
       axios
@@ -182,33 +188,31 @@ export default function Explore(props) {
           setsubcat_list(response.data.data);
           setAllsubcat_data(response.data.data);
         })
-
         .catch((error) => {
           console.log(error);
         });
     } else {
       if (Params.subcat_id !== 0) {
-        setAppState({loading: true});
+        setAppState({ loading: true });
         axios
-            .post(
-                "https://ristsys.store/api/GetShopSubCategoryProducts",
-                sub_category_Params
-            )
-            .then((response) => {
-              if (response.status === 0) {
-                setLoadMore(false);
-              }
+          .post(
+            "https://ristsys.store/api/GetShopSubCategoryProducts",
+            sub_category_Params
+          )
+          .then((response) => {
+            if (response.status === 0) {
+              setLoadMore(false);
+            }
 
-              setsubcat_list(response.data.data);
-              setSubtitle("");
-            })
+            setsubcat_list(response.data.data);
+            setSubtitle("");
+          })
 
-            .catch((error) => {
-              console.log(error);
-            });
+          .catch((error) => {
+            console.log(error);
+          });
       }
     }
-
   }, [setAppState, Params]);
 
   const filter_btns = localStorage.getItem("filter_buttons") === "true";
@@ -216,45 +220,153 @@ export default function Explore(props) {
   const FilterButtons = () => {
     return (
       <>
-        { (subcat_filterbtn!=null && subcat_filterbtn.length>0) ?
-          subcat_filterbtn.map((value, index) => {
-            return (
-              <Link
-                to={
-                  "/" +
-                  Params.shop_name +
-                  "/" +
-                  Params.shop_id +
-                  "/" +
-                  value.procat_id +
-                  "/" +
-                  value.procat_name_en +
-                  "/" +
-                  value.procat_id
-                }
-                style={{ textDecoration: "none" }}
-              >
-                <Button
-                  aria-pressed="true"
-                  className="filter_btn mb-4"
-                  key={index}
-                  onClick={() => subCategoryItems(value.procat_id)}
+        {subcat_filterbtn != null && subcat_filterbtn.length > 0
+          ? subcat_filterbtn.map((value, index) => {
+              return (
+                <Link
+                  to={
+                    "/" +
+                    Params.shop_name +
+                    "/" +
+                    Params.shop_id +
+                    "/" +
+                    value.procat_id +
+                    "/" +
+                    value.procat_name_en +
+                    "/" +
+                    value.procat_id
+                  }
+                  style={{ textDecoration: "none" }}
                 >
-                  {value.procat_name_en}
-                </Button>
-              </Link>
-            );
-          })
-          :""
-          }
+                  <Button
+                    aria-pressed="true"
+                    className="filter_btn mb-4"
+                    key={index}
+                    onClick={() => subCategoryItems(value.procat_id)}
+                  >
+                    {value.procat_name_en}
+                  </Button>
+                </Link>
+              );
+            })
+          : ""}
       </>
     );
   };
 
+  const scrollToEnd = () => {
+    var pageInt = page + 1;
+    setPage(pageInt);
+    // if (Params.subcat_id == 0) {
+    //   categoryProducts();
+    // } else {
+    //   subCategoryProducts();
+    // }
+  };
+
+  window.onscroll = function () {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight
+    ) {
+      scrollToEnd();
+    }
+  };
+
+  // const categoryProducts = () => {
+  //   let param = {
+  //     shop_id: Params.shop_id,
+  //     procat_id: Params.cat_id,
+  //     page_no: page,
+  //     page_size: page_size,
+  //   };
+  //   // console.log(param);
+  //   setAppState({ loading: true });
+  //   axios
+  //     .post("https://ristsys.store/api/GetShopProducts", param)
+  //     .then((response) => {
+  //       setAppState({ loading: false });
+  //       if (response.status != 0) {
+  //         setsubcat_list([...subcat_list, ...response.data.data]);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       setAppState({ loading: false });
+  //     });
+  // };
+
+  // const subCategoryProducts = () => {
+  //   let param = {
+  //     shop_id: Params.shop_id,
+  //     procat_sub: Params.subcat_id,
+  //     page_size: page_size,
+  //     page_no: page,
+  //   };
+  //   // console.log(param);
+  //   setAppState({ loading: true });
+  //   axios
+  //     .post("https://ristsys.store/api/GetShopSubCategoryProducts", param)
+  //     .then((response) => {
+  //       setAppState({ loading: false });
+  //       if (response.status != 0) {
+  //         setsubcat_list(response.data.data);
+  //         setSubtitle("");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       setAppState({ loading: false });
+  //     });
+  // };
+
+  useEffect(() => {
+    if (Params.subcat_id == 0) {
+      let param = {
+        shop_id: Params.shop_id,
+        procat_id: Params.cat_id,
+        page_no: page,
+        page_size: page_size,
+      };
+      setAppState({ loading: true });
+      axios
+        .post("https://ristsys.store/api/GetShopProducts", param)
+        .then((response) => {
+          setAppState({ loading: false });
+          if (response.data.status === 1) {
+            console.log(param);
+            setsubcat_list([...subcat_list, ...response.data.data]);
+          }
+        })
+        .catch((error) => {
+          setAppState({ loading: false });
+        });
+    } else {
+      let param = {
+        shop_id: Params.shop_id,
+        procat_sub: Params.subcat_id,
+        page_size: page_size,
+        page_no: page,
+      };
+      setAppState({ loading: true });
+      axios
+        .post("https://ristsys.store/api/GetShopSubCategoryProducts", param)
+        .then((response) => {
+          console.log(response);
+          setAppState({ loading: false });
+          if (response.data.status === 1) {
+            console.log(param);
+            setsubcat_list([...subcat_list, ...response.data.data]);
+            setSubtitle("");
+          }
+        })
+        .catch((error) => {
+          setAppState({ loading: false });
+        });
+    }
+  }, [page]);
+
   const subCategoryItems = (passedID) => {
     setLoadMore(true);
     setPage(1);
-
     if (passedID !== "All") {
       // const  filter_btn_Param={
       //     shop_id:  Params.shop_id,
@@ -290,49 +402,34 @@ export default function Explore(props) {
     return <NoProduct />;
   };
 
-
   /*    ======================== PRODUCTS TO DISPLAY FOR SUBCATEGORY PAGE ======================== */
-  let recentPrice = 0.0;
-  let prevPrice = 0.0;
+
   const SubcategoryProducts = () => {
     return (
-      <InfiniteScroll
-        pageStart={1}
-        // loadMore={loadItems}
-        hasMore={true || false}
-        // loader={
-        //   <div className="loader" key={0}>
-        //     <Loader
-        //       className="text-center"
-        //       type="TailSpin"
-        //       color="#e3424b"
-        //       height={80}
-        //       width={80}
-        //     />
-        //   </div>
-        // }
-        className="row justify-content-lg-between pl-5"
-      >
+      <>
         {subcat_list !== null &&
           subcat_list.length > 0 &&
           subcat_list.map((value, index) => {
             if (value !== null) {
               return (
-                <ProductItem
-                  index={index}
-                  pro_img={value.pro_img}
-                  pro_price={value.pro_price}
-                  pro_name={value.pro_name}
-                  pro_name_en={value.pro_name_en}
-                  pro_special_price={value.pro_special_price}
-                  pro_stock={value.pro_stock}
-                  pro_id={value.pro_id}
-                  procat_sub={value.procat_sub}
-                ></ProductItem>
+                <>
+                  <ProductItem
+                    index={index}
+                    pro_img={value.pro_img}
+                    pro_price={value.pro_price}
+                    pro_name={value.pro_name}
+                    pro_name_en={value.pro_name_en}
+                    pro_special_price={value.pro_special_price}
+                    pro_stock={value.pro_stock}
+                    pro_id={value.pro_id}
+                    procat_sub={value.procat_sub}
+                    shop_id={value.shop_id}
+                  ></ProductItem>
+                </>
               );
             }
           })}
-      </InfiniteScroll>
+      </>
     );
   };
 
@@ -387,7 +484,7 @@ export default function Explore(props) {
                                 "/" +
                                 value.name +
                                 "/" +
-                                " 0"
+                                "0"
                               }
                               style={{ textDecoration: "none" }}
                             >
@@ -500,11 +597,11 @@ export default function Explore(props) {
               </Col>
             </Row>
 
-            <Row className="bg-gray">
+            <Row className="grey-bg">
               <h2 className="explore-sub-title mb-4 pl-4">
                 {subtitle == "" ? Params.subcat_name : "All"}
               </h2>
-              <Col xs={12} sm={12} lg={12} style={{display: "none"}}>
+              <Col xs={12} sm={12} lg={12} style={{ display: "none" }}>
                 <div className={`btn-container d-flex flex-wrap pl-4`}>
                   <Button
                     className="filter_btn mb-4"
@@ -518,8 +615,24 @@ export default function Explore(props) {
               </Col>
             </Row>
 
-            <Row className="bg-gray">
+            <Row className="item-list grey-bg justify-content-lg-between">
               <SubcategoryProducts />
+            </Row>
+
+            <Row className="grey-bg">
+              {appState.loading ? (
+                <div className="col-md-12">
+                  <Loader
+                    className="text-center"
+                    type="TailSpin"
+                    color="#e3424b"
+                    height={80}
+                    width={80}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
             </Row>
           </Col>
         </Row>

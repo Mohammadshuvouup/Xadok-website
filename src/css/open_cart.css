@@ -62,7 +62,7 @@
 
 
 .cart .more-item-text{
-    padding-left: 22%;
+    padding-left: 14%;
 }
 .cart .mycart{
     font-family: sans-serif;
@@ -182,8 +182,8 @@
 .cart .motor{
     background: #F7F7F7;
     border-radius: 12px;
-    padding: 18px 26px;
-    font-size: 25px;
+    padding: 9px 26px;
+    font-size: 34px;
 
 }
 .cart .card{

@@ -7,9 +7,9 @@ import logo from "../logo/logo.svg";
 import master from "../xadok/master.png";
 import UserLoginModal from "./Modals/user_login";
 import OpenCart from "./openCart";
-import AfterLoginPopUp from './Modals/after_login';
-import ForgotPassword from './Modals/forgot_password';
-import SavedAddresses from './Modals/settings page/saved_addresses.jsx'
+import AfterLoginPopUp from "./Modals/after_login";
+import ForgotPassword from "./Modals/forgot_password";
+import SavedAddresses from "./Modals/settings page/saved_addresses.jsx";
 
 import "../App.css";
 
@@ -20,8 +20,10 @@ const TopBar = () => {
     lat: "",
     lng: "",
   };
-
   const [selected_val, setSelect_val] = useState("");
+  const [defaultAddress, setDefaultAddress] = useState(
+    localStorage.getItem("default_address") || ""
+  );
 
   useEffect(() => {
     const selected_langauge = localStorage.getItem("language");
@@ -43,10 +45,15 @@ const TopBar = () => {
       );
     });
   }, []);
-  
+
   const [shows1, setShows1] = useState(false);
   const handleShows1 = () => setShows1(true);
-  const handleCloses1 = () => setShows1(false);
+  const handleCloses1 = (selectedAddress) => {
+    setShows1(false);
+    if (selectedAddress != null) {
+      setDefaultAddress(selectedAddress.add_area);
+    }
+  };
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const [show2, setShow2] = useState(false);
@@ -120,9 +127,15 @@ const TopBar = () => {
           <div className="left-nav-item">
             <Nav.Link className="topNav-item-list" onClick={handleShows1}>
               <img src={delivery} style={{ height: "3vh" }} className="mr-2" />{" "}
-              {t("topBar.Sen-Francisain-California")}
+              {defaultAddress != null && defaultAddress != ""
+                ? defaultAddress
+                : "Select address"}
             </Nav.Link>
-            <Nav.Link className="topNav-item-list" onClick={handleShow}>
+            <Nav.Link
+              className="topNav-item-list"
+              onClick={handleShow}
+              style={{ display: "block" }}
+            >
               <img src={deal} style={{ height: "3vh" }} className="mr-2" />{" "}
               {t("topBar.Best-deals")}
             </Nav.Link>
@@ -193,9 +206,13 @@ const TopBar = () => {
         handleShow114={handleShow114}
         handleShow={handleShow}
       />
-      
-       {/* -----------------Location---------------------- */}
-       <SavedAddresses shows1={shows1} handleCloses1={handleCloses1} />
+
+      {/* -----------------Location---------------------- */}
+      <SavedAddresses
+        shows1={shows1}
+        handleCloses1={handleCloses1}
+        issetting="0"
+      />
 
       {/* ---------------------------------PROMO CODE--------------------------- */}
 
@@ -756,15 +773,21 @@ const TopBar = () => {
           setShow1={setShow1}
           setShow118={setShow118}
         />
-{/* ----------------------- after login pop up------------------------- */}
+        {/* ----------------------- after login pop up------------------------- */}
 
-<AfterLoginPopUp show5={show5} handleClose5={handleClose5} setShow5={setShow5}/>
+        <AfterLoginPopUp
+          show5={show5}
+          handleClose5={handleClose5}
+          setShow5={setShow5}
+        />
 
-{/* ----------------------- Forgot password popup------------------------- */}
+        {/* ----------------------- Forgot password popup------------------------- */}
 
-<ForgotPassword show118={show118} handleClose118={handleClose118} setShow118={setShow118} />
-
-
+        <ForgotPassword
+          show118={show118}
+          handleClose118={handleClose118}
+          setShow118={setShow118}
+        />
 
         {/* <Modal className="welcome" style={{border:"none",width:"420px",
         height:"150vh",marginLeft:"69%",marginTop:"-2.3%"}} 

@@ -65,7 +65,8 @@ const SavedAddresses = (props) => {
 
   const selectionAddress = (address) => {
     // console.log(address);
-    localStorage.setItem("default_address", address.add_address);
+    localStorage.setItem("default_address", address.add_area);
+    localStorage.setItem("default_address_type", address.add_type);
     localStorage.setItem("default_address_id", address.add_id);
     props.handleCloses1(address);
   };

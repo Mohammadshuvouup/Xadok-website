@@ -365,6 +365,7 @@ export default function Explore(props) {
   const [category, setCategory] = useState([]);
   const [product_subcategory, setProduct_subcategory] = useState([]);
   const [cartData, setCartData] = useState([]);
+  const [productGallery, setProductGallery] = useState([]);
   const [alternative_Product, setAlternative_Product] = useState([]);
   const [cartSimilar_Product, setCartSimilar_Product] = useState([]);
   var list = [];
@@ -389,7 +390,7 @@ export default function Explore(props) {
     axios
       .post("https://ristsys.store/api/GetProductInfo", modal_Param)
       .then((response) => {
-        // console.log("cart data api", response.data.data.product);
+        console.log("cart data api", response);
         // console.log(
         //   "cart alternative product api",
         //   response.data.data.alternatives
@@ -505,6 +506,10 @@ export default function Explore(props) {
     axios
       .post("https://ristsys.store/api/shopPage", similarProduct_Param)
       .then((response) => {
+        localStorage.setItem(
+          "minimum_amount_for_free_shipping",
+          response.data.data.shop.minimum_amount_for_free_shipping
+        );
         setSimilarProd(response.data.data.suggested_products);
         setCategory(response.data.data.category);
       })
@@ -604,27 +609,26 @@ export default function Explore(props) {
   };
 
   /*    ======================== SIMILAR PRODUCTS ======================== */
-  let recentPrice = 0.0;
-  let prevPrice = 0.0;
   const SimilarProducts = () => {
     return (
-      <Row className="justify-content-lg-between pl-4">
+      <Row className="item-list grey-bg justify-content-lg-between">
         {similarProd &&
           similarProd.length > 0 &&
           similarProd.map((value, index) => {
             return (
-              <ProductItem 
-              index={index} 
-              pro_img={value.pro_img} 
-              pro_price={value.pro_price}
-              pro_name={value.pro_name}
-              pro_name_en={value.pro_name_en}
-              pro_special_price={value.pro_special_price}
-              pro_stock={value.pro_stock}
-              pro_id={value.pro_id}
-              procat_sub={value.procat_sub}
-              showProductModal={handleAddCart}>
-              </ProductItem>
+              <ProductItem
+                index={index}
+                pro_img={value.pro_img}
+                pro_price={value.pro_price}
+                pro_name={value.pro_name}
+                pro_name_en={value.pro_name_en}
+                pro_special_price={value.pro_special_price}
+                pro_stock={value.pro_stock}
+                pro_id={value.pro_id}
+                procat_sub={value.procat_sub}
+                shop_id={value.shop_id}
+                showProductModal={handleAddCart}
+              ></ProductItem>
             );
           })}
       </Row>
@@ -786,13 +790,12 @@ export default function Explore(props) {
               </Col>
             </Row>
 
-            <Row className="pl-4 bg-gray">
+            <Row className="pl-4 grey-bg">
               <h2 className="explore-sub-title mb-4">
                 {t("explore.similar-products")}
               </h2>
               <SimilarProducts />
             </Row>
-
           </Col>
         </Row>
       </Container>

@@ -155,6 +155,7 @@ export default function Favourite() {
                       pro_stock={value.pro_stock}
                       pro_id={value.pro_id}
                       procat_sub={value.procat_sub}
+                      shop_id={value.shop_id}
                       showProductModal={showProductModal}
                     ></ProductItem>
                   );

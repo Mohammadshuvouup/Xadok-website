@@ -8,6 +8,7 @@ import "../../App.css";
 function ProductItem(props) {
   const { t } = useTranslation();
   const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
+  //   var localItems = JSON.parse(localStorage.getItem("products")) || [];
   var localItems = JSON.parse(localStorage.getItem("products")) || [];
   const [state, setState] = useState({
     selectedProduct: localItems,
@@ -20,13 +21,29 @@ function ProductItem(props) {
   };
 
   const handleAddCart = (item) => {
-    //   console.log("handleAddCart")
+    // console.log("item", item);
     var newLocalItems = JSON.parse(localStorage.getItem("products")) || [];
-    setState({ selectedProduct: newLocalItems });
+    const isSameShopFound = newLocalItems.some(
+      (el) => el.shop_id === item.shop_id
+    );
+    // console.log(isSameShopFound);
+    if (isSameShopFound === false) {
+      //   console.log("false");
+      localStorage.removeItem("products");
+      localStorage.setItem("cart_count", 1);
+      //   console.log("-11-");
+      setState({ selectedProduct: [] });
+    } else {
+      setState({ selectedProduct: newLocalItems });
+    }
+
+    // setState({ selectedProduct: newLocalItems });
     // console.log("state value",state)
     const obj = {
       pro_id: item.pro_id,
       pro_name: item.pro_name_en,
+      shop_id: item.shop_id,
+      pro_stock: item.pro_stock,
       pro_qua: 1,
       pro_model: 0,
       product_price:
@@ -47,9 +64,10 @@ function ProductItem(props) {
 
   const addToCart = (obj) => {
     setState((prevState) => {
-      // console.log("prevState");
+      //   console.log("prevState");
       // console.log(prevState);
-      // console.log(prevState.selectedProduct);
+      //   console.log(prevState.selectedProduct);
+      //   console.log(obj);
       const found = prevState.selectedProduct.some(
         (el) => el.pro_id === obj.pro_id
       );
@@ -67,6 +85,7 @@ function ProductItem(props) {
       let myColor = { background: "#0E1717", text: "#FFFFFF" };
       notify.show("Product added in the cart!", "success", 1000, myColor);
       const cart_qty = localStorage.getItem("cart_count");
+      setAddCartUI(true);
       return {
         selectedProduct,
         isAdded: true,
@@ -83,6 +102,9 @@ function ProductItem(props) {
   }
 
   const updateQuanity = (props, quantity, type) => {
+    if (props.pro_stock == quantity) {
+        return;
+    }
     if (type == "minus" && parseInt(quantity) - 1 == 0) {
       let updatedItem = localItems.filter(function (el) {
         return el.pro_id !== props.pro_id;
@@ -114,7 +136,8 @@ function ProductItem(props) {
     // console.log("ProductItem");
     // console.log(localItems);
     setAddCartUI(true);
-    if (localItems != null) {
+    // console.log("localItems", localItems);
+    if (localItems != null && localItems.length > 0) {
       const found = localItems.some((el) => el.pro_id === props.pro_id);
       if (found) {
         let product = localItems.filter((el) => el.pro_id === props.pro_id);
@@ -180,10 +203,16 @@ function ProductItem(props) {
       )}
       <p className="item-description">{props.pro_name_en}</p>
       {addCartUI === true ? (
-        <button className="addcart_btn" onClick={() => handleAddCart(props)}>
-          <i className="fas fa-shopping-cart mr-2"></i>{" "}
-          {t("explore.add-to-cart")}{" "}
-        </button>
+        props.pro_stock != 0 ? (
+          <button className="addcart_btn" onClick={() => handleAddCart(props)}>
+            <i className="fas fa-shopping-cart mr-2"></i>{" "}
+            {t("explore.add-to-cart")}{" "}
+          </button>
+        ) : (
+          <button className="addcart_btn">
+            <i className="fas fa-ban mr-2"></i> {t("explore.out-of-stock")}{" "}
+          </button>
+        )
       ) : (
         <div className="d-flex justify-content-center quantity-field">
           <Button

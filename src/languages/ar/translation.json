@@ -6,7 +6,8 @@
     "explore":{
         "offers" : "عروض"  ,
         "similar-products": "منتجات مماثلة",
-        "add-to-cart": "أضف إلى السلة"
+        "add-to-cart": "أضف إلى السلة",
+        "out-of-stock": "إنتهى من المخزن"
     },
 
     "footer": {

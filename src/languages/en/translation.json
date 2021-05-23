@@ -6,7 +6,8 @@
     "explore":{
         "offers" : "Offers",
         "similar-products": "Similar Products",
-        "add-to-cart": "Add to cart"
+        "add-to-cart": "Add to cart",
+        "out-of-stock": "Out of stock"
     },
    
     "footer": {

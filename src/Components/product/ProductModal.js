@@ -7,18 +7,22 @@ import {
   Carousel,
   Card,
   CardDeck,
-  Button
+  Button,
 } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import ProductItem from "./ProductItem";
 import axios from "axios";
+import { ThemeProvider } from "@material-ui/core";
 
 const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 var xadokCartItems = [];
 
 function ProductModal(props) {
+  console.log(props);
+  console.log(props.slide_product.gallery);
   const [num, setNum] = useState(1);
   const [cart_quantity, setCart_quantity] = useState(0);
+  const [gallery, setGallery] = useState(props.slide_product.gallery);
 
   const plus = () => {
     setNum(num + 1);
@@ -33,6 +37,7 @@ function ProductModal(props) {
     if (language && language.length !== 0) {
       i18n.changeLanguage(language);
     }
+    // getProductInfo(props);
   }, []);
 
   const addXadokCart = () => {
@@ -68,64 +73,124 @@ function ProductModal(props) {
 
     localStorage.setItem("xadokCartItems", JSON.stringify(xadokCartItems));
     localStorage.setItem("cart_quantity", JSON.stringify(cart_quantity));
-
     localStorage.setItem("modal_cart_quantity", JSON.stringify(num));
   };
 
-  //   const getProductInfo = () => {
-
-  // let params = {
-  //     pro_id: props.cart_data.pro_id,
-  // };
-  // axios
-  //   .post("https://ristsys.store/api/GetProductInfo", params)
-  //   .then((response) => {
-  //     console.log(response);
-  //     if (response.data.status === 1) {
-  //     }
-  //   });
-  //   };
+//   const getProductInfo = (param) => {
+//     console.log("getProductInfo");
+//     console.log(param);
+//     let params = {
+//       pro_id: props.cart_data.pro_id,
+//     };
+//     axios
+//       .post("https://ristsys.store/api/GetProductInfo", params)
+//       .then((response) => {
+//         console.log(response);
+//         if (response.data.status === 1) {
+//         }
+//       });
+//   };
 
   return (
     <>
       <Modal show={props.show} onHide={props.onHide} className="modal-box">
         <Modal.Header closeButton>
           {props.cartData != null ? (
-            <Row>
-              <Col md={6}>
+            <>
+              <Row style={{ width: "100%" }}>
+                {/* <Col md={6}>
                 <Image
                   src={`${API_PREFIX_URL}${props.cartData.pro_img}`}
                 ></Image>
-              </Col>
-              <Col md={6}>
-                <Modal.Title>{props.cartData.product}</Modal.Title>
-                <h6 className="mt-5">
-                  {t("subCategory.categories")}{" "}
-                  <span>{props.cartData.category}</span>
-                </h6>
-                <h6 className="mt-2">
-                  {t("subCategory.description")}{" "}
-                  <span>{props.cartData.pro_desc_en}</span>
-                </h6>
-                <del className="text-muted mt-3">
-                  {props.cartData.pro_price}
-                </del>
-                <div className="d-flex align-items-center price-box mt-1">
-                  <span className="current-price mr-1">
-                    {props.cartData.pro_price}
-                  </span>
-                  <span className="currency">BHD</span>
-                  <div className="discount">25%</div>
-                </div>
-                <p className="note mt-2">{t("subCategory.add-to-cart_note")}</p>
-
-                <div className="cart-options d-flex align-items-center justify-content-end">
-                  <div className="d-flex justify-content-center quantity-field">
-                    <Button className="plus-btn">+</Button>
-                    <input type="text" value="1" />
-                    <Button className="minus-btn">-</Button>
+              </Col> */}
+                <Col md={5}>
+                  <div className="product-img-box">
+                    <Image
+                      className="product-img"
+                      src={`${API_PREFIX_URL}${props.cartData.pro_img}`}
+                    ></Image>
+                    <div className="d-flex">
+                      {props.slide_product.gallery &&
+                      props.slide_product.gallery.length > 0
+                        ? props.slide_product.gallery.map(function (item) {
+                            return (
+                              <Image
+                                className="preview_img"
+                                src={`${API_PREFIX_URL}${item}`}
+                              ></Image>
+                            );
+                          })
+                        : ""}
+                      {/* <Image
+                      className="preview_img"
+                      src={`${API_PREFIX_URL}${props.cartData.pro_img}`}
+                    ></Image>
+                    <Image
+                      className="preview_img"
+                      src={`${API_PREFIX_URL}${props.cartData.pro_img}`}
+                    ></Image>
+                    <Image
+                      className="preview_img"
+                      src={`${API_PREFIX_URL}${props.cartData.pro_img}`}
+                    ></Image>
+                    <Image
+                      className="preview_img"
+                      src={`${API_PREFIX_URL}${props.cartData.pro_img}`}
+                    ></Image> */}
+                    </div>
                   </div>
-                  {/* <div className="input-group plus-minus-input">
+                </Col>
+
+                <Col md={7} className="mt-5">
+                  <Modal.Title>{props.cartData.product}</Modal.Title>
+                  <h6 className="mt-5">
+                    {t("subCategory.categories")}{" "}
+                    <span>{props.cartData.category}</span>
+                  </h6>
+                  <h6 className="mt-2">
+                    {t("subCategory.description")}{" "}
+                    <span>{props.cartData.pro_desc}</span>
+                  </h6>
+                  {props.cartData.pro_special_price != null &&
+                  props.cartData.pro_special_price != 0 &&
+                  props.cartData.pro_special_price != "" &&
+                  props.cartData.pro_special_price != 0.0 &&
+                  props.cartData.pro_special_price != 0.0 ? (
+                    <>
+                      <del className="text-muted mt-3">
+                        {props.cartData.pro_special_price}
+                      </del>
+                      <div className="d-flex align-items-center price-box mt-1">
+                        <span className="current-price mr-1">
+                          {props.cartData.pro_price}{" "}
+                          <span className="currency">
+                            {localStorage.getItem("country_currency")}
+                          </span>
+                        </span>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="d-flex align-items-center price-box mt-1">
+                      <span className="current-price mr-1">
+                        {props.cartData.pro_price}{" "}
+                        <span className="currency">
+                          {localStorage.getItem("country_currency")}
+                        </span>
+                      </span>
+                    </div>
+                  )}
+
+                  {/* <p className="note mt-2">
+                    {t("subCategory.add-to-cart_note")}
+                  </p> */}
+
+                  <div className="cart-options d-flex align-items-center justify-content-end mt-5">
+                    <div className="d-flex justify-content-center quantity-field">
+                      <Button className="plus-btn">+</Button>
+                      <input type="text" value="1" />
+                      <Button className="minus-btn">-</Button>
+                    </div>
+                    {/* <div className="input-group plus-minus-input">
                     <div className="input-group-button">6px
                       <button type="button" className="sign-btn minus" data-quantity="minus" data-field="quantity" onClick={minus}>
                         <i className="fa fa-minus" aria-hidden="true"></i>
@@ -139,20 +204,24 @@ function ProductModal(props) {
                     </div>
                   </div> */}
 
-                  <button className="modal_addcart_btn" onClick={addXadokCart}>
+                    <button
+                      className="modal_addcart_btn"
+                      onClick={addXadokCart}
+                    >
+                      <i
+                        className="fas fa-shopping-cart mr-2"
+                        style={{ fontSize: "28px" }}
+                      ></i>{" "}
+                      {t("explore.add-to-cart")}{" "}
+                    </button>
                     <i
-                      className="fas fa-shopping-cart mr-2"
-                      style={{ fontSize: "28px" }}
-                    ></i>{" "}
-                    {t("explore.add-to-cart")}{" "}
-                  </button>
-                  <i
-                    class="fas fa-heart favourite-icon"
-                    style={{ fontSize: "25px" }}
-                  ></i>
-                </div>
-              </Col>
-            </Row>
+                      class="fas fa-heart favourite-icon"
+                      style={{ fontSize: "25px" }}
+                    ></i>
+                  </div>
+                </Col>
+              </Row>
+            </>
           ) : (
             ""
           )}
