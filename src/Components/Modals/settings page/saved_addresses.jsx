@@ -6,7 +6,7 @@ import axios from "axios";
 import NewAddress from "./add_address";
 
 const SavedAddresses = (props) => {
-    // console.log("saved_addresses",props);
+//   console.log("saved_addresses", props);
   const { t, i18n } = useTranslation();
   const [addressList, setAddressList] = useState([]);
   const [fromSetting, setFromSetting] = useState(props.issetting);
@@ -30,7 +30,7 @@ const SavedAddresses = (props) => {
       user_id: localStorage.getItem("user_id"),
     };
     axios.post(`https://ristsys.store/api/getAddresses`, params).then((res) => {
-    //   console.log(res);
+      //   console.log(res);
       if (res.data.status === 1) {
         setAddressList(res.data.data);
       }
@@ -44,21 +44,30 @@ const SavedAddresses = (props) => {
 
   const handleEditAddress = (id) => {
     //   console.log("id",id);
-      setAddressId(id);
-      handleShow2();
+    setAddressId(id);
+    handleShow2();
   };
 
   const handleRemoveAddress = (id) => {
     //   console.log("id",id);
-        let params = {
-            address_id: id,
-        };
-      axios.post(`https://ristsys.store/api/removeAddress`, params).then((res) => {
+    let params = {
+      address_id: id,
+    };
+    axios
+      .post(`https://ristsys.store/api/removeAddress`, params)
+      .then((res) => {
         // console.log(res);
         if (res.data.status === 1) {
-            refreshAddressList()
+          refreshAddressList();
         }
       });
+  };
+
+  const selectionAddress = (address) => {
+    // console.log(address);
+    localStorage.setItem("default_address", address.add_address);
+    localStorage.setItem("default_address_id", address.add_id);
+    props.handleCloses1(address);
   };
 
   return (
@@ -87,21 +96,23 @@ const SavedAddresses = (props) => {
                   <Col
                     md={12}
                     className="address"
-                    onClick={fromSetting==0 ? props.handleCloses1 : ""}
+                    onClick={fromSetting == 0 ? () => selectionAddress(value) : ""}
                   >
                     <i
                       class="fas fa-edit edit-icon"
                       id={value.add_id}
                       onClick={() => handleEditAddress(value.add_id)}
-                      style={{ display: "none"}}
+                      style={{ display: "none" }}
                     ></i>
                     <h5>{value.add_mark}</h5>
                     <p>{value.add_address}</p>
                     <p>{value.add_area}</p>
 
-                    <i class="fas fa-trash remove-icon"
-                      style={{ bottom: "30px"}}
-                      onClick={() => handleRemoveAddress(value.add_id)}></i>
+                    <i
+                      class="fas fa-trash remove-icon"
+                      style={{ bottom: "30px" }}
+                      onClick={() => handleRemoveAddress(value.add_id)}
+                    ></i>
                   </Col>
                 </Row>
               );
@@ -113,7 +124,12 @@ const SavedAddresses = (props) => {
           <Button className="confirm-btn p-3" onClick={handleAddNewAddress}>
             {t("Saved_addresses.Add-new-addresses")}
           </Button>
-          <Button className="confirm-btn p-3" type="submit" value="submit" style={{display: "none"}}>
+          <Button
+            className="confirm-btn p-3"
+            type="submit"
+            value="submit"
+            style={{ display: "none" }}
+          >
             {t("Saved_addresses.Update Profile")}
           </Button>
 

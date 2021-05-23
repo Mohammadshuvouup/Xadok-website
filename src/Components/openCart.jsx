@@ -36,7 +36,12 @@ const OpenCart = (props) => {
   }, []);
   const [shows1, setShows1] = useState(false);
   const handleShows1 = () => setShows1(true);
-  const handleCloses1 = () => setShows1(false);
+  const handleCloses1 = (selectedAddress) => {
+    // console.log("selectedAddress",selectedAddress);
+    setShows1(false);
+    if (selectedAddress != null) {
+    }
+  };
   const cart_qty = localStorage.getItem("cart_count");
 
   const updateQuanity = (props, type) => {
@@ -65,17 +70,18 @@ const OpenCart = (props) => {
     }
     setTotalCost(
       cart_items
-        .reduce(
-          (a, value) => (a = a + value.product_price * value.pro_qua),
-          0
-        )
+        .reduce((a, value) => (a = a + value.product_price * value.pro_qua), 0)
         .toFixed(3)
     );
   };
 
   return (
     <div className="open-cart-modal">
-      <SavedAddresses shows1={shows1} handleCloses1={handleCloses1} />
+      <SavedAddresses
+        shows1={shows1}
+        handleCloses1={handleCloses1}
+        issetting="0"
+      />
       <Modal
         className="cart art"
         show={props.show2}
@@ -158,7 +164,9 @@ const OpenCart = (props) => {
 
             <Col md={8} className="more-item-text">
               <h6>{t("openCart.Delivery")}</h6>
-              <p><span>0</span> {localStorage.getItem("country_currency")}</p>
+              <p>
+                <span>0</span> {localStorage.getItem("country_currency")}
+              </p>
             </Col>
             <Col md={2}></Col>
           </Row>
@@ -195,8 +203,8 @@ const OpenCart = (props) => {
           >
             <p>
               {t("openCart.Checkout")}
-              <span>&nbsp; 
-                ({totalCost} {localStorage.getItem("country_currency")})
+              <span>
+                &nbsp; ({totalCost} {localStorage.getItem("country_currency")})
               </span>
             </p>
           </Button>

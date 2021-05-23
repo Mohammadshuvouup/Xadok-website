@@ -7,6 +7,7 @@ import {
   Carousel,
   Card,
   CardDeck,
+  Button
 } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import ProductItem from "./ProductItem";
@@ -118,43 +119,37 @@ function ProductModal(props) {
                 </div>
                 <p className="note mt-2">{t("subCategory.add-to-cart_note")}</p>
 
-                <div className="cart-options d-flex align-items-center">
-                  <div className="input-group plus-minus-input">
-                    <div className="input-group-button">
-                      <button
-                        type="button"
-                        className="sign-btn minus"
-                        data-quantity="minus"
-                        data-field="quantity"
-                        onClick={minus}
-                      >
+                <div className="cart-options d-flex align-items-center justify-content-end">
+                  <div className="d-flex justify-content-center quantity-field">
+                    <Button className="plus-btn">+</Button>
+                    <input type="text" value="1" />
+                    <Button className="minus-btn">-</Button>
+                  </div>
+                  {/* <div className="input-group plus-minus-input">
+                    <div className="input-group-button">6px
+                      <button type="button" className="sign-btn minus" data-quantity="minus" data-field="quantity" onClick={minus}>
                         <i className="fa fa-minus" aria-hidden="true"></i>
                       </button>
                     </div>
-                    <input
-                      className="input-group-field"
-                      type="number"
-                      name="quantity"
-                      value={num}
-                    />
+                    <input className="input-group-field" type="number" name="quantity" value={num} />
                     <div className="input-group-button">
-                      <button
-                        type="button"
-                        className="sign-btn hollow plus"
-                        data-quantity="plus"
-                        data-field="quantity"
-                        onClick={plus}
-                      >
+                      <button type="button" className="sign-btn hollow plus" data-quantity="plus" data-field="quantity" onClick={plus}>
                         <i className="fa fa-plus" aria-hidden="true"></i>
                       </button>
                     </div>
-                  </div>
+                  </div> */}
 
                   <button className="modal_addcart_btn" onClick={addXadokCart}>
-                    <i className="fas fa-shopping-cart mr-2"></i>{" "}
+                    <i
+                      className="fas fa-shopping-cart mr-2"
+                      style={{ fontSize: "28px" }}
+                    ></i>{" "}
                     {t("explore.add-to-cart")}{" "}
                   </button>
-                  <i class="fas fa-heart favourite-icon"></i>
+                  <i
+                    class="fas fa-heart favourite-icon"
+                    style={{ fontSize: "25px" }}
+                  ></i>
                 </div>
               </Col>
             </Row>

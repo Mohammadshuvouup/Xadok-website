@@ -186,25 +186,27 @@ export default function Explore(props) {
         .catch((error) => {
           console.log(error);
         });
-    } else if (Params.subcat_id !== 0) {
-      setAppState({ loading: true });
-      axios
-        .post(
-          "https://ristsys.store/api/GetShopSubCategoryProducts",
-          sub_category_Params
-        )
-        .then((response) => {
-          if (response.status === 0) {
-            setLoadMore(false);
-          }
+    } else {
+      if (Params.subcat_id !== 0) {
+        setAppState({loading: true});
+        axios
+            .post(
+                "https://ristsys.store/api/GetShopSubCategoryProducts",
+                sub_category_Params
+            )
+            .then((response) => {
+              if (response.status === 0) {
+                setLoadMore(false);
+              }
 
-          setsubcat_list(response.data.data);
-          setSubtitle("");
-        })
+              setsubcat_list(response.data.data);
+              setSubtitle("");
+            })
 
-        .catch((error) => {
-          console.log(error);
-        });
+            .catch((error) => {
+              console.log(error);
+            });
+      }
     }
 
   }, [setAppState, Params]);
@@ -288,57 +290,6 @@ export default function Explore(props) {
     return <NoProduct />;
   };
 
-  function loadItems() {
-    if (loadMore) {
-      let newpage = 0;
-
-      // console.log("page ",page)
-
-      setTimeout(() => {
-        // axios.post('https://ristsys.store/api/GetShopProducts', updated_sidebar_subcat_Params)
-        // .then(response=>{
-        //   if(response.status==0){
-        //     setLoadMore(false);
-        //   }
-        //   // console.log("-4 ",response.data.data);
-        //   setsubcat_list(subcat_list.concat( response.data.data));
-        //     newpage=page+1;
-        //     setPage(newpage);
-        // })
-        // .catch((error)=>{
-        //   console.log(error)
-        // })
-        // if(updated_filterbtn_Params.procat_sub==0 ){
-        // axios.post('https://ristsys.store/api/GetShopSubCategoryProducts', updated_sidebar_subcat_Params)
-        // .then(response=>{
-        //   if(response.status==0){
-        //     setLoadMore(false);
-        //   }
-        //   setsubcat_list(subcat_list.concat( response.data.data));
-        //   newpage=page+1;
-        //   setPage(newpage);
-        // })
-        // .catch(error=>{
-        //   console.log(error)
-        // })
-        // }
-        // else{
-        // axios.post('https://ristsys.store/api/GetShopSubCategoryProducts', updated_filterbtn_Params)
-        // .then(response=>{
-        //   if(response.status==0){
-        //     setLoadMore(false);
-        //   }
-        //   setsubcat_list(subcat_list.concat( response.data.data));
-        //   newpage=page+1;
-        //   setPage(newpage);
-        // })
-        // .catch(error=>{
-        //   console.log(error)
-        // })
-        // }
-      }, 3000);
-    }
-  }
 
   /*    ======================== PRODUCTS TO DISPLAY FOR SUBCATEGORY PAGE ======================== */
   let recentPrice = 0.0;
@@ -549,11 +500,11 @@ export default function Explore(props) {
               </Col>
             </Row>
 
-            <Row>
+            <Row className="bg-gray">
               <h2 className="explore-sub-title mb-4 pl-4">
                 {subtitle == "" ? Params.subcat_name : "All"}
               </h2>
-              <Col xs={12} sm={12} lg={12}>
+              <Col xs={12} sm={12} lg={12} style={{display: "none"}}>
                 <div className={`btn-container d-flex flex-wrap pl-4`}>
                   <Button
                     className="filter_btn mb-4"
@@ -567,7 +518,7 @@ export default function Explore(props) {
               </Col>
             </Row>
 
-            <Row>
+            <Row className="bg-gray">
               <SubcategoryProducts />
             </Row>
           </Col>

@@ -70,7 +70,7 @@ export default function Favourite() {
     axios
       .post("https://ristsys.store/api/GetProductInfo", param)
       .then((response) => {
-        console.log("cart data api", response);
+        // console.log("cart data api", response);
         if (response.data.status === 1) {
           setModalShow(true);
           setCartData(response.data.data.product);

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Col, Image } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Col, Image, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import Notifications, { notify } from "react-notify-toast";
 import "../../css/subCategory.css";
@@ -12,6 +12,8 @@ function ProductItem(props) {
   const [state, setState] = useState({
     selectedProduct: localItems,
   });
+  const [addCartUI, setAddCartUI] = useState(true);
+  const [quantity, setQuantity] = useState(1);
 
   const showModal = () => {
     props.showProductModal(props);
@@ -40,7 +42,7 @@ function ProductItem(props) {
       offer_percent: 0,
       offer_info: "",
     };
-    let response = addToCart(obj);
+    addToCart(obj);
   };
 
   const addToCart = (obj) => {
@@ -79,6 +81,50 @@ function ProductItem(props) {
     );
     localStorage.setItem("products", JSON.stringify(products));
   }
+
+  const updateQuanity = (props, quantity, type) => {
+    if (type == "minus" && parseInt(quantity) - 1 == 0) {
+      let updatedItem = localItems.filter(function (el) {
+        return el.pro_id !== props.pro_id;
+      });
+      localStorage.setItem("products", JSON.stringify(updatedItem));
+      setAddCartUI(true);
+    } else {
+      const newList = localItems.map((item) => {
+        if (item.pro_id === props.pro_id) {
+          const updatedItem = {
+            ...item,
+            pro_qua:
+              type == "plus" ? parseInt(quantity) + 1 : parseInt(quantity) - 1,
+          };
+          return updatedItem;
+        }
+        return item;
+      });
+      localStorage.setItem("products", JSON.stringify(newList));
+      const found = newList.some((el) => el.pro_id === props.pro_id);
+      if (found) {
+        let product = newList.filter((el) => el.pro_id === props.pro_id);
+        setQuantity(product[0].pro_qua);
+      }
+    }
+  };
+
+  useEffect(() => {
+    // console.log("ProductItem");
+    // console.log(localItems);
+    setAddCartUI(true);
+    if (localItems != null) {
+      const found = localItems.some((el) => el.pro_id === props.pro_id);
+      if (found) {
+        let product = localItems.filter((el) => el.pro_id === props.pro_id);
+        // console.log(found);
+        // console.log(product[0]);
+        setAddCartUI(false);
+        setQuantity(product[0].pro_qua);
+      }
+    }
+  });
 
   return (
     <Col
@@ -133,9 +179,28 @@ function ProductItem(props) {
         </div>
       )}
       <p className="item-description">{props.pro_name_en}</p>
-      <button className="addcart_btn" onClick={() => handleAddCart(props)}>
-        <i className="fas fa-shopping-cart mr-2"></i> {t("explore.add-to-cart")}{" "}
-      </button>
+      {addCartUI === true ? (
+        <button className="addcart_btn" onClick={() => handleAddCart(props)}>
+          <i className="fas fa-shopping-cart mr-2"></i>{" "}
+          {t("explore.add-to-cart")}{" "}
+        </button>
+      ) : (
+        <div className="d-flex justify-content-center quantity-field">
+          <Button
+            className="plus-btn"
+            onClick={() => updateQuanity(props, quantity, "plus")}
+          >
+            +
+          </Button>
+          <input type="text" value={quantity} />
+          <Button
+            className="minus-btn"
+            onClick={() => updateQuanity(props, quantity, "minus")}
+          >
+            -
+          </Button>
+        </div>
+      )}
     </Col>
   );
 }
