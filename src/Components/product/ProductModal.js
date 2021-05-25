@@ -35,7 +35,6 @@ function ProductModal(props) {
   const [addCartUI, setAddCartUI] = useState(props.addCartUI);
   //   const [cartQuantity, setCartQuantity] = useState(props.cartQuantity);
   const [quantity, setQuantity] = useState(props.cartQuantity);
-  const [alternative, setAlternative] = useState(props.alternative_Product);
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -101,19 +100,19 @@ function ProductModal(props) {
       offer_info: "",
     };
     setState((prevState) => {
-      const found = prevState.selectedProduct.some(
-        (el) => el.pro_id === obj.pro_id
-      );
-      const arrayproduct = prevState.selectedProduct;
-      const selectedProduct = found
-        ? prevState.selectedProduct
-        : arrayproduct.push(obj);
-      localStorage.setItem("cart_count", selectedProduct.length);
-      localStorage.setItem("products", JSON.stringify(selectedProduct));
-      let myColor = { background: "#0E1717", text: "#FFFFFF" };
-      notify.show("Product added in the cart!", "success", 1000, myColor);
-    });
-  };
+        const found = prevState.selectedProduct.some(
+          (el) => el.pro_id === obj.pro_id
+        );
+        const arrayproduct = prevState.selectedProduct;
+        const selectedProduct = found
+          ? prevState.selectedProduct
+          : arrayproduct.push(obj);
+        localStorage.setItem("cart_count", selectedProduct.length);
+        localStorage.setItem("products", JSON.stringify(selectedProduct));
+        let myColor = { background: "#0E1717", text: "#FFFFFF" };
+        notify.show("Product added in the cart!", "success", 1000, myColor);
+      });
+  }
 
   const handleAddCart = (item) => {
     // console.log(item);
@@ -333,7 +332,7 @@ function ProductModal(props) {
                 <Carousel classname="alternative-items-carousel">
                   {!props.slide_product
                     ? null
-                    : alternative.map((product, index) => (
+                    : props.alternative_Product.map((product, index) => (
                         <Carousel.Item>
                           <CardDeck>
                             {product.map((val, index) =>
@@ -408,10 +407,8 @@ function ProductModal(props) {
                                         {val.pro_name}
                                       </p>
                                     </Card.Text>
-                                    <button
-                                      className="addcartBtn"
-                                      onClick={() => handleAddCartModal(val)}
-                                    >
+                                    <button className="addcartBtn"
+                                      onClick={() => handleAddCartModal(val)}>
                                       <i className="fas fa-shopping-cart mr-2"></i>{" "}
                                       {t("explore.add-to-cart")}{" "}
                                     </button>
