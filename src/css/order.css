@@ -9,6 +9,8 @@
     padding: 60px 16px 36px 40px;
 }
 
+
+
 .upcoming-orders h2{
     font-weight: bold;
     font-size: 25px;
@@ -25,6 +27,7 @@
     background: white;
     border-radius: 15px;
     padding: 16px 16px 25px 16px;
+    margin-right: 20px;
 }
 
 .upcoming-order-card h6{
@@ -60,7 +63,7 @@
     border: none;
     height: 7vh;
     border-radius: 8px;
-    padding: 8px 62px;
+    padding: 8px 52px;
   
 
 }
@@ -74,8 +77,324 @@
         background: rgb(252, 222, 112);
 }
 
+.Previous-orders{
+    background:white;
+    padding: 60px 16px 36px 40px;
+}
+.Previous-orders .previous-order-card{
+    background: #F7F7F7;
+    border-radius: 15px;
+    padding: 16px 16px 25px 16px;
+    margin-right: 20px;
+}
+.Previous-orders .previous-order-card h6{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    color: #223142;
+}
+ .Previous-orders .previous-order-card .completed{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 16px;
+    color: #419D3E;
+    margin: 0;
+    background: rgba(65, 157, 62, 0.1);
+    border-radius: 6px; 
+    padding: 4px 8px;   
+}
+
+.Previous-orders .previous-order-card .cancelled{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 16px;
+    color: #E3424B;
+    margin: 0;
+    background: rgba(227, 66, 75, 0.1);
+    border-radius: 6px; 
+    padding: 4px 8px;   
+}
+
+.Previous-orders .previous-order-card .title-details{
+    font-family: sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 18px;
+margin-bottom: 29px;
+
+color: #BDBDBD;
+
+
+}
+
+.Previous-orders ul{
+    padding: 0;
+    margin-bottom: 52px;
+}
+
+.Previous-orders ul li{
+    list-style: none;
+    margin-bottom: 12px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #223142;
+}
+
+.Previous-orders ul li span{
+    background: white;
+    padding: 4px 8px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: #A3A3A4;
+    margin-right: 16px;
+}
+
+.previous-order-card footer{
+    margin-top: 26px;
+}
+.previous-order-card footer .btn{
+
+    font-weight: bold;
+    border: none;
+    height: 7vh;
+    border-radius: 8px;
+    padding: 8px 40px;
+  
+
+}
+.previous-order-card footer .details{
+    background: rgb(34, 49, 66);
+}
+.previous-order-card footer .repeat-order{
+    color: #FFFFFF;
+    background: #E3424B;
+
+}
+
+.Previous-orders h2{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: #223142;
+    margin-bottom: 35px;
+}
+
+
+
 @media (max-width:920px){
     .order-card-deck{
         width: 100%; 
     } 
+}
+
+
+@media (max-width:700px){
+    .upcoming-order-card footer .btn ,
+.previous-order-card footer .btn{
+        padding: 8px 20px;
+        font-size: 12px;
+    }
+
+
+.Previous-orders .previous-order-card h6 {
+    font-size: 13px;
+}
+
+}
+
+/*====== order_details popup styles =====*/
+
+ .order-details .modal-content {
+    
+    width: 480px;
+    display: block;
+    margin: 0 auto;
+   
+}
+.order-details .estimatedarrival i{
+    color: yellow;
+    font-size: 28px;
+    margin: 15px 16px;
+
+}
+.order-details .distance i{
+    color: yellow;
+    font-size: 28px;
+    margin: 15px 16px;
+
+}
+.order-details .estimatedarrival{
+    margin-top: 16px;
+    margin-left: 20px;
+}
+.order-details .distance{
+    margin-top: 16px;
+    margin-left: 22px;
+}
+.order-details .estimatedarrival p{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    color: #223142;
+    margin-bottom: 2px;
+}
+.order-details .estimatedarrival h3{
+
+    font-family:sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: #223142;
+}
+.order-details .distance p{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    color: #223142;
+    margin-bottom: 2px;
+}
+.order-details .distance h3{
+
+    font-family:sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: #223142;
+}
+.order-details .delivary-start{
+    width: 480px;
+    height: 8vh;
+    margin-bottom: 12px;
+
+}
+.order-details ul li{
+    list-style: none;
+}
+.order-details .delivary-clock{
+    margin-right: 16px;
+    padding: 10px 8px;
+    background: #F7F7F7;
+    border-radius: 4.92308px;
+}
+.order-details .check{
+    margin-right: 16px;
+    background: #E3424B;
+    border-radius: 4.92308px;
+    color: #FFDD73;
+    padding: 10px 8px;
+
+}
+.order-details .delivary{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #223142;
+
+}
+.order-details ul li{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    color: #223142;
+    margin-top: 28px;
+
+}
+.order-details ul{
+    padding: 0;
+}
+
+.order-details .am{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: right;
+    color: #BDBDBD;
+    float: right;
+    margin-right: 15px;
+}
+.order-details .see-more{
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #223142;
+    margin-top: 18px;
+
+}
+.order-details .chat-icon{
+
+background: #F7F7F7;
+border-radius: 12px;
+color: #223142;
+padding: 16px 37px;
+font-size: 30px;
+}
+.order-details .call-btn{
+
+    background: #223142;
+    border-radius: 12px;
+    padding: 16px 120px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    color: #FFFFFF;
+
+}
+.order-details .call-btn:hover{
+    background: #223142;
+
+}
+.order-details .modal-body{
+    padding: 0 32px 15px 32px;
+}
+.order-details .progressbar{
+    padding: 0px 32px
+}
+.order-details .down-arrow{
+    cursor: pointer;
+}
+.order-details .modal-dialog{
+    margin-top: 6%;
+}
+@media (max-width:700px){
+    .order-details .modal-content {
+    
+        width: 100%;
+    }
+    .order-details .call-btn{
+        padding: 10px 35px;
+    }
+    .order-details .estimatedarrival h3{
+        font-size: 14px;
+    }
+    .order-details .distance h3{
+        font-size: 14px;
+    }
 }

@@ -30,6 +30,7 @@ const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 const page_size = 30;
 
 export default function Explore(props) {
+  const [addCartUI, setAddCartUI] = useState(true);
   const [modalShow, setModalShow] = useState(false);
   const [num1, setNum1] = useState(1);
   const plus1 = () => {
@@ -118,6 +119,7 @@ export default function Explore(props) {
   const [subcat_filterbtn, setsubcat_filterbtn] = useState([]);
   const [allsubcat_data, setAllsubcat_data] = useState([]);
   const [subtitle, setSubtitle] = useState("");
+  const [cartQuantity, setCartQuantity] = useState(1);
 
   const [filter_subcatID, setFilter_subcatID] = useState(0);
   // let xadokCartItems = [];
@@ -141,6 +143,92 @@ export default function Explore(props) {
 
   const [appState, setAppState] = useState({ loading: false, res: null });
   const { t, i18n } = useTranslation();
+  var list = [];
+  
+  const handleAddCart = (data) => {
+    console.log("cart data", data);
+    const product_ID = data.pro_id;
+
+    modal_Param = {
+      shop_id: shopID,
+      pro_id: product_ID,
+      user_id: "",
+    };
+
+    setAddCartUI(true);
+    // console.log("modal param", modal_Param);
+    axios
+      .post("https://ristsys.store/api/GetProductInfo", modal_Param)
+      .then((response) => {
+        console.log("cart data api", response);
+        // console.log(
+        //   "cart alternative product api",
+        //   response.data.data.alternatives
+        // );
+        setCartData(response.data.data.product);
+        setSlide_product(response.data.data);
+        // setAlternative_Product(response.data.data.alternatives);
+        // setCartSimilar_Product(response.data.data.related);
+        var localItems = JSON.parse(localStorage.getItem("products")) || [];
+        // console.log("localItems");
+        // console.log(localItems);
+        // console.log(response.data.data.product);
+        if (localItems != null && localItems.length > 0) {
+          const found = localItems.some(
+            (el) => el.pro_id === response.data.data.product.pro_id
+          );
+          // console.log(found);
+          if (found) {
+            let product = localItems.filter(
+              (el) => el.pro_id === response.data.data.product.pro_id
+            );
+            setAddCartUI(false);
+            setCartQuantity(product[0].pro_qua);
+          }
+        }
+
+        list = [];
+        var j = 0;
+        for (
+          let index = 0;
+          index < Math.round(response.data.data.alternatives.length / 5);
+          index++
+        ) {
+          var k = [];
+          for (let i = 0; i < 5; i++) {
+            if (typeof response.data.data.alternatives[j] === undefined) {
+            } else {
+              k.push(response.data.data.alternatives[j]);
+              j++;
+            }
+          }
+          list[index] = k;
+        }
+        setAlternative_Product(list);
+
+        list = [];
+        var m = 0;
+        for (
+          let index = 0;
+          index < Math.round(response.data.data.related.length / 5);
+          index++
+        ) {
+          var n = [];
+          for (let i = 0; i < 5; i++) {
+            if (typeof response.data.data.related[m] === undefined) {
+            } else {
+              n.push(response.data.data.related[m]);
+              m++;
+            }
+          }
+          list[index] = n;
+        }
+        setCartSimilar_Product(list);
+        setModalShow(true);
+        console.log("setModalShow");
+      })
+      .catch((error) => console.log(error));
+  };
 
   useEffect(() => {
     let language = localStorage.getItem("language");
@@ -424,6 +512,7 @@ export default function Explore(props) {
                     pro_id={value.pro_id}
                     procat_sub={value.procat_sub}
                     shop_id={value.shop_id}
+                    showProductModal={handleAddCart}
                   ></ProductItem>
                 </>
               );
@@ -443,6 +532,8 @@ export default function Explore(props) {
           alternative_Product={alternative_Product}
           cartSimilar_Product={cartSimilar_Product}
           slide_product={slide_product}
+          addCartUI={addCartUI}
+          cartQuantity={cartQuantity}
           // xadokCartItems={xadokCartItems}
         />
         <Row>
