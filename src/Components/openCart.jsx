@@ -179,50 +179,48 @@ const OpenCart = (props) => {
               cart_items.map((value, index) => {
                 // console.log(value);
                 return (
-                  <>
-                    <Row className="api-box">
-                      <Col md={3}>
-                        <img
-                          className="item-img"
-                          src={`${API_PREFIX_URL}${value.img}`}
-                        />
-                      </Col>
-                      <Col md={7}>
-                        <h5 className="item-name">{value.pro_name}</h5>
-                        <h4 className="item-price">
-                          {(value.product_price * value.pro_qua).toFixed(3)}
-                          <span>
-                            &nbsp;{localStorage.getItem("country_currency")}
-                          </span>
-                        </h4>
-                      </Col>
-                      <Col md={2} className="d-flex flex-column">
-                        <Button
-                          className="plus"
-                          onClick={() => updateQuanity(value, "plus")}
-                        >
-                          +
-                        </Button>
-                        <span className="text-center item-amount">
-                          {value.pro_qua}
+                  <Row className="api-box" key={value.pro_id}>
+                    <Col md={3}>
+                      <img
+                        className="item-img"
+                        src={`${API_PREFIX_URL}${value.img}`}
+                      />
+                    </Col>
+                    <Col md={7}>
+                      <h5 className="item-name">{value.pro_name}</h5>
+                      <h4 className="item-price">
+                        {(value.product_price * value.pro_qua).toFixed(3)}
+                        <span>
+                          &nbsp;{localStorage.getItem("country_currency")}
                         </span>
-                        {/* background:"white"}}>{modal_cart_qty>1 ? modal_cart_qty : value.pro_qua}</Button> */}
-                        <Button
-                          className="minus"
-                          onClick={() => updateQuanity(value, "minus")}
-                        >
-                          {value.pro_qua == 1 ? (
-                            <i
-                              class="fas fa-trash bg-gray"
-                              aria-hidden="true"
-                            ></i>
-                          ) : (
-                            "-"
-                          )}
-                        </Button>
-                      </Col>
-                    </Row>
-                  </>
+                      </h4>
+                    </Col>
+                    <Col md={2} className="d-flex flex-column">
+                      <Button
+                        className="plus"
+                        onClick={() => updateQuanity(value, "plus")}
+                      >
+                        +
+                      </Button>
+                      <span className="text-center item-amount">
+                        {value.pro_qua}
+                      </span>
+                      {/* background:"white"}}>{modal_cart_qty>1 ? modal_cart_qty : value.pro_qua}</Button> */}
+                      <Button
+                        className="minus"
+                        onClick={() => updateQuanity(value, "minus")}
+                      >
+                        {value.pro_qua == 1 ? (
+                          <i
+                            class="fas fa-trash bg-gray"
+                            aria-hidden="true"
+                          ></i>
+                        ) : (
+                          "-"
+                        )}
+                      </Button>
+                    </Col>
+                  </Row>
                 );
               })}
             {/* <h6 className="item-add">{t("openCart.Add-more-items")}</h6> */}
@@ -586,9 +584,7 @@ const OpenCart = (props) => {
         >
           Checkout <span style={{ fontSize: "12px" }}>(0.835 BHD)</span>
         </Button>
-        <Modal.Footer style={{ color: "white", border: "none" }}>
-          
-        </Modal.Footer>
+        <Modal.Footer style={{ color: "white", border: "none" }}></Modal.Footer>
       </Modal>
 
       {/* -----------------------SELECT DATE------------------------ */}

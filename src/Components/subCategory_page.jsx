@@ -144,7 +144,7 @@ export default function Explore(props) {
   const [appState, setAppState] = useState({ loading: false, res: null });
   const { t, i18n } = useTranslation();
   var list = [];
-  
+
   const handleAddCart = (data) => {
     console.log("cart data", data);
     const product_ID = data.pro_id;
@@ -312,6 +312,7 @@ export default function Explore(props) {
           ? subcat_filterbtn.map((value, index) => {
               return (
                 <Link
+                  key={index}
                   to={
                     "/" +
                     Params.shop_name +
@@ -500,21 +501,20 @@ export default function Explore(props) {
           subcat_list.map((value, index) => {
             if (value !== null) {
               return (
-                <>
-                  <ProductItem
-                    index={index}
-                    pro_img={value.pro_img}
-                    pro_price={value.pro_price}
-                    pro_name={value.pro_name}
-                    pro_name_en={value.pro_name_en}
-                    pro_special_price={value.pro_special_price}
-                    pro_stock={value.pro_stock}
-                    pro_id={value.pro_id}
-                    procat_sub={value.procat_sub}
-                    shop_id={value.shop_id}
-                    showProductModal={handleAddCart}
-                  ></ProductItem>
-                </>
+                <ProductItem
+                  key={value.id}
+                  index={index}
+                  pro_img={value.pro_img}
+                  pro_price={value.pro_price}
+                  pro_name={value.pro_name}
+                  pro_name_en={value.pro_name_en}
+                  pro_special_price={value.pro_special_price}
+                  pro_stock={value.pro_stock}
+                  pro_id={value.pro_id}
+                  procat_sub={value.procat_sub}
+                  shop_id={value.shop_id}
+                  showProductModal={handleAddCart}
+                ></ProductItem>
               );
             }
           })}
@@ -557,7 +557,7 @@ export default function Explore(props) {
                 category.length > 0 &&
                 category.map((value, index) => {
                   return (
-                    <Nav.Link className="side-bar-item">
+                    <Nav.Link className="side-bar-item" key={value.procat_id}>
                       <Accordion
                         defaultActiveKey="0"
                         onClick={() => displaySubCategory(value.procat_id)}
@@ -606,7 +606,10 @@ export default function Explore(props) {
                                       width={80}
                                     />
                                   ) : (
-                                    <ul className="side-nav-catgory-list">
+                                    <ul
+                                      className="side-nav-catgory-list"
+                                      key={sub_cat.procat_id}
+                                    >
                                       {/* <Image src={`${API_PREFIX_URL}${sub_cat.procat_img}`} /> */}
                                       <Link
                                         to={

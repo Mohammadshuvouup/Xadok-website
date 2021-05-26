@@ -223,7 +223,7 @@ function ProductItem(props) {
           >
             +
           </Button>
-          <input type="text" value={quantity} />
+          <input type="text" value={quantity} readOnly/>
           <Button
             className="minus-btn"
             onClick={() => updateQuanity(props, quantity, "minus")}

@@ -14,66 +14,71 @@ import Favorite from "./Components/favorite";
 import Orders from "./Components/orders";
 import Messages from "./Components/messages";
 import Settings from "./Components/settings";
-import './App.css';
-import SideDrawer from './Components/SideDrawer/SideDrawer'
-import{BrowserRouter as Router,Route,Switch,useRouteMatch } from "react-router-dom"
-// changes 
+import "./App.css";
+import SideDrawer from "./Components/SideDrawer/SideDrawer";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useRouteMatch,
+} from "react-router-dom";
+// changes
 
-import React from 'react';
-import { create } from 'jss';
-import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/core/styles';
-import CustomTheme from './assets/custom_theme';
+import React from "react";
+import { create } from "jss";
+import rtl from "jss-rtl";
+import { StylesProvider, jssPreset } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
+import CustomTheme from "./assets/custom_theme";
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
-
-const App=()=>{
-  
+const App = () => {
   return (
     <ThemeProvider theme={CustomTheme}>
-    <StylesProvider jss={jss}>
-    <div>
-      <Router>
-     <Switch>
-       <Route path="/" exact component={Sidebar} />
-       <Route path="/supermarket" exact component={Supermarket} />
-       <Route path="/exploring" exact component={Exploring}/>
-       <Route path="/favorite" exact component={Favorite}/>
-        <Route path="/orders" exact component={Orders}/>
-       <Route path="/messages" exact component={Messages}/>        
-       <Route path="/settings" exact component={Settings}/>       
-        <Route path="/products/:shop_name/:shop_id/:cat_id" exact component={Explore}/>
-       {/* <Route path="/:shop_name/:shop_id/:cat_id(/:subcat_name)(/:subcat_id)" exact component={SubCategory}/> */}
-       <Route path="/:shop_name/:shop_id/:cat_id/:subcat_name/:subcat_id" exact component={SubCategory}/>
-       <Route path="/offers" exact component={Offers}/>       
-        <Route path="/offersDark" exact component={OffersDark}/>       
-         <Route path="/dairy" exact component={Dairy}/>      
-           <Route path="/eggs" exact component={Eggs} />        
-           <Route path="/reoffer" exact component={Reoffer}/>        
-           <Route path="/weekendDayOffer" exact component={Weekend}/>       
-            <Route path="/nationalDayOffer" exact component={National}/>          
-             </Switch>
-
-            </Router>  
-
-
-      </div>
+      <StylesProvider jss={jss}>
+        <div>
+          <Router>
+            <Switch>
+              <Route path="/" exact component={Sidebar} />
+              <Route path="/supermarket" exact component={Supermarket} />
+              <Route path="/exploring" exact component={Exploring} />
+              <Route path="/favorite" exact component={Favorite} />
+              <Route path="/orders" exact component={Orders} />
+              <Route path="/messages" exact component={Messages} />
+              <Route path="/settings" exact component={Settings} />
+              <Route
+                path="/products/:shop_name/:shop_id/:cat_id"
+                exact
+                component={Explore}
+              />
+              {/* <Route path="/:shop_name/:shop_id/:cat_id(/:subcat_name)(/:subcat_id)" exact component={SubCategory}/> */}
+              <Route
+                path="/:shop_name/:shop_id/:cat_id/:subcat_name/:subcat_id"
+                exact
+                component={SubCategory}
+              />
+              <Route path="/offers" exact component={Offers} />
+              <Route path="/offersDark" exact component={OffersDark} />
+              <Route path="/dairy" exact component={Dairy} />
+              <Route path="/eggs" exact component={Eggs} />
+              <Route path="/reoffer" exact component={Reoffer} />
+              <Route path="/weekendDayOffer" exact component={Weekend} />
+              <Route path="/nationalDayOffer" exact component={National} />
+            </Switch>
+          </Router>
+        </div>
       </StylesProvider>
-      </ThemeProvider>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
 
 // export default class App extends Component {
 
-
-
 //   render() {
 
-   
 //     return (
 //       <div>
 //            <Router>
@@ -93,15 +98,12 @@ export default App;
 //         <Route path="/eggs" exact component={Eggs} />
 //         <Route path="/reoffer" exact component={Reoffer}/>
 //         <Route path="/weekendDayOffer" exact component={Weekend}/>
-//         <Route path="/nationalDayOffer" exact component={National}/>   
+//         <Route path="/nationalDayOffer" exact component={National}/>
 //         </Switch>
 
-
-//             </Router>  
-
+//             </Router>
 
 //       </div>
 //     )
 //   }
 // }
-
