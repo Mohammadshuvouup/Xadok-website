@@ -1,109 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Row, Col, Modal, Button, Image } from "react-bootstrap";
+// import cardlogo from '../../../xadok/logo.svg'
+
 import "../../../css/order.css";
 const Prev_Order_Details = (props) => {
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    let language = localStorage.getItem("language");
+
+    // console.log("LANGUAGE SELECTED", language);
+
+    if (language && language.length !== 0) {
+      i18n.changeLanguage(language);
+    }
+  }, []);
+
+  const [shows1, setShows1] = useState(false);
+  const handleShows1 = () => setShows1(true);
+  const handleCloses1 = () => setShows1(false);
+
   return (
     <Modal
-      className="orderpre"
-      style={{
-        border: "none",
-        marginLeft: "63.9%",
-        width: "510px",
-        marginTop: "-2.5%",
-        height: "120vh",
-      }}
+      className="previous-order-details"
       show={props.show120}
       onHide={props.handleClose120}
     >
-      <Modal.Header style={{ border: "none" }} closeButton>
-        <Modal.Title
-          style={{
-            border: "none",
-            fontWeight: "bold",
-            fontSize: "14px",
-            paddingLeft: "22px",
-            paddingTop: "15px",
-          }}
-        >
-          300 Post Street San Francisco,CA
-        </Modal.Title>
+      <Modal.Header closeButton>
+        <Modal.Title className="order-details">Order details</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ border: "none" }}>
-        <h3
-          style={{ fontWeight: "bold", paddingLeft: "22px", paddingTop: "5px" }}
-        >
-          Ramez Shopping
-        </h3>
+        <Row>
+          <Col md={12} className="details-to">
+            <h6 className="details-text1">{t("openCart.DELIVER-TO")} </h6>
+            <h6 className="details-text2" onClick={handleShows1}>
+              300 Post Street San Francisco, CA
+            </h6>
+          </Col>
+        </Row>
+
+        <header>
+          <div className="d-flex justify-content-between align-items-center">
+            <h6>Ramez Shopping</h6>
+          </div>
+        </header>
+
+        <ul>
+          <li className="list">
+            <span className="quantity">1</span>ALMARAI DBLE CHOCOLATE MILK SH{" "}
+            <span className="taka">1.500</span>{" "}
+          </li>
+          <li>
+            <span className="quantity">1</span>NIDO MILK POWDER POUCH 2.25KG
+            <span className="taka">2.000</span>{" "}
+          </li>
+        </ul>
+
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            marginLeft: "5%",
-            marginTop: "9%",
-          }}
-        >
-          <Button
-            style={{
-              border: "none",
-              background: "#F6F6F6",
-              fontSize: "13px",
-              fontWeight: "bold",
-              color: "grey",
-            }}
-          >
-            1
-          </Button>
-          <h6 style={{ fontSize: "14px", marginLeft: "4%" }}>
-            ALMARAI DBLE CHOCOLATE MILK SH
-          </h6>
-          <p
-            style={{
-              color: "silver",
-              paddingTop: "4%",
-              paddingLeft: "50px",
-              fontSize: "21px",
-            }}
-          >
-            1.500 <span style={{ fontSize: "13px" }}>BHD</span>
-          </p>
-        </div>
-        <div
-          style={{ display: "flex", alignItems: "center", marginLeft: "5%" }}
-        >
-          <Button
-            style={{
-              border: "none",
-              background: "#F6F6F6",
-              fontSize: "13px",
-              fontWeight: "bold",
-              color: "grey",
-            }}
-          >
-            1
-          </Button>
-          <h6 style={{ fontSize: "14px", marginLeft: "4%" }}>
-            NIDO MILK POWDER POUCH 2.25KG
-          </h6>
-          <p
-            style={{
-              color: "silver",
-              marginTop: "-2%",
-              paddingLeft: "57px",
-              fontSize: "21px",
-            }}
-          >
-            2.000 <span style={{ fontSize: "13px" }}>BHD</span>
-          </p>
-        </div>
-        <div
-          style={{
-            width: "90%",
             marginTop: "7%",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            marginLeft: "5%",
           }}
         >
           <h4 style={{ fontWeight: "bold" }}>Subtotal </h4>
@@ -112,14 +71,13 @@ const Prev_Order_Details = (props) => {
             <span style={{ fontSize: "13px" }}>BHD</span>
           </p>
         </div>
+
         <div
           style={{
-            width: "90%",
-            marginTop: "1%",
+            marginTop: "5%",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            marginLeft: "5%",
           }}
         >
           <h4 style={{ fontWeight: "bold" }}>Delivery fee</h4>
@@ -128,14 +86,13 @@ const Prev_Order_Details = (props) => {
             <span style={{ fontSize: "13px" }}>BHD</span>
           </p>
         </div>
+
         <div
           style={{
-            width: "90%",
-            marginTop: "1%",
+            marginTop: "5%",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            marginLeft: "5%",
           }}
         >
           <h4 style={{ fontWeight: "bold" }}>Total </h4>
@@ -152,87 +109,33 @@ const Prev_Order_Details = (props) => {
             </span>
           </p>
         </div>
+
         <div
+          className="credit"
           style={{
-            width: "90%",
-            marginTop: "1%",
+            marginTop: "5%",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            marginLeft: "5%",
           }}
         >
           <h4 style={{ fontWeight: "bold" }}>Credit card</h4>
           <div style={{ display: "flex", marginTop: "2%" }}>
-            <div
-              style={{
-                width: "15px",
-                height: "15px",
-                borderRadius: "100%",
-                background: "silver",
-              }}
-            ></div>
-            <div
-              style={{
-                width: "15px",
-                height: "15px",
-                marginLeft: "2px",
-                borderRadius: "100%",
-                background: "silver",
-              }}
-            ></div>
-            <div
-              style={{
-                width: "15px",
-                height: "15px",
-                marginLeft: "2px",
-                borderRadius: "100%",
-                background: "silver",
-              }}
-            ></div>
-            <div
-              style={{
-                width: "15px",
-                height: "15px",
-                marginLeft: "2px",
-                borderRadius: "100%",
-                background: "silver",
-              }}
-            ></div>
+            {/* <Image src={cardlogo} ></Image> */}
+            {/* <div style={{width:"15px",height:"15px",borderRadius:"100%",background:"silver"}}></div>
+          <div style={{width:"15px",height:"15px",marginLeft:"2px",borderRadius:"100%",background:"silver"}}></div>
+          <div style={{width:"15px",height:"15px",marginLeft:"2px",borderRadius:"100%",background:"silver"}}></div>
+          <div style={{width:"15px",height:"15px",marginLeft:"2px",borderRadius:"100%",background:"silver"}}></div> */}
             <p style={{ color: "silver", fontSize: "16px", marginTop: "-5px" }}>
               1211
             </p>
           </div>
         </div>
-        <Button
-          style={{
-            marginTop: "8%",
-            width: "80px",
-            marginLeft: "5%",
-            height: "8vh",
-            fontSize: "20px",
-            border: "none",
-            borderRadius: "7px",
-            background: "#F6D56E",
-            color: "black",
-          }}
-        >
-          <i class="far fa-comment-alt"></i>
-        </Button>
-        <Button
-          className="orderlast"
-          style={{
-            marginTop: "8%",
-            width: "310px",
-            height: "8vh",
-            marginLeft: "5%",
-            border: "none",
-            background: "#223142",
-            borderRadius: "8px",
-          }}
-        >
-          Place new order
-        </Button>
+
+        <div className="d-flex justify-content-between">
+          <i class="fas fa-user-plus profile-icon"></i>
+          <Button className="new-order-btn"> Place new order</Button>
+        </div>
       </Modal.Body>
       <Modal.Footer style={{ border: "none" }}></Modal.Footer>
     </Modal>

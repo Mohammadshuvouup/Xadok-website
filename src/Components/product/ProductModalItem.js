@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Col, Image, Button } from "react-bootstrap";
+import {
+  Col,
+  Image,
+  Modal,
+  Row,
+  Carousel,
+  Card,
+  CardDeck,
+  Button,
+} from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import Notifications, { notify } from "react-notify-toast";
 import "../../css/subCategory.css";
 import "../../App.css";
 
-function ProductItem(props) {
+function ProductModalItem(props) {
   const { t } = useTranslation();
   const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
   //   var localItems = JSON.parse(localStorage.getItem("products")) || [];
@@ -152,88 +161,85 @@ function ProductItem(props) {
   });
 
   return (
-    <Col
-      key={props.index}
-      sm={5}
-      md={4}
-      lg={2}
-      xl={2}
-      className="item similar-item"
-    >
-      <div className="item-image" props={props} onClick={showModal}>
-        <Image src={`${API_PREFIX_URL}${props.pro_img}`} />
-      </div>
-
-      {props.pro_special_price != null &&
-      props.pro_special_price != 0 &&
-      props.pro_special_price != "" &&
-      props.pro_special_price != 0.0 &&
-      props.pro_special_price != 0.0 ? (
-        <p className="pl-2 old-price">
-          <del>{props.pro_price}</del>
-        </p>
-      ) : (
-        <p className="pl-2 old-price">
-          <del style={{ color: "white" }}>&nbsp;</del>
-        </p>
-      )}
-      {props.pro_special_price != null &&
-      props.pro_special_price != 0 &&
-      props.pro_special_price != "" &&
-      props.pro_special_price != 0.0 &&
-      props.pro_special_price != 0.0 ? (
-        <div className="price-box">
-          <h4 className="pl-2 item-price">
-            {props.pro_special_price}
-            <span className="currency-symbol">
-              {localStorage.getItem("country_currency")}
-            </span>
-          </h4>
-          <div className="discount">
-            <p className="pt-1 pl-3 ptag">25%</p>
-          </div>
-        </div>
-      ) : (
-        <div className="price-box">
-          <h4 className="pl-2 item-price">
-            {props.pro_price}
-            <span className="currency-symbol">
-              {localStorage.getItem("country_currency")}
-            </span>
-          </h4>
-        </div>
-      )}
-      <p className="item-description">{props.pro_name_en}</p>
-      {addCartUI === true ? (
-        props.pro_stock != 0 ? (
-          <button className="addcart_btn" onClick={() => handleAddCart(props)}>
-            <i className="fas fa-shopping-cart mr-2"></i>{" "}
-            {t("explore.add-to-cart")}{" "}
-          </button>
+    <Card className="alternative-item" key={props.index}>
+      <Card.Img src={`${API_PREFIX_URL}${props.pro_img}`} />
+      <Card.Body>
+        <Card.Text>
+          {props.pro_special_price != null &&
+          props.pro_special_price != 0 &&
+          props.pro_special_price != "" &&
+          props.pro_special_price != 0.0 &&
+          props.pro_special_price != 0.0 ? (
+            <p className="pl-2 old-price">
+              <del>{props.pro_price}</del>
+            </p>
+          ) : (
+            <p className="pl-2 old-price">
+              <del style={{ color: "white" }}>&nbsp;</del>
+            </p>
+          )}
+          {props.pro_special_price != null &&
+          props.pro_special_price != 0 &&
+          props.pro_special_price != "" &&
+          props.pro_special_price != 0.0 &&
+          props.pro_special_price != 0.0 ? (
+            <div className="price-box">
+              <h4 className="pl-2 item-price">
+                {props.pro_special_price}
+                <span className="currency-symbol">
+                  {localStorage.getItem("country_currency")}
+                </span>
+              </h4>
+              <div className="discount">
+                <p className="pt-1 pl-3 ptag">25%</p>
+              </div>
+            </div>
+          ) : (
+            <div className="price-box">
+              <h4 className="pl-2 item-price">
+                {props.pro_price}
+                <span className="currency-symbol">
+                  {localStorage.getItem("country_currency")}
+                </span>
+              </h4>
+            </div>
+          )}
+          <p className="item_description">{props.pro_name_en}</p>
+        </Card.Text>
+        {addCartUI === true ? (
+          props.pro_stock != 0 ? (
+            <button
+              className="addcartBtn"
+              onClick={() => handleAddCart(props)}
+            >
+              <i className="fas fa-shopping-cart mr-2"></i>{" "}
+              {t("explore.add-to-cart")}{" "}
+            </button>
+          ) : (
+            <button className="addcartBtn">
+              <i className="fas fa-ban mr-2"></i> {t("explore.out-of-stock")}{" "}
+            </button>
+          )
         ) : (
-          <button className="addcart_btn">
-            <i className="fas fa-ban mr-2"></i> {t("explore.out-of-stock")}{" "}
-          </button>
-        )
-      ) : (
-        <div className="d-flex justify-content-center quantity-field">
-          <Button
-            className="plus-btn"
-            onClick={() => updateQuanity(props, quantity, "plus")}
-          >
-            +
-          </Button>
-          <input type="text" value={quantity} readOnly/>
-          <Button
-            className="minus-btn"
-            onClick={() => updateQuanity(props, quantity, "minus")}
-          >
-            -
-          </Button>
-        </div>
-      )}
-    </Col>
+          <div className="d-flex justify-content-center quantity-field">
+            <Button
+              className="plus-btn"
+              onClick={() => updateQuanity(props, quantity, "plus")}
+            >
+              +
+            </Button>
+            <input type="text" value={quantity} readOnly />
+            <Button
+              className="minus-btn"
+              onClick={() => updateQuanity(props, quantity, "minus")}
+            >
+              -
+            </Button>
+          </div>
+        )}
+      </Card.Body>
+    </Card>
   );
 }
 
-export default ProductItem;
+export default ProductModalItem;
