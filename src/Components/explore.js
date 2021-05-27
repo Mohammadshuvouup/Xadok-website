@@ -397,12 +397,10 @@ export default function Explore(props) {
   const Offers = () => {
     return (
       <CardGroup>
-        {offer.length === 0 ? (
-          <h4 className="ml-5">No Offers</h4>
-        ) : (
+        {offer != null && offer.length > 0 ? (
           offer.map((value, index) => (
             // return(
-            <Link>
+            <Link key={index}>
               <Card className="offer-item mr-4" key={index}>
                 <div className="card-image-box">
                   <Card.Img
@@ -417,6 +415,14 @@ export default function Explore(props) {
             </Link>
             // );
           ))
+        ) : (
+          <Loader
+            className="text-center"
+            type="TailSpin"
+            color="#e3424b"
+            height={80}
+            width={80}
+          />
         )}
       </CardGroup>
     );
@@ -426,8 +432,7 @@ export default function Explore(props) {
   const SimilarProducts = () => {
     return (
       <Row className="item-list grey-bg justify-content-lg-between">
-        {similarProd &&
-          similarProd.length > 0 &&
+        {similarProd && similarProd.length > 0 ? (
           similarProd.map((value, index) => {
             return (
               <ProductItem
@@ -445,7 +450,16 @@ export default function Explore(props) {
                 showProductModal={handleAddCart}
               ></ProductItem>
             );
-          })}
+          })
+        ) : (
+          <Loader
+            className="text-center"
+            type="TailSpin"
+            color="#e3424b"
+            height={80}
+            width={80}
+          />
+        )}
       </Row>
     );
   };
@@ -523,7 +537,10 @@ export default function Explore(props) {
                                 product_subcategory.length > 0 &&
                                 product_subcategory.map((sub_cat, index) =>
                                   sub_cat.length == 0 ? null : (
-                                    <ul className="side-nav-catgory-list" key={index}>
+                                    <ul
+                                      className="side-nav-catgory-list"
+                                      key={index}
+                                    >
                                       {/* <Image src={`${API_PREFIX_URL}${sub_cat.procat_img}`} /> */}
                                       <Link
                                         to={
@@ -592,7 +609,17 @@ export default function Explore(props) {
                   })`,
                 }}
               >
-                <Image src={`${API_PREFIX_URL}${shops.shop_img}`}></Image>
+                {shops.shop_img != null ? (
+                  <Image src={`${API_PREFIX_URL}${shops.shop_img}`}></Image>
+                ) : (
+                  <Loader
+                    className="text-center"
+                    type="TailSpin"
+                    color="#e3424b"
+                    height={80}
+                    width={80}
+                  />
+                )}
               </Col>
             </Row>
 

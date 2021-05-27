@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../Components/footer";
-import img from "../xadok/pexels-photo-102104.jpeg";
 import TopBar from "./topBar";
 import axios from "axios";
 import SideDrawer from "./SideDrawer/SideDrawer";
 import "../css/exploring.css";
 import ProductItem from "./product/ProductItem";
 import ProductModal from "./product/ProductModal";
-import {
-  Image,
-  Row,
-  Col,
-  Container,
-  Modal,
-  Card,
-  CardDeck,
-  Button,
-  Carousel,
-} from "react-bootstrap";
+import Loader from "react-loader-spinner";
+import { Row, Col, Container } from "react-bootstrap";
 import { Trans, useTranslation } from "react-i18next";
 import "../App.css";
 
@@ -141,7 +131,7 @@ export default function Favourite() {
             </Row>
 
             <Row className="item-list grey-bg justify-content-lg-between">
-              {productList.length > 0 &&
+              {productList != null && productList.length > 0 ? (
                 productList.map((value, index) => {
                   return (
                     <ProductItem
@@ -159,7 +149,16 @@ export default function Favourite() {
                       showProductModal={showProductModal}
                     ></ProductItem>
                   );
-                })}
+                })
+              ) : (
+                <Loader
+                  className="text-center"
+                  type="TailSpin"
+                  color="#e3424b"
+                  height={80}
+                  width={80}
+                />
+              )}
             </Row>
           </Col>
         </Row>

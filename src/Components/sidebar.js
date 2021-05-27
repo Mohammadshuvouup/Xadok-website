@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { Row, Col, Container, Image, Button, Carousel } from "react-bootstrap";
 import "../App.css";
 import axios from "axios";
+import Loader from "react-loader-spinner";
 
 import { Trans, useTranslation } from "react-i18next";
 
@@ -103,8 +104,7 @@ export default function Sidebar() {
   const SliderContent = () => {
     return (
       <Carousel className="over mt-4">
-        {category &&
-          category.length > 0 &&
+        {category && category.length > 0 ? (
           category.map((value, index) => {
             const img_url = `https://deliveryxadok.s3.us-east-2.amazonaws.com/${value.slider_img}`;
             return (
@@ -116,7 +116,16 @@ export default function Sidebar() {
                 />
               </Carousel.Item>
             );
-          })}
+          })
+        ) : (
+          <Loader
+            className="text-center"
+            type="TailSpin"
+            color="#e3424b"
+            height={80}
+            width={80}
+          />
+        )}
       </Carousel>
     );
   };
@@ -138,41 +147,49 @@ export default function Sidebar() {
 
     return (
       <>
-        {filtered_item != null && filtered_item.length > 0
-          ? filtered_item.map((value, index) => {
-              const img_url = `https://deliveryxadok.s3.us-east-2.amazonaws.com/${value.shop_img}`;
-              const gallery_url = `https://deliveryxadok.s3.us-east-2.amazonaws.com/${value.gallery[0].gallery_image}`;
-              return (
-                <Col key={index} sm={12} md={3}>
-                  <Link
-                    to={{
-                      pathname:
-                        "/products" +
-                        "/" +
-                        value.name +
-                        "/" +
-                        value.shop_id +
-                        "/" +
-                        value.cat_id +
-                        "/",
+        {filtered_item != null && filtered_item.length > 0 ? (
+          filtered_item.map((value, index) => {
+            const img_url = `https://deliveryxadok.s3.us-east-2.amazonaws.com/${value.shop_img}`;
+            const gallery_url = `https://deliveryxadok.s3.us-east-2.amazonaws.com/${value.gallery[0].gallery_image}`;
+            return (
+              <Col key={index} sm={12} md={3}>
+                <Link
+                  to={{
+                    pathname:
+                      "/products" +
+                      "/" +
+                      value.name +
+                      "/" +
+                      value.shop_id +
+                      "/" +
+                      value.cat_id +
+                      "/",
+                  }}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div
+                    className="shop-card mb-4 "
+                    style={{
+                      background: `url(${gallery_url})`,
                     }}
-                    style={{ textDecoration: "none" }}
                   >
-                    <div
-                      className="shop-card mb-4 "
-                      style={{
-                        background: `url(${gallery_url})`,
-                      }}
-                    >
-                      <Image src={img_url} alt="" />
-                      <h5>{value.name}</h5>
-                      <p>{value.cat_name}</p>
-                    </div>
-                  </Link>
-                </Col>
-              );
-            })
-          : ""}
+                    <Image src={img_url} alt="" />
+                    <h5>{value.name}</h5>
+                    <p>{value.cat_name}</p>
+                  </div>
+                </Link>
+              </Col>
+            );
+          })
+        ) : (
+          <Loader
+            className="text-center"
+            type="TailSpin"
+            color="#e3424b"
+            height={80}
+            width={80}
+          />
+        )}
       </>
     );
   };
@@ -182,20 +199,28 @@ export default function Sidebar() {
   const FilterButtons = () => {
     return (
       <>
-        {categoryList != null && categoryList.length > 0
-          ? categoryList.map((value, index) => {
-              return (
-                <Button
-                  aria-pressed="true"
-                  className="filter_btn mb-4"
-                  key={index}
-                  onClick={() => setShopCategory(value.name)}
-                >
-                  {value.name}
-                </Button>
-              );
-            })
-          : ""}
+        {categoryList != null && categoryList.length > 0 ? (
+          categoryList.map((value, index) => {
+            return (
+              <Button
+                aria-pressed="true"
+                className="filter_btn mb-4"
+                key={index}
+                onClick={() => setShopCategory(value.name)}
+              >
+                {value.name}
+              </Button>
+            );
+          })
+        ) : (
+          <Loader
+            className="text-center"
+            type="TailSpin"
+            color="#e3424b"
+            height={80}
+            width={80}
+          />
+        )}
       </>
     );
   };
