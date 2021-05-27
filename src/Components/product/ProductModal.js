@@ -26,23 +26,27 @@ function ProductModal(props) {
   console.log(props);
   //   console.log(props.slide_product.gallery);
   var localItems = JSON.parse(localStorage.getItem("products")) || [];
-  const [state, setState] = useState({
+  let quantity = props.cartData.pro_qua;
+//   const [state, setState] = useState({
+//     selectedProduct: localItems,
+//   });
+  let state = {
     selectedProduct: localItems,
-  });
-  const [num, setNum] = useState(1);
-  const [cart_quantity, setCart_quantity] = useState(0);
-  const [gallery, setGallery] = useState(props.slide_product.gallery);
-  const [addCartUI, setAddCartUI] = useState(props.addCartUI);
+  };
+  //   const [num, setNum] = useState(1);
+  //   const [cart_quantity, setCart_quantity] = useState(0);
+  //   const [gallery, setGallery] = useState(props.slide_product.gallery);
+  //   const [addCartUI, setAddCartUI] = useState(props.addCartUI);
   //   const [cartQuantity, setCartQuantity] = useState(props.cartQuantity);
-  const [quantity, setQuantity] = useState(props.cartQuantity);
+  //   const [quantity, setQuantity] = useState(props.cartQuantity);
   const { t, i18n } = useTranslation();
 
-  const [isFav, setIsfav] = useState(
-    props.cartData.is_fav === 1 ? true : false
-  );
-  const [isNonFav, setIsNonfav] = useState(
-    props.cartData.is_fav === 0 ? true : false
-  );
+  //   const [isFav, setIsfav] = useState(
+  //     props.cartData.is_fav === 1 ? true : false
+  //   );
+  //   const [isNonFav, setIsNonfav] = useState(
+  //     props.cartData.is_fav === 0 ? true : false
+  //   );
 
   useEffect(() => {
     let language = localStorage.getItem("language");
@@ -54,72 +58,25 @@ function ProductModal(props) {
   }, []);
 
   const addToCart = (obj) => {
-    setState((prevState) => {
-      const found = prevState.selectedProduct.some(
-        (el) => el.pro_id === obj.pro_id
-      );
-      const arrayproduct = prevState.selectedProduct;
-      const selectedProduct = found
-        ? prevState.selectedProduct
-        : arrayproduct.push(obj);
-      localStorage.setItem("cart_count", selectedProduct.length);
-      localStorage.setItem("products", JSON.stringify(selectedProduct));
+    // setState((prevState) => {
+    //   const found = prevState.selectedProduct.some(
+    //     (el) => el.pro_id === obj.pro_id
+    //   );
+    //   const arrayproduct = prevState.selectedProduct;
+    //   const selectedProduct = found
+    //     ? prevState.selectedProduct
+    //     : arrayproduct.push(obj);
+    //   localStorage.setItem("cart_count", selectedProduct.length);
+    //   localStorage.setItem("products", JSON.stringify(selectedProduct));
 
-      let myColor = { background: "#0E1717", text: "#FFFFFF" };
-      notify.show("Product added in the cart!", "success", 1000, myColor);
-      //   setAddCartUI(true);
-      return {
-        selectedProduct,
-        isAdded: true,
-      };
-    });
-  };
-
-  const handleAddCartModal = (item) => {
-    var newLocalItems = JSON.parse(localStorage.getItem("products")) || [];
-    const isSameShopFound = newLocalItems.some(
-      (el) => el.shop_id === item.shop_id
-    );
-    if (isSameShopFound === false) {
-      localStorage.removeItem("products");
-      localStorage.setItem("cart_count", 1);
-      setState({ selectedProduct: [] });
-    } else {
-      setState({ selectedProduct: newLocalItems });
-    }
-    const obj = {
-      pro_id: item.pro_id,
-      pro_name: item.pro_name_en,
-      shop_id: item.shop_id,
-      pro_stock: item.pro_stock,
-      pro_qua: 1,
-      pro_model: 0,
-      product_price:
-        item.pro_special_price != null &&
-        item.pro_special_price != 0 &&
-        item.pro_special_price != "" &&
-        item.pro_special_price != 0.0 &&
-        item.pro_special_price != 0.0
-          ? item.pro_special_price
-          : item.pro_price,
-      img: item.pro_img,
-      offer_price: item.pro_special_price,
-      offer_percent: 0,
-      offer_info: "",
-    };
-    setState((prevState) => {
-      const found = prevState.selectedProduct.some(
-        (el) => el.pro_id === obj.pro_id
-      );
-      const arrayproduct = prevState.selectedProduct;
-      const selectedProduct = found
-        ? prevState.selectedProduct
-        : arrayproduct.push(obj);
-      localStorage.setItem("cart_count", selectedProduct.length);
-      localStorage.setItem("products", JSON.stringify(selectedProduct));
-      let myColor = { background: "#0E1717", text: "#FFFFFF" };
-      notify.show("Product added in the cart!", "success", 1000, myColor);
-    });
+    //   let myColor = { background: "#0E1717", text: "#FFFFFF" };
+    //   notify.show("Product added in the cart!", "success", 1000, myColor);
+    //   //   setAddCartUI(true);
+    //   return {
+    //     selectedProduct,
+    //     isAdded: true,
+    //   };
+    // });
   };
 
   const handleAddCart = (item) => {
@@ -132,9 +89,9 @@ function ProductModal(props) {
     if (isSameShopFound === false) {
       localStorage.removeItem("products");
       localStorage.setItem("cart_count", 1);
-      setState({ selectedProduct: [] });
+    //   setState({ selectedProduct: [] });
     } else {
-      setState({ selectedProduct: newLocalItems });
+    //   setState({ selectedProduct: newLocalItems });
     }
     const obj = {
       pro_id: item.cartData.pro_id,
@@ -187,7 +144,7 @@ function ProductModal(props) {
       const found = newList.some((el) => el.pro_id === props.pro_id);
       if (found) {
         let product = newList.filter((el) => el.pro_id === props.pro_id);
-        setQuantity(product[0].pro_qua);
+        // setQuantity(product[0].pro_qua);
       }
     }
   };
@@ -204,7 +161,7 @@ function ProductModal(props) {
         .post("https://ristsys.store/api/addFavourite", param)
         .then((response) => {
           console.log(response);
-          setIsfav(true);
+        //   setIsfav(true);
         });
     }
   };
@@ -218,7 +175,7 @@ function ProductModal(props) {
       .post("https://ristsys.store/api/removeFavourite", param)
       .then((response) => {
         console.log(response);
-        setIsfav(false);
+        // setIsfav(false);
       });
   };
 
@@ -237,7 +194,6 @@ function ProductModal(props) {
                 <Col md={5}>
                   <div className="product-img-box">
                     <Image
-                      data-harry={addCartUI}
                       className="product-img"
                       src={`${API_PREFIX_URL}${props.cartData.pro_img}`}
                     ></Image>
@@ -317,7 +273,7 @@ function ProductModal(props) {
                   </p> */}
 
                   <div className="cart-options d-flex align-items-center justify-content-end mt-5">
-                    {addCartUI === true ? (
+                    {props.addCartUI === true ? (
                       <button
                         className="modal_addcart_btn"
                         onClick={() => handleAddCart(props)}
@@ -350,16 +306,18 @@ function ProductModal(props) {
                       </div>
                     )}
                     <i
-                      show={isFav}
+                      show={props.cartData.is_fav === 0 ? false : true}
                       class="fas fa-heart favourite-icon"
-                      style={{ fontSize: "25px", color:"#e02b4a" }}
+                      style={{ fontSize: "25px", color: "#e02b4a" }}
                       onClick={() => handleAddFavourite(props.cartData.pro_id)}
                     ></i>
                     <i
-                      show={isNonFav}
+                      show={props.cartData.is_fav === 0 ? true : false}
                       class="fas fa-heart favourite-icon"
                       style={{ fontSize: "25px" }}
-                      onClick={() => handleRemoveFavourite(props.cartData.fav_id)}
+                      onClick={() =>
+                        handleRemoveFavourite(props.cartData.fav_id)
+                      }
                     ></i>
                   </div>
                 </Col>
