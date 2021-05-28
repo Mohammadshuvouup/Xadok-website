@@ -178,7 +178,7 @@ export default function Explore(props) {
   const [similarProd, setSimilarProd] = useState([]);
   const [category, setCategory] = useState([]);
   const [product_subcategory, setProduct_subcategory] = useState([]);
-  const [cartData, setCartData] = useState([]);
+  const [cartData, setCartData] = useState(null);
   const [productGallery, setProductGallery] = useState([]);
   const [alternative_Product, setAlternative_Product] = useState([]);
   const [cartSimilar_Product, setCartSimilar_Product] = useState([]);
@@ -188,6 +188,8 @@ export default function Explore(props) {
     lat: 26.1109803,
     lng: 50.5156726,
   };
+  const [addCartUI, setAddCartUI] = useState(true);
+  const [cartQuantity, setCartQuantity] = useState(1);
   // const [cart_suggestedData,setCart_SuggestedData]=useState([])
 
   const handleAddCart = (data) => {
@@ -200,19 +202,37 @@ export default function Explore(props) {
       user_id: "",
     };
 
+    setModalShow(true);
+    setAddCartUI(true);
     // console.log("modal param", modal_Param);
     axios
       .post("https://ristsys.store/api/GetProductInfo", modal_Param)
       .then((response) => {
         console.log("cart data api", response);
-        // console.log(
-        //   "cart alternative product api",
-        //   response.data.data.alternatives
-        // );
+        let CartQuantity = 0;
+        let AddCartUI = true;
+        let cartData = response.data.data.product;
+        let Slide_product = response.data.data;
+        let Alternative_Product = null;
+        let CartSimilar_Product = null;
         setCartData(response.data.data.product);
         setSlide_product(response.data.data);
-        // setAlternative_Product(response.data.data.alternatives);
-        // setCartSimilar_Product(response.data.data.related);
+        var localItems = JSON.parse(localStorage.getItem("products")) || [];
+        if (localItems != null && localItems.length > 0) {
+          const found = localItems.some(
+            (el) => el.pro_id === response.data.data.product.pro_id
+          );
+          if (found) {
+            let product = localItems.filter(
+              (el) => el.pro_id === response.data.data.product.pro_id
+            );
+            AddCartUI = false;
+            CartQuantity = product[0].pro_qua;
+            setAddCartUI(false);
+            setCartQuantity(product[0].pro_qua);
+          }
+        }
+
         list = [];
         var j = 0;
         for (
@@ -231,6 +251,7 @@ export default function Explore(props) {
           list[index] = k;
         }
         setAlternative_Product(list);
+        // Alternative_Product = list;
 
         list = [];
         var m = 0;
@@ -250,7 +271,15 @@ export default function Explore(props) {
           list[index] = n;
         }
         setCartSimilar_Product(list);
-        setModalShow(true);
+        // setData({
+        //   CartQuantity: CartQuantity,
+        //   cartData: cartData,
+        //   Slide_product: Slide_product,
+        //   Alternative_Product: Alternative_Product,
+        //   CartSimilar_Product: CartSimilar_Product,
+        // });
+        // setModalShow(true);
+        console.log("setModalShow");
       })
       .catch((error) => console.log(error));
   };
@@ -428,6 +457,12 @@ export default function Explore(props) {
     );
   };
 
+  const closeModal = () => {
+    setModalShow(false);
+    setCartData(null);
+    setAlternative_Product([]);
+    setCartSimilar_Product([]);
+  }
   /*    ======================== SIMILAR PRODUCTS ======================== */
   const SimilarProducts = () => {
     return (
@@ -469,11 +504,13 @@ export default function Explore(props) {
       <Container className="container-box" fluid>
         <ProductModal
           show={modalShow}
-          onHide={() => setModalShow(false)}
+          onHide={closeModal}
           cartData={cartData}
           alternative_Product={alternative_Product}
           cartSimilar_Product={cartSimilar_Product}
           slide_product={slide_product}
+          addCartUI={addCartUI}
+          cartQuantity={cartQuantity}
         />
         <Row>
           <Col className="menu-icon" sm={1} xs={1}>

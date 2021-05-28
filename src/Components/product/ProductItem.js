@@ -160,9 +160,15 @@ function ProductItem(props) {
       xl={2}
       className="item similar-item"
     >
-      <div className="item-image" props={props} onClick={showModal}>
-        <Image src={`${API_PREFIX_URL}${props.pro_img}`} />
-      </div>
+      {props.pro_stock === 0 ? (
+        <div className="item-image" props={props}>
+          <Image src={`${API_PREFIX_URL}${props.pro_img}`} />
+        </div>
+      ) : (
+        <div className="item-image" props={props} onClick={showModal}>
+          <Image src={`${API_PREFIX_URL}${props.pro_img}`} />
+        </div>
+      )}
 
       {props.pro_special_price != null &&
       props.pro_special_price != 0 &&
@@ -223,7 +229,7 @@ function ProductItem(props) {
           >
             +
           </Button>
-          <input type="text" value={quantity} readOnly/>
+          <input type="text" value={quantity} readOnly />
           <Button
             className="minus-btn"
             onClick={() => updateQuanity(props, quantity, "minus")}

@@ -102,7 +102,7 @@ export default function Explore(props) {
 
   const [category, setCategory] = useState([]);
   const [product_subcategory, setProduct_subcategory] = useState([]);
-  const [cartData, setCartData] = useState([]);
+  const [cartData, setCartData] = useState(null);
   const [alternative_Product, setAlternative_Product] = useState([]);
   const [cartSimilar_Product, setCartSimilar_Product] = useState([]);
   const [shops, setShops] = useState([]);
@@ -144,6 +144,8 @@ export default function Explore(props) {
   const [appState, setAppState] = useState({ loading: false, res: null });
   const { t, i18n } = useTranslation();
   var list = [];
+  const [data, setData] = useState({});
+  const modalRef = React.useRef();
 
   const handleAddCart = (data) => {
     console.log("cart data", data);
@@ -155,33 +157,32 @@ export default function Explore(props) {
       user_id: "",
     };
 
+    setModalShow(true);
     setAddCartUI(true);
     // console.log("modal param", modal_Param);
     axios
       .post("https://ristsys.store/api/GetProductInfo", modal_Param)
       .then((response) => {
         console.log("cart data api", response);
-        // console.log(
-        //   "cart alternative product api",
-        //   response.data.data.alternatives
-        // );
+        let CartQuantity = 0;
+        let AddCartUI = true;
+        let cartData = response.data.data.product;
+        let Slide_product = response.data.data;
+        let Alternative_Product = null;
+        let CartSimilar_Product = null;
         setCartData(response.data.data.product);
         setSlide_product(response.data.data);
-        // setAlternative_Product(response.data.data.alternatives);
-        // setCartSimilar_Product(response.data.data.related);
         var localItems = JSON.parse(localStorage.getItem("products")) || [];
-        // console.log("localItems");
-        // console.log(localItems);
-        // console.log(response.data.data.product);
         if (localItems != null && localItems.length > 0) {
           const found = localItems.some(
             (el) => el.pro_id === response.data.data.product.pro_id
           );
-          // console.log(found);
           if (found) {
             let product = localItems.filter(
               (el) => el.pro_id === response.data.data.product.pro_id
             );
+            AddCartUI = false;
+            CartQuantity = product[0].pro_qua;
             setAddCartUI(false);
             setCartQuantity(product[0].pro_qua);
           }
@@ -205,6 +206,7 @@ export default function Explore(props) {
           list[index] = k;
         }
         setAlternative_Product(list);
+        // Alternative_Product = list;
 
         list = [];
         var m = 0;
@@ -224,7 +226,14 @@ export default function Explore(props) {
           list[index] = n;
         }
         setCartSimilar_Product(list);
-        setModalShow(true);
+        // setData({
+        //   CartQuantity: CartQuantity,
+        //   cartData: cartData,
+        //   Slide_product: Slide_product,
+        //   Alternative_Product: Alternative_Product,
+        //   CartSimilar_Product: CartSimilar_Product,
+        // });
+        // setModalShow(true);
         console.log("setModalShow");
       })
       .catch((error) => console.log(error));
@@ -491,6 +500,12 @@ export default function Explore(props) {
     return <NoProduct />;
   };
 
+  const closeModal = () => {
+    setModalShow(false);
+    setCartData(null);
+    setAlternative_Product([]);
+    setCartSimilar_Product([]);
+  }
   /*    ======================== PRODUCTS TO DISPLAY FOR SUBCATEGORY PAGE ======================== */
 
   const SubcategoryProducts = () => {
@@ -527,13 +542,14 @@ export default function Explore(props) {
       <Container className="container-box" fluid>
         <ProductModal
           show={modalShow}
-          onHide={() => setModalShow(false)}
+          onHide={closeModal}
           cartData={cartData}
           alternative_Product={alternative_Product}
           cartSimilar_Product={cartSimilar_Product}
           slide_product={slide_product}
           addCartUI={addCartUI}
           cartQuantity={cartQuantity}
+          data={data}
           // xadokCartItems={xadokCartItems}
         />
         <Row>

@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useEffect,
+  useImperativeHandle,
+  useState,
+  forwardRef,
+  useCallback,
+} from "react";
 import {
   Col,
   Image,
@@ -12,6 +18,7 @@ import {
 import { useTranslation } from "react-i18next";
 import ProductModalItem from "./ProductModalItem";
 import axios from "axios";
+import Loader from "react-loader-spinner";
 import { ThemeProvider } from "@material-ui/core";
 import Notifications, { notify } from "react-notify-toast";
 import { ContactsOutlined } from "@material-ui/icons";
@@ -26,27 +33,45 @@ function ProductModal(props) {
   console.log(props);
   //   console.log(props.slide_product.gallery);
   var localItems = JSON.parse(localStorage.getItem("products")) || [];
-  let quantity = props.cartData.pro_qua;
-//   const [state, setState] = useState({
-//     selectedProduct: localItems,
-//   });
-  let state = {
-    selectedProduct: localItems,
-  };
+  //   //   let quantity = props.cartData.pro_qua;
+  //   const [state, setState] = useState({
+  //     selectedProduct: localItems,
+  //   });
+  const [state, setState] = useState({
+    selectedProduct: null,
+  });
+  //   let state = {
+  //     selectedProduct: localItems,
+  //   };
   //   const [num, setNum] = useState(1);
   //   const [cart_quantity, setCart_quantity] = useState(0);
   //   const [gallery, setGallery] = useState(props.slide_product.gallery);
-  //   const [addCartUI, setAddCartUI] = useState(props.addCartUI);
+  const [addCartUI, setAddCartUI] = useState(props.addCartUI);
   //   const [cartQuantity, setCartQuantity] = useState(props.cartQuantity);
-  //   const [quantity, setQuantity] = useState(props.cartQuantity);
+  const [quantity, setQuantity] = useState(props.cartQuantity);
   const { t, i18n } = useTranslation();
 
-  //   const [isFav, setIsfav] = useState(
-  //     props.cartData.is_fav === 1 ? true : false
-  //   );
-  //   const [isNonFav, setIsNonfav] = useState(
-  //     props.cartData.is_fav === 0 ? true : false
-  //   );
+  const [isFav, setIsfav] = useState(
+    props.cartData != null
+      ? props.cartData.is_fav === 1
+        ? true
+        : false
+      : false
+  );
+  const [cartQuantity, setCartQuantity] = useState(props.cartQuantity);
+  const [isNonFav, setIsNonfav] = useState(
+    props.cartData != null
+      ? props.cartData.is_fav === 0
+        ? true
+        : false
+      : false
+  );
+  console.log("quantity", quantity);
+  console.log("propQquantity", props.cartQuantity);
+
+  //   if (props.show === true) {
+  //     setQuantity(props.cartQuantity);
+  //   }
 
   useEffect(() => {
     let language = localStorage.getItem("language");
@@ -58,25 +83,28 @@ function ProductModal(props) {
   }, []);
 
   const addToCart = (obj) => {
-    // setState((prevState) => {
-    //   const found = prevState.selectedProduct.some(
-    //     (el) => el.pro_id === obj.pro_id
-    //   );
-    //   const arrayproduct = prevState.selectedProduct;
-    //   const selectedProduct = found
-    //     ? prevState.selectedProduct
-    //     : arrayproduct.push(obj);
-    //   localStorage.setItem("cart_count", selectedProduct.length);
-    //   localStorage.setItem("products", JSON.stringify(selectedProduct));
-
-    //   let myColor = { background: "#0E1717", text: "#FFFFFF" };
-    //   notify.show("Product added in the cart!", "success", 1000, myColor);
-    //   //   setAddCartUI(true);
-    //   return {
-    //     selectedProduct,
-    //     isAdded: true,
-    //   };
-    // });
+    let localItem = JSON.parse(localStorage.getItem("products")) || [];
+    setState({
+      selectedProduct: localItem,
+    });
+    setState((prevState) => {
+      const found = prevState.selectedProduct.some(
+        (el) => el.pro_id === obj.pro_id
+      );
+      const arrayproduct = prevState.selectedProduct;
+      const selectedProduct = found
+        ? prevState.selectedProduct
+        : arrayproduct.push(obj);
+      localStorage.setItem("cart_count", selectedProduct.length);
+      localStorage.setItem("products", JSON.stringify(selectedProduct));
+      let myColor = { background: "#0E1717", text: "#FFFFFF" };
+      notify.show("Product added in the cart!", "success", 1000, myColor);
+      setAddCartUI(false);
+      return {
+        selectedProduct,
+        isAdded: true,
+      };
+    });
   };
 
   const handleAddCart = (item) => {
@@ -89,9 +117,9 @@ function ProductModal(props) {
     if (isSameShopFound === false) {
       localStorage.removeItem("products");
       localStorage.setItem("cart_count", 1);
-    //   setState({ selectedProduct: [] });
+      //   setState({ selectedProduct: [] });
     } else {
-    //   setState({ selectedProduct: newLocalItems });
+      //   setState({ selectedProduct: newLocalItems });
     }
     const obj = {
       pro_id: item.cartData.pro_id,
@@ -117,15 +145,18 @@ function ProductModal(props) {
   };
 
   const updateQuanity = (props, quantity, type) => {
-    // console.log("--1--");
-    // console.log(props);
+    console.log("--1--");
+    console.log("quantity", quantity);
+    console.log("type", type);
+    console.log(props);
     if (type == "minus" && parseInt(quantity) - 1 == 0) {
       let updatedItem = localItems.filter(function (el) {
         return el.pro_id !== props.pro_id;
       });
       localStorage.setItem("products", JSON.stringify(updatedItem));
-      //   setAddCartUI(true);
+      setAddCartUI(true);
     } else {
+      console.log("--2--");
       if (type == "plus" && quantity >= props.pro_stock) {
         return;
       }
@@ -144,7 +175,7 @@ function ProductModal(props) {
       const found = newList.some((el) => el.pro_id === props.pro_id);
       if (found) {
         let product = newList.filter((el) => el.pro_id === props.pro_id);
-        // setQuantity(product[0].pro_qua);
+        setCartQuantity(product[0].pro_qua);
       }
     }
   };
@@ -161,7 +192,7 @@ function ProductModal(props) {
         .post("https://ristsys.store/api/addFavourite", param)
         .then((response) => {
           console.log(response);
-        //   setIsfav(true);
+          setIsfav(true);
         });
     }
   };
@@ -175,7 +206,7 @@ function ProductModal(props) {
       .post("https://ristsys.store/api/removeFavourite", param)
       .then((response) => {
         console.log(response);
-        // setIsfav(false);
+        setIsfav(false);
       });
   };
 
@@ -273,7 +304,7 @@ function ProductModal(props) {
                   </p> */}
 
                   <div className="cart-options d-flex align-items-center justify-content-end mt-5">
-                    {props.addCartUI === true ? (
+                    {addCartUI === true ? (
                       <button
                         className="modal_addcart_btn"
                         onClick={() => handleAddCart(props)}
@@ -285,46 +316,58 @@ function ProductModal(props) {
                         {t("explore.add-to-cart")}{" "}
                       </button>
                     ) : (
-                      <div className="d-flex justify-content-center quantity-field">
+                      <div
+                        className="d-flex justify-content-center quantity-field"
+                        style={{ marginRight: "10px" }}
+                      >
                         <Button
                           className="plus-btn"
                           onClick={() =>
-                            updateQuanity(props.cartData, quantity, "plus")
+                            updateQuanity(props.cartData, cartQuantity, "plus")
                           }
                         >
                           +
                         </Button>
-                        <input type="text" value={quantity} />
+                        <input type="text" value={cartQuantity} readOnly />
                         <Button
                           className="minus-btn"
                           onClick={() =>
-                            updateQuanity(props.cartData, quantity, "minus")
+                            updateQuanity(props.cartData, cartQuantity, "minus")
                           }
                         >
                           -
                         </Button>
                       </div>
                     )}
-                    <i
-                      show={props.cartData.is_fav === 0 ? false : true}
-                      class="fas fa-heart favourite-icon"
-                      style={{ fontSize: "25px", color: "#e02b4a" }}
-                      onClick={() => handleAddFavourite(props.cartData.pro_id)}
-                    ></i>
-                    <i
-                      show={props.cartData.is_fav === 0 ? true : false}
-                      class="fas fa-heart favourite-icon"
-                      style={{ fontSize: "25px" }}
-                      onClick={() =>
-                        handleRemoveFavourite(props.cartData.fav_id)
-                      }
-                    ></i>
+                    {isFav === true ? (
+                      <i
+                        class="fas fa-heart favourite-icon"
+                        style={{ fontSize: "25px", color: "#e02b4a" }}
+                        onClick={() =>
+                          handleRemoveFavourite(props.cartData.fav_id)
+                        }
+                      ></i>
+                    ) : (
+                      <i
+                        class="fas fa-heart favourite-icon"
+                        style={{ fontSize: "25px" }}
+                        onClick={() =>
+                          handleAddFavourite(props.cartData.pro_id)
+                        }
+                      ></i>
+                    )}
                   </div>
                 </Col>
               </Row>
             </>
           ) : (
-            ""
+            <Loader
+              className="text-center"
+              type="TailSpin"
+              color="#e3424b"
+              height={80}
+              width={80}
+            />
           )}
         </Modal.Header>
         <Modal.Body>
