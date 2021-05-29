@@ -29,8 +29,8 @@ var xadokCartItems = [];
 // Modal.setAppElement('#root');
 
 function ProductModal(props) {
-  console.log("ProductModal");
-  console.log(props);
+  // console.log("ProductModal");
+  // console.log(props);
   //   console.log(props.slide_product.gallery);
   var localItems = JSON.parse(localStorage.getItem("products")) || [];
   //   //   let quantity = props.cartData.pro_qua;
@@ -66,8 +66,8 @@ function ProductModal(props) {
         : false
       : false
   );
-  console.log("quantity", quantity);
-  console.log("propQquantity", props.cartQuantity);
+  // console.log("quantity", quantity);
+  // console.log("propQquantity", props.cartQuantity);
 
   //   if (props.show === true) {
   //     setQuantity(props.cartQuantity);
@@ -78,7 +78,7 @@ function ProductModal(props) {
     if (language && language.length !== 0) {
       i18n.changeLanguage(language);
     }
-    console.log("loaded");
+    // console.log("loaded");
     // setIsfav(props.cartData.is_fav === 0 ? false : true);
   }, []);
 
@@ -145,10 +145,10 @@ function ProductModal(props) {
   };
 
   const updateQuanity = (props, quantity, type) => {
-    console.log("--1--");
-    console.log("quantity", quantity);
-    console.log("type", type);
-    console.log(props);
+    // console.log("--1--");
+    // console.log("quantity", quantity);
+    // console.log("type", type);
+    // console.log(props);
     if (type == "minus" && parseInt(quantity) - 1 == 0) {
       let updatedItem = localItems.filter(function (el) {
         return el.pro_id !== props.pro_id;
@@ -156,7 +156,7 @@ function ProductModal(props) {
       localStorage.setItem("products", JSON.stringify(updatedItem));
       setAddCartUI(true);
     } else {
-      console.log("--2--");
+      // console.log("--2--");
       if (type == "plus" && quantity >= props.pro_stock) {
         return;
       }
@@ -187,11 +187,11 @@ function ProductModal(props) {
         user_id: userId,
         product_id: proId,
       };
-      console.log(param);
+      // console.log(param);
       axios
         .post("https://ristsys.store/api/addFavourite", param)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           setIsfav(true);
         });
     }
@@ -201,11 +201,11 @@ function ProductModal(props) {
     let param = {
       favourite_id: favourite_id,
     };
-    console.log(param);
+    // console.log(param);
     axios
       .post("https://ristsys.store/api/removeFavourite", param)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setIsfav(false);
       });
   };

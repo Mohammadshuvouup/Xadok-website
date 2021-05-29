@@ -102,16 +102,23 @@ function ProductItem(props) {
   }
 
   const updateQuanity = (props, quantity, type) => {
+    localItems = JSON.parse(localStorage.getItem("products"));
     // console.log("--1--");
     // console.log(props);
+    // console.log(quantity);
+    // console.log(type);
     if (type == "minus" && parseInt(quantity) - 1 == 0) {
+      // console.log("-11-");
       let updatedItem = localItems.filter(function (el) {
         return el.pro_id !== props.pro_id;
       });
       localStorage.setItem("products", JSON.stringify(updatedItem));
       setAddCartUI(true);
     } else {
+      // console.log("-12-");
+      // console.log(localItems);
       if (type == "plus" && quantity >= props.pro_stock) {
+        // console.log("-13-");
         return;
       }
       const newList = localItems.map((item) => {
@@ -125,6 +132,9 @@ function ProductItem(props) {
         }
         return item;
       });
+      // console.log("-14-");
+      // console.log(newList);
+      // console.log("-15-");
       localStorage.setItem("products", JSON.stringify(newList));
       const found = newList.some((el) => el.pro_id === props.pro_id);
       if (found) {

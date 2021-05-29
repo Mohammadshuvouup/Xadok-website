@@ -74,7 +74,12 @@
         "ADDRESS-NOTE":"ADDRESS NOTE",
         "ADDRESS-MARK":"ADDRESS MARK",
         "Save":"Save",
-        "Edit-addresses":"Edit addresses"
+        "Edit-addresses":"Edit addresses",
+        "block_numer":"Block Number",
+        "road_number":"Road Number",
+        "building_number":"Building Number",
+        "flat_numer":"Flat Number",
+        "Select-area":"Select State"
     
     },
     "Saved_addresses":{

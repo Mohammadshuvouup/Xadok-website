@@ -71,7 +71,12 @@
         "ADDRESS-NOTE":"ملاحظة العنوان",
         "ADDRESS-MARK":"علامة العنوان",
         "Save":"يحفظ",
-        "Edit-addresses":"تعديل العنوان"
+        "Edit-addresses":"تعديل العنوان",
+        "block_numer":"حظر الرقم",
+        "road_number":"رقم الطريق",
+        "building_number":"رقم المبنى",
+        "flat_numer":"عدد مسطح",
+        "Select-area":"اختر ولايه"
     },
     "Saved_addresses":{
         "Saved-addresses":"العناوين المحفوظة",

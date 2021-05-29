@@ -6,11 +6,12 @@ import axios from "axios";
 import NewAddress from "./add_address";
 
 const SavedAddresses = (props) => {
-//   console.log("saved_addresses", props);
+  //   console.log("saved_addresses", props);
   const { t, i18n } = useTranslation();
   const [addressList, setAddressList] = useState([]);
   const [fromSetting, setFromSetting] = useState(props.issetting);
   const [addressId, setAddressId] = useState(0);
+  const [areas, setAreas] = useState([]);
 
   useEffect(() => {
     let language = localStorage.getItem("language");
@@ -18,6 +19,7 @@ const SavedAddresses = (props) => {
       i18n.changeLanguage(language);
     }
     refreshAddressList();
+    getAreas();
   }, []);
 
   const [show2, setShow2] = useState(false);
@@ -36,6 +38,15 @@ const SavedAddresses = (props) => {
       }
     });
   };
+
+  function getAreas() {
+    axios.get("https://ristsys.store/api/getareas").then((response) => {
+      // console.log(response);
+      if (response.data.status === 1) {
+        setAreas(response.data.data);
+      }
+    });
+  }
 
   const handleAddNewAddress = () => {
     handleShow2();
@@ -71,6 +82,7 @@ const SavedAddresses = (props) => {
     props.handleCloses1(address);
   };
 
+
   return (
     <React.Fragment>
       <Modal
@@ -97,7 +109,9 @@ const SavedAddresses = (props) => {
                   <Col
                     md={12}
                     className="address"
-                    onClick={fromSetting == 0 ? () => selectionAddress(value) : ""}
+                    onClick={
+                      fromSetting == 0 ? () => selectionAddress(value) : ""
+                    }
                   >
                     <i
                       class="fas fa-edit edit-icon"
@@ -145,6 +159,7 @@ const SavedAddresses = (props) => {
         handleClose2={handleClose2}
         onReloadAddress={refreshAddressList}
         addId={addressId}
+        area={areas}
       />
     </React.Fragment>
   );

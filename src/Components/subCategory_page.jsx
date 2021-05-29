@@ -148,7 +148,7 @@ export default function Explore(props) {
   const modalRef = React.useRef();
 
   const handleAddCart = (data) => {
-    console.log("cart data", data);
+    // console.log("cart data", data);
     const product_ID = data.pro_id;
 
     modal_Param = {
@@ -163,7 +163,7 @@ export default function Explore(props) {
     axios
       .post("https://ristsys.store/api/GetProductInfo", modal_Param)
       .then((response) => {
-        console.log("cart data api", response);
+        // console.log("cart data api", response);
         let CartQuantity = 0;
         let AddCartUI = true;
         let cartData = response.data.data.product;
@@ -234,7 +234,7 @@ export default function Explore(props) {
         //   CartSimilar_Product: CartSimilar_Product,
         // });
         // setModalShow(true);
-        console.log("setModalShow");
+        // console.log("setModalShow");
       })
       .catch((error) => console.log(error));
   };
@@ -448,10 +448,10 @@ export default function Explore(props) {
       axios
         .post("https://ristsys.store/api/GetShopSubCategoryProducts", param)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           setAppState({ loading: false });
           if (response.data.status === 1) {
-            console.log(param);
+            // console.log(param);
             setsubcat_list([...subcat_list, ...response.data.data]);
             setSubtitle("");
           }
@@ -505,7 +505,7 @@ export default function Explore(props) {
     setCartData(null);
     setAlternative_Product([]);
     setCartSimilar_Product([]);
-  }
+  };
   /*    ======================== PRODUCTS TO DISPLAY FOR SUBCATEGORY PAGE ======================== */
 
   const SubcategoryProducts = () => {
@@ -535,6 +535,18 @@ export default function Explore(props) {
           })}
       </>
     );
+  };
+
+  const handleSearch = (result) => {
+    // console.log("From Topbar");
+    // console.log(result);
+    // console.log(result.data.data.products);
+    if(result.data.status===1){
+      // console.log("status")
+      // setsubcat_list([]);
+      // setsubcat_list([[], ...result.data.data.products]);
+      setsubcat_list(result.data.data.products);
+    }
   };
 
   return (
@@ -677,8 +689,7 @@ export default function Explore(props) {
           </div>
 
           <Col xs={10} sm={10} lg={10} fluid>
-            <TopBar />
-
+            <TopBar search={handleSearch} shop_id={Params.shop_id} />
             <Row>
               <Col
                 xs={12}

@@ -4,9 +4,12 @@ import { Navbar, Nav, Card, Button, Modal, Accordion } from "react-bootstrap";
 import delivery from "../topbar/delivery address.svg";
 import deal from "../topbar/best deals.svg";
 import logo from "../logo/logo.svg";
+import triangle from "../triangle.svg";
 import master from "../xadok/master.png";
 import UserLoginModal from "./Modals/user_login";
 import OpenCart from "./openCart";
+import axios from "axios";
+import Loader from "react-loader-spinner";
 import AfterLoginPopUp from "./Modals/after_login";
 import ForgotPassword from "./Modals/forgot_password";
 import SavedAddresses from "./Modals/settings page/saved_addresses.jsx";
@@ -15,7 +18,7 @@ import "../App.css";
 
 import { useTranslation } from "react-i18next";
 
-const TopBar = () => {
+const TopBar = (props) => {
   let geo_location = {
     lat: "",
     lng: "",
@@ -109,8 +112,16 @@ const TopBar = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { t, i18n } = useTranslation();
+  const [searchText, setSearchText] = useState(null);
 
+  const [showProgress, setShowProgress] = useState(false);
   const [cart_qty, setCartQty] = useState(localStorage.getItem("cart_count"));
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const handleCloseProgress = () => {
+    setShowProgress(false);
+  };
 
   const assign_language = (e) => {
     localStorage.setItem("language", e.target.value);
@@ -120,6 +131,49 @@ const TopBar = () => {
   };
   setInterval(() => setCartQty(localStorage.getItem("cart_count")), 2000);
   const isLoggedIn = localStorage.getItem("user_id");
+  const handleChangeSearchtext = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+    setAlertMessage("");
+  };
+
+  const handleSearch = () => {
+    console.log("handleSearch");
+    console.log(props);
+    setShowAlert(false);
+    setAlertMessage("");
+    if (props.shop_id === null || props.shop_id === undefined) {
+      setAlertMessage("Please select shop first!");
+      setShowAlert(true);
+    } else if (searchText === null || searchText.trim() === "") {
+      setAlertMessage("Search text can not empty!");
+      setShowAlert(true);
+    } else {
+      // console.log(props);
+      searchProducts(searchText, props);
+    }
+  };
+
+  function searchProducts(text, props) {
+    let param = {
+      shop_id: props.shop_id,
+      search: text,
+    };
+    setShowProgress(true);
+    axios
+      .post("https://ristsys.store/api/searchProductsInsideShop", param)
+      .then((response) => {
+        props.search(response);
+        setShowProgress(false);
+      })
+      .catch((error) => {
+        setShowProgress(false);
+      });
+  }
+
   return (
     <div>
       <Navbar className="mainnavbartop b" style={{ marginTop: "7px" }}>
@@ -158,7 +212,11 @@ const TopBar = () => {
 
           <form className="form-inline">
             <div className="input-group">
-              <div className="input-group-prepend">
+              <div
+                className="input-group-prepend"
+                onClick={handleSearch}
+                style={{ cursor: "pointer" }}
+              >
                 <span className="input-group-text" id="basic-addon1">
                   <i className="fas fa-search icon"></i>
                 </span>
@@ -169,6 +227,7 @@ const TopBar = () => {
                 placeholder={t("topBar.Search-for-anything")}
                 aria-label="Search"
                 aria-describedby="basic-addon1"
+                onChange={handleChangeSearchtext}
               />
             </div>
           </form>
@@ -334,6 +393,106 @@ const TopBar = () => {
               }}
             >
               your order has been confirmed,<br></br>Thankyou for choosing us.
+            </p>
+          </Modal.Body>
+
+          <Modal.Footer
+            style={{ border: "none", marginLeft: "-4%", width: "100%" }}
+          ></Modal.Footer>
+        </Modal>
+
+        {/* ---------------------Progress Modal------------------ */}
+        <Modal
+          backdrop="static"
+          className="your"
+          show={showProgress}
+          style={{
+            borderRadius: "30px ",
+            top: "25%",
+            width: "410px",
+            marginLeft: "40%",
+            background: "transparent",
+            border: "none",
+          }}
+          onHide={handleCloseProgress}
+          animation={false}
+        >
+          <Modal.Header
+            style={{
+              borderRadius: "1rem ",
+              background: "transparent",
+              border: "none",
+              textAlign: "center",
+            }}
+          >
+            <div className="col-md-12">
+              <Loader
+                className="text-center"
+                type="TailSpin"
+                color="#e3424b"
+                height={80}
+                width={80}
+                style={{ textAlign: "center" }}
+              />
+            </div>
+          </Modal.Header>
+          <Modal.Body style={{ border: "none" }}>
+            <p
+              style={{
+                textAlign: "center",
+                fontSize: "20px",
+                marginTop: "-20px",
+                fontSize: "18px",
+                padding: "10px",
+              }}
+            >
+              Please wait...<br></br>while we are fetching data.
+            </p>
+          </Modal.Body>
+
+          <Modal.Footer
+            style={{ border: "none", marginLeft: "-4%", width: "100%" }}
+          ></Modal.Footer>
+        </Modal>
+
+        {/* ---------------------Alert Modal------------------ */}
+        <Modal
+          className="your"
+          show={showAlert}
+          style={{
+            borderRadius: "30px ",
+            top: "25%",
+            width: "410px",
+            marginLeft: "40%",
+            background: "transparent",
+            border: "none",
+          }}
+          onHide={handleCloseAlert}
+          animation={false}
+        >
+          <Modal.Header
+            style={{
+              borderRadius: "1rem ",
+              background: "transparent",
+              border: "none",
+              textAlign: "center",
+            }}
+            closeButton
+          ></Modal.Header>
+          <Modal.Body style={{ border: "none" }}>
+            <div className="col-md-12" style={{ textAlign: "center" }}>
+              <img src={triangle} height={80} width={80} />
+            </div>
+            <p
+              style={{
+                textAlign: "center",
+                fontSize: "20px",
+                marginTop: "20px",
+                fontSize: "18px",
+                padding: "10px",
+              }}
+            >
+              {alertMessage}
             </p>
           </Modal.Body>
 

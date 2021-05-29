@@ -363,6 +363,18 @@ export default function Explore(props) {
 
   /*    ======================== SIDE CATEGORY BAR ======================== */
 
+  const handleSearch = (result) => {
+    // console.log("From Topbar");
+    // console.log(result);
+    // console.log(result.data.data.products);
+    if(result.data.status===1){
+      // console.log("status")
+      // setsubcat_list([]);
+      // setsubcat_list([[], ...result.data.data.products]);
+      setSimilarProd(result.data.data.products);
+    }
+  };
+
   const CategoryBar = () => {
     return (
       <>
@@ -630,7 +642,7 @@ export default function Explore(props) {
           </div>
 
           <Col xs={10} sm={10} lg={10} fluid>
-            <TopBar />
+            <TopBar search={handleSearch} shop_id={Params.shop_id} />
 
             <Row>
               <Col

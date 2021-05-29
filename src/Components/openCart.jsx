@@ -49,6 +49,13 @@ const OpenCart = (props) => {
   );
   // const [totalCost, setTotalCost] = useState(0);
 
+  const [noItems, setNoItems] = useState(
+    localStorage.getItem("cart_count") === null ||
+      parseInt(localStorage.getItem("cart_count")) === 0
+      ? true
+      : false
+  );
+
   const { t, i18n } = useTranslation();
   useEffect(() => {
     let language = localStorage.getItem("language");
@@ -75,13 +82,46 @@ const OpenCart = (props) => {
   const updateQuanity = (props, type) => {
     // console.log(props);
     if (type == "minus" && parseInt(props.pro_qua) - 1 == 0) {
+      const newList = cart_items.map((item) => {
+        if (item.pro_id === props.pro_id) {
+          const updatedItem = {
+            ...item,
+            pro_qua:
+              type == "plus"
+                ? parseInt(props.pro_qua) + 1
+                : parseInt(props.pro_qua) - 1,
+          };
+          return updatedItem;
+        }
+        return item;
+      });
+      setCartItems(newList);
+      localStorage.setItem("products", JSON.stringify(newList));
+      setTotalCost(
+        newList
+          .reduce(
+            (a, value) => (a = a + value.product_price * value.pro_qua),
+            0
+          )
+          .toFixed(3)
+      );
+
       let updatedItem = cart_items.filter(function (el) {
         return el.pro_id !== props.pro_id;
       });
       setCartItems(updatedItem);
       let cartQty = localStorage.getItem("cart_count");
+      // console.log(updatedItem);
+      // console.log(cartQty-1);
+      // console.log(parseInt(cartQty)-1);
       localStorage.setItem("products", JSON.stringify(updatedItem));
-      localStorage.setItem("cart_count", cartQty - 1);
+      localStorage.setItem("cart_count", parseInt(cartQty) - 1);
+      // console.log("-yes-");
+      // console.log(parseInt(cartQty));
+      if (parseInt(cartQty) === 1) {
+        // setTotalCost(0);
+        setNoItems(true);
+      }
     } else {
       // console.log(props.pro_qua + "<=" + props.pro_stock);
       if (type == "plus" && props.pro_qua >= props.pro_stock) {
@@ -163,7 +203,7 @@ const OpenCart = (props) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Row>
+            <Row style={{ display: noItems === true ? "none" : "block" }}>
               <Col md={12} className="deliver-to">
                 <h6 className="deliver-text1">{t("openCart.DELIVER-TO")} </h6>
                 <h6 className="deliver-text2" onClick={handleShows1}>
@@ -177,6 +217,10 @@ const OpenCart = (props) => {
             {cart_items &&
               cart_items.length > 0 &&
               cart_items.map((value, index) => {
+                // console.log("delivery");
+                // console.log(totalCost + ">" + delivery);
+                // console.log(totalCost);
+                // console.log(delivery);
                 // console.log(value);
                 return (
                   <Row className="api-box" key={value.pro_id}>
@@ -224,7 +268,19 @@ const OpenCart = (props) => {
                 );
               })}
             {/* <h6 className="item-add">{t("openCart.Add-more-items")}</h6> */}
-            <Row className="shipping">
+
+            <Row style={{ display: noItems === false ? "none" : "block" }}>
+              <Col className="motor" md={12}>
+                <div className="text-center">
+                  <p>No items in the cart</p>
+                </div>
+              </Col>
+            </Row>
+
+            <Row
+              className="shipping"
+              style={{ display: noItems === true ? "none" : "" }}
+            >
               <Col className="motor" md={3}>
                 <div className="text-center">
                   <i
@@ -239,7 +295,11 @@ const OpenCart = (props) => {
                   {t("openCart.Delivery")}
                 </h6>
                 <p>
-                  <span>{totalCost > delivery ? 0 : delivery}</span>{" "}
+                  <span>
+                    {parseFloat(totalCost) > parseFloat(delivery)
+                      ? 0
+                      : delivery}
+                  </span>{" "}
                   {localStorage.getItem("country_currency")}
                 </p>
               </Col>
@@ -269,6 +329,7 @@ const OpenCart = (props) => {
           </Modal.Body>
           <Modal.Footer>
             <Button
+              style={{ display: noItems === true ? "none" : "block" }}
               className="cheackout"
               onClick={handleContinue}
               size="lg"
