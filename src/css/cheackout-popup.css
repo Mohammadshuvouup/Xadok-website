@@ -1,0 +1,73 @@
+.cheackout-popup .modal-content {
+  width: 480px;
+  left: 99%;
+}
+.cheackout-popup .modal-dialog {
+  margin: 0;
+}
+.cheackout-popup .mastercard {
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+.cheackout-popup .cheack-out-btn {
+  background: rgb(34, 49, 66);
+  border: none;
+  border-radius: 8px;
+  width: 83%;
+  margin-left: 8%;
+
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 32px;
+  /* identical to box height, or 160% */
+
+  text-align: center;
+
+  /* #FFFFFF */
+
+  color: #ffffff;
+}
+.cheackout-popup .cheack-out-btn span {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 32px;
+  /* identical to box height, or 160% */
+
+  text-align: center;
+
+  /* #FFFFFF */
+
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  .cheackout-popup .modal-content {
+    width: 100%;
+    left: 0;
+  }
+}
+.selected-payment{
+  margin-top: 7% !important;
+  display: flex !important;
+  width: 90% !important;
+  background: #E3424B !important;
+  border: none !important;
+  border-radius: 10px !important;
+  align-items: center !important;
+  font-weight: normal !important;
+}
+.default-payment{
+  margin-top: 2.5% !important;
+  display: flex !important;
+  width: 90% !important;
+  background: #e6e3e3 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  align-items: center !important;
+  font-weight: normal !important;
+  color: black !important;
+}
