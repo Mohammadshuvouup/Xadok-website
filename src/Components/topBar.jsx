@@ -29,9 +29,11 @@ const TopBar = (props) => {
   );
 
   useEffect(() => {
+    if (!localStorage.getItem("language")) {
+      localStorage.setItem("language", "en");
+    }
     const selected_langauge = localStorage.getItem("language");
     setSelect_val(selected_langauge);
-
     navigator.geolocation.getCurrentPosition(function (position) {
       geo_location = {
         lat: position.coords.latitude,

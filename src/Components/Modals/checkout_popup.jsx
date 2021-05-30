@@ -48,7 +48,9 @@ const CheckOutPopUp = (props) => {
     "Card On Delivery",
   ];
   const [defaultPayment, setDefaultPayment] = useState("Cash On Delivery");
-
+  const handlePaymentMethod = (item) => {
+    setDefaultPayment(item);
+  };
   return (
     <Modal
       className="cheackout-popup"
@@ -165,7 +167,11 @@ const CheckOutPopUp = (props) => {
 
         <h4
           className="payment"
-          style={{ paddingLeft: "22px", paddingTop: "74px" }}
+          style={{
+            paddingLeft: "22px",
+            paddingTop: "74px",
+            paddingBottom: "20px",
+          }}
         >
           Payment methods{" "}
         </h4>
@@ -173,7 +179,10 @@ const CheckOutPopUp = (props) => {
         {paymentMethods.map((item) => (
           <>
             {item === defaultPayment ? (
-              <Button className="p-3 text-start ml-3 selected-payment">
+              <Button
+                className="p-3 text-start ml-3 selected-payment"
+                onClick={() => handlePaymentMethod(item)}
+              >
                 {" "}
                 &nbsp; &nbsp;&nbsp;&nbsp;
                 <i
@@ -183,7 +192,10 @@ const CheckOutPopUp = (props) => {
                 &nbsp; &nbsp;&nbsp; {item}
               </Button>
             ) : (
-              <Button className="p-3 text-start ml-3 default-payment">
+              <Button
+                className="p-3 text-start ml-3 default-payment"
+                onClick={() => handlePaymentMethod(item)}
+              >
                 {" "}
                 &nbsp; &nbsp;&nbsp;&nbsp;
                 <i
@@ -291,7 +303,7 @@ const CheckOutPopUp = (props) => {
           Notes
         </h4>
         <textarea
-          //   placeholder="Examples don't ring the best"
+          // placeholder="Examples don't ring the best"
           className="not-input"
           onChange={handleChangeNote}
           style={{

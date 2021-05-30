@@ -64,9 +64,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     let language = localStorage.getItem("language");
-
     // console.log("LANGUAGE SELECTED", language);
-
     if (language && language.length !== 0) {
       i18n.changeLanguage(language);
     }

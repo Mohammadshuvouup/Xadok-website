@@ -74,8 +74,8 @@ export default function Orders() {
       .then((response) => {
         console.log(response);
         if (response.data.status === 1) {
-            setInfo(response.data.data);
-            setShow120(true);
+          setInfo(response.data.data);
+          setShow120(true);
         }
       });
   }
@@ -188,6 +188,8 @@ export default function Orders() {
                       </Col>
                     );
                   })
+                ) : !localStorage.getItem("user_id") ? (
+                  <p>No items found</p>
                 ) : (
                   <Loader
                     className="text-center"
@@ -264,6 +266,8 @@ export default function Orders() {
                       </Col>
                     );
                   })
+                ) : !localStorage.getItem("user_id") ? (
+                  <p>No items found</p>
                 ) : (
                   <Loader
                     className="text-center"

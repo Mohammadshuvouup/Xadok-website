@@ -3,6 +3,7 @@ import Supermarket from "./Components/supermarket";
 import Explore from "./Components/explore";
 import SubCategory from "./Components/subCategory_page";
 import Offers from "./Components/offers";
+import NewOffers from "./Components/NewOffers";
 import OffersDark from "./Components/offersDark";
 import Dairy from "./Components/dairy";
 import Eggs from "./Components/eggs";
@@ -58,7 +59,7 @@ const App = () => {
                 exact
                 component={SubCategory}
               />
-              <Route path="/offers" exact component={Offers} />
+              <Route path="/offers/:shop_name/:shop_id/:offer_id" exact component={NewOffers} />
               <Route path="/offersDark" exact component={OffersDark} />
               <Route path="/dairy" exact component={Dairy} />
               <Route path="/eggs" exact component={Eggs} />

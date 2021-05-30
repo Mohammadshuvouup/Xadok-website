@@ -735,7 +735,7 @@ export default function Explore(props) {
             </Row>
 
             <Row className="item-list grey-bg justify-content-lg-between">
-              <SubcategoryProducts />
+                
             </Row>
 
             <Row className="grey-bg">

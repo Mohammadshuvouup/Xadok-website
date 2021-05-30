@@ -145,7 +145,7 @@ export default function Favourite() {
     setCartData(null);
     setAlternative_Product([]);
     setCartSimilar_Product([]);
-  }
+  };
 
   return (
     <React.Fragment>
@@ -193,6 +193,8 @@ export default function Favourite() {
                     ></ProductItem>
                   );
                 })
+              ) : !localStorage.getItem("user_id") ? (
+                <p>No items found</p>
               ) : (
                 <Loader
                   className="text-center"

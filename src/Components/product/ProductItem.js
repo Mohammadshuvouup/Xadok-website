@@ -205,9 +205,9 @@ function ProductItem(props) {
               {localStorage.getItem("country_currency")}
             </span>
           </h4>
-          <div className="discount">
+          {/* <div className="discount">
             <p className="pt-1 pl-3 ptag">25%</p>
-          </div>
+          </div> */}
         </div>
       ) : (
         <div className="price-box">

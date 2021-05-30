@@ -51,6 +51,11 @@ const OpenCart = (props) => {
   // const [show4, setShow4] = useState(false);
   const handleShow4 = () => setShow4(true);
 
+  if (props.show2) {
+    console.log("loaded");
+    // setCartItems(JSON.parse(localStorage.getItem("products")));
+  }
+
   const [noItems, setNoItems] = useState(
     localStorage.getItem("cart_count") === null ||
       parseInt(localStorage.getItem("cart_count")) === 0
@@ -193,7 +198,11 @@ const OpenCart = (props) => {
           handleCloses1={handleCloses1}
           issetting="0"
         />
-        <CheckOutPopUp show4={show4} handleClose4={handleClose4} handleShow4={handleShow4}/>
+        <CheckOutPopUp
+          show4={show4}
+          handleClose4={handleClose4}
+          handleShow4={handleShow4}
+        />
         <Modal
           className="cart art"
           show={props.show2}
@@ -294,7 +303,7 @@ const OpenCart = (props) => {
               </Col>
 
               <Col md={7} className="more-item-text">
-                <h6 style={{ marginBottom: "0px;" }}>
+                <h6 style={{ marginBottom: "0px" }}>
                   {t("openCart.Delivery")}
                 </h6>
                 <p>
@@ -308,27 +317,6 @@ const OpenCart = (props) => {
               </Col>
               <Col md={2}></Col>
             </Row>
-            {/* <Row className="shipping">
-              <Col className="card" md={2}>
-                <div>
-                  <i class="far fa-credit-card"></i>
-                </div>
-              </Col>
-                  
-                  <Col md={8} className="more-item-text">
-                     <h6>
-                        {t("openCart.Promo-Code")}
-                     </h6>
-                     <h6>
-                        HXFWO
-                     </h6>
-              </Col>
-              <Col md={2}>
-                <div className="item-plus" onClick={props.handleShow114}>
-                  <i class="fas fa-plus"></i>
-                </div></Col>
-                 
-               </Row> */}
           </Modal.Body>
           <Modal.Footer>
             <Button

@@ -183,3 +183,7 @@ body{
         height:100% !important;
       }
 }
+
+.navbar-brand a, .navbar-brand .active {
+    background: transparent !important;
+}
