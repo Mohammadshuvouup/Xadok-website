@@ -3,6 +3,21 @@
   margin: 0 auto;
 }
 
+.delivery-time-popup .modal{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.delivery-time-popup .modal::-webkit-scrollbar{
+    display: none;
+}
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .delivery-time-popup .modal{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
 .delivery-time-popup .modal-header,
 .delivery-time-popup .modal-footer {
   border: 0;
@@ -10,9 +25,19 @@
 
 .delivery-time-popup .days-list {
   overflow-x: scroll;
-  padding-right: 17px;
-  box-sizing: content-box;
+  overflow-y: hidden;
+
 }
+
+.delivery-time-popup .days-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+.delivery-time-popup .days-list {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 
 .delivery-time-popup .schedule-day {
   background: rgb(227, 66, 75);
