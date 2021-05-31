@@ -29,8 +29,8 @@ var xadokCartItems = [];
 // Modal.setAppElement('#root');
 
 function ProductModal(props) {
-  // console.log("ProductModal");
-  // console.log(props);
+  console.log("ProductModal");
+  console.log(props);
   //   console.log(props.slide_product.gallery);
   var localItems = JSON.parse(localStorage.getItem("products")) || [];
   //   //   let quantity = props.cartData.pro_qua;
@@ -46,10 +46,8 @@ function ProductModal(props) {
   //   const [num, setNum] = useState(1);
   //   const [cart_quantity, setCart_quantity] = useState(0);
   //   const [gallery, setGallery] = useState(props.slide_product.gallery);
-  // const [addCartUI, setAddCartUI] = useState(
-  //   props.addCartUI === true ? true : false
-  // );
-  const [addCartUI, setAddCartUI] = useState(true);
+  const [addCartUI, setAddCartUI] = useState(props.addCartUI);
+  // const [addCartUI, setAddCartUI] = useState(true);
   //   const [cartQuantity, setCartQuantity] = useState(props.cartQuantity);
   const [quantity, setQuantity] = useState(props.cartQuantity);
   const { t, i18n } = useTranslation();
@@ -72,16 +70,16 @@ function ProductModal(props) {
   // console.log("quantity", quantity);
   // console.log("propQquantity", props.cartQuantity);
 
-  //   if (props.show === true) {
-  //     setQuantity(props.cartQuantity);
-  //   }
+    // if (props.show === false) {
+    //   setAddCartUI(true);
+    // }
 
   useEffect(() => {
     let language = localStorage.getItem("language");
     if (language && language.length !== 0) {
       i18n.changeLanguage(language);
     }
-    // console.log("loaded");
+    console.log("loaded");
     // setIsfav(props.cartData.is_fav === 0 ? false : true);
   }, []);
 

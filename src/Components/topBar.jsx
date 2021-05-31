@@ -19,7 +19,7 @@ import Loader from "react-loader-spinner";
 import AfterLoginPopUp from "./Modals/after_login";
 import ForgotPassword from "./Modals/forgot_password";
 import SavedAddresses from "./Modals/settings page/saved_addresses.jsx";
-
+import moment from "moment";
 import "../App.css";
 
 import { useTranslation } from "react-i18next";
@@ -36,6 +36,40 @@ const TopBar = forwardRef((props, ref) => {
   const [defaultAddress, setDefaultAddress] = useState(
     localStorage.getItem("default_address") || ""
   );
+  const [dates, setDates] = useState(null);
+
+  function getDates() {
+    // console.log("getDates");
+    let param = {
+      user_id: localStorage.getItem("user_id"),
+      address_id: localStorage.getItem("default_address_id"),
+      shop_id: localStorage.getItem("shop_id"),
+      user_datetime: moment().format("YYYY-MM-DD hh:mm:ss"),
+    };
+    // console.log(param);
+    axios
+      .get(
+        "https://ristsys.store/api/GetDeliveryDates?user_id=" +
+          localStorage.getItem("user_id") +
+          "&address_id=" +
+          localStorage.getItem("default_address_id") +
+          "&shop_id=" +
+          localStorage.getItem("shop_id") +
+          "&user_datetime=" +
+          moment().format("YYYY-MM-DD hh:mm:ss")
+      )
+      .then((response) => {
+        // console.log(response);
+        if (response.data.status === 1) {
+          // console.log("-1-");
+          // console.log(response.data.data);
+          setDates(response.data.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   useEffect(() => {
     if (!localStorage.getItem("language")) {
@@ -58,6 +92,7 @@ const TopBar = forwardRef((props, ref) => {
         JSON.stringify(geo_location.lng)
       );
     });
+    getDates();
   }, []);
 
   const [shows1, setShows1] = useState(false);
@@ -152,8 +187,8 @@ const TopBar = forwardRef((props, ref) => {
   };
 
   const handleSearch = () => {
-    console.log("handleSearch");
-    console.log(props);
+    // console.log("handleSearch");
+    // console.log(props);
     setShowAlert(false);
     setAlertMessage("");
     if (props.shop_id === null || props.shop_id === undefined) {
@@ -286,6 +321,7 @@ const TopBar = forwardRef((props, ref) => {
         handleClose2={handleClose2}
         handleShow114={handleShow114}
         handleShow={handleShow}
+        dates={dates}
       />
 
       {/* -----------------Location---------------------- */}

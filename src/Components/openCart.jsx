@@ -80,7 +80,7 @@ const OpenCart = forwardRef((props, ref) => {
           : 0
       );
       setNoItems(false);
-      console.log(delivery)
+      // console.log(delivery);
     },
   }));
 
@@ -188,32 +188,10 @@ const OpenCart = forwardRef((props, ref) => {
     }
   };
 
-  const handleCheckout = () => {
-    console.log("handleCheckout");
-    let shop_id = cart_items[0].shop_id;
-    let param = {
-      user_id: localStorage.getItem("user_id"),
-      address_id: localStorage.getItem("default_address_id"),
-      shop_id: shop_id,
-      payment_type: localStorage.getItem("payment_type"),
-      inv_type: "delivery",
-      inv_form: "invoice",
-      credit: 0,
-      pros: localStorage.getItem("products"),
-      note: localStorage.getItem("note"),
-      extras: [],
-      type: [],
-      inv_lat: localStorage.getItem("current_location_lat"),
-      inv_lng: localStorage.getItem("current_location_lng"),
-      is_express: localStorage.getItem("is_express"),
-      timing_id: localStorage.getItem("timing_id"),
-      delivery_cost: totalCost > delivery ? 0 : delivery,
-      coupon: "",
-    };
-    // console.log(param);
-  };
-
   const handleContinue = () => {
+    // if(totalCost > delivery){
+
+    // }
     props.handleClose2();
     setShow4(true);
   };
@@ -230,6 +208,7 @@ const OpenCart = forwardRef((props, ref) => {
           show4={show4}
           handleClose4={handleClose4}
           handleShow4={handleShow4}
+          dates={props.dates}
         />
         <Modal
           className="cart art"
@@ -338,7 +317,7 @@ const OpenCart = forwardRef((props, ref) => {
                   <span>
                     {parseFloat(totalCost) > parseFloat(delivery)
                       ? 0
-                      : delivery}
+                      : "0.600 "}
                   </span>{" "}
                   {localStorage.getItem("country_currency")}
                 </p>

@@ -1,6 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Footer from "../Components/footer";
-import { Row, Col, Container, ProgressBar, Button } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Container,
+  ProgressBar,
+  Button,
+  Modal,
+} from "react-bootstrap";
 import "../App.css";
 import SideDrawer from "./SideDrawer/SideDrawer";
 import TopBar from "./topBar";
@@ -27,6 +34,13 @@ export default function Orders() {
   const [currentOrder, setCurrentOrder] = useState(null);
   const [pastOrder, setPastOrder] = useState(null);
   const [info, setInfo] = useState(null);
+  const [showProgress, setShowProgress] = useState(false);
+
+  var localItems = JSON.parse(localStorage.getItem("products")) || [];
+  const [state, setState] = useState({
+    selectedProduct: localItems,
+  });
+  const [shop_id, setShopId] = useState(null);
 
   const handleShow120 = (order) => {
     setPastOrder(order);
@@ -68,12 +82,12 @@ export default function Orders() {
       user_id: localStorage.getItem("user_id"),
       inv_id: invId,
     };
-    console.log(param);
+    setShowProgress(true);
     axios
       .post("https://ristsys.store/api/GetMyInvoiceInfo", param)
       .then((response) => {
-        console.log(response);
         if (response.data.status === 1) {
+          setShowProgress(false);
           setInfo(response.data.data);
           setShow120(true);
         }
@@ -84,6 +98,88 @@ export default function Orders() {
     getUpcomingOrders();
     getPreviousOrders();
   }, []);
+
+  const handleRepeatOrder = (item) => {
+    console.log("repeat order");
+    let param = {
+      user_id: localStorage.getItem("user_id"),
+      inv_id: item.inv_id,
+    };
+    console.log(param);
+    setShowProgress(true);
+    axios
+      .post("https://ristsys.store/api/GetMyInvoiceInfo", param)
+      .then((response) => {
+        if (response.data.status === 1) {
+          setShowProgress(false);
+          let products = response.data.data.products;
+          products.map((product) => {
+            repeatOrder(product);
+          });
+          setShopId(item.shop_id);
+          childRef.current.reloadCartItem();
+        }
+      });
+  };
+
+  function repeatOrder(item) {
+    var newLocalItems = !localStorage.getItem("products")
+      ? []
+      : JSON.parse(localStorage.getItem("products"));
+    const isSameShopFound =
+      newLocalItems.length > 0
+        ? newLocalItems.some((el) => el.shop_id === item.shop_id)
+        : false;
+    if (isSameShopFound === false) {
+      localStorage.removeItem("products");
+      localStorage.setItem("cart_count", 1);
+      setState({ selectedProduct: [] });
+    } else {
+      setState({ selectedProduct: newLocalItems });
+    }
+    const obj = {
+      pro_id: item.pro_id,
+      pro_name: item.pro_name_en,
+      shop_id: item.shop_id,
+      pro_stock: item.pro_stock,
+      pro_qua: 1,
+      pro_model: 0,
+      product_price:
+        item.pro_special_price != null &&
+        item.pro_special_price != 0 &&
+        item.pro_special_price != "" &&
+        item.pro_special_price != 0.0 &&
+        item.pro_special_price != 0.0
+          ? item.pro_special_price
+          : item.pro_price,
+      img: item.pro_img,
+      offer_price: item.pro_special_price,
+      offer_percent: 0,
+      offer_info: "",
+    };
+    addToCart(obj);
+  }
+
+  const addToCart = (obj) => {
+    setState((prevState) => {
+      const found = prevState.selectedProduct.some(
+        (el) => el.pro_id === obj.pro_id
+      );
+      const arrayproduct = prevState.selectedProduct;
+      if (found === false) {
+        arrayproduct.push(obj);
+      }
+      const selectedProduct = found ? prevState.selectedProduct : arrayproduct;
+      localStorage.setItem("cart_count", selectedProduct.length);
+      localStorage.setItem("products", JSON.stringify(selectedProduct));
+    });
+  };
+
+  const childRef = useRef();
+  const handleCustomEvent = () => {
+    // console.log("hi");
+    childRef.current.reloadCartItem();
+  };
 
   return (
     <>
@@ -111,7 +207,7 @@ export default function Orders() {
           <SideDrawer />
 
           <Col xs={10} sm={10} lg={10} fluid>
-            <TopBar />
+            <TopBar ref={childRef} shop_id={shop_id} />
 
             {/* =========== upcoming orders =========== */}
 
@@ -210,7 +306,11 @@ export default function Orders() {
                 {previousOrders != null && previousOrders.length > 0 ? (
                   previousOrders.map((item) => {
                     return (
-                      <Col md={4} className="previous-order-card">
+                      <Col
+                        md={4}
+                        key={item.inv_id}
+                        className="previous-order-card"
+                      >
                         <header>
                           <div className="d-flex justify-content-between align-items-center">
                             <h6>{item.shop_name}</h6>
@@ -257,7 +357,7 @@ export default function Orders() {
                             Details
                           </Button>
                           <Button
-                            onClick={handleShow2}
+                            onClick={() => handleRepeatOrder(item)}
                             className="repeat-order"
                           >
                             Repeat Order
@@ -285,6 +385,59 @@ export default function Orders() {
       <div className="mt-4">
         <Footer />
       </div>
+
+      {/* ---------------------Progress Modal------------------ */}
+      <Modal
+        backdrop="static"
+        className="your"
+        show={showProgress}
+        style={{
+          borderRadius: "30px ",
+          top: "25%",
+          width: "410px",
+          marginLeft: "40%",
+          background: "transparent",
+          border: "none",
+        }}
+        animation={false}
+      >
+        <Modal.Header
+          style={{
+            borderRadius: "1rem ",
+            background: "transparent",
+            border: "none",
+            textAlign: "center",
+          }}
+        >
+          <div className="col-md-12">
+            <Loader
+              className="text-center"
+              type="TailSpin"
+              color="#e3424b"
+              height={80}
+              width={80}
+              style={{ textAlign: "center" }}
+            />
+          </div>
+        </Modal.Header>
+        <Modal.Body style={{ border: "none" }}>
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: "20px",
+              marginTop: "-20px",
+              fontSize: "18px",
+              padding: "10px",
+            }}
+          >
+            Please wait...<br></br>
+          </p>
+        </Modal.Body>
+
+        <Modal.Footer
+          style={{ border: "none", marginLeft: "-4%", width: "100%" }}
+        ></Modal.Footer>
+      </Modal>
     </>
   );
 }

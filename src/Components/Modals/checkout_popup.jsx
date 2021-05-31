@@ -5,6 +5,11 @@ import OpenCart from "../openCart";
 import DeliveryTime from "../Modals/delivery-time";
 import "../../css/cheackout-popup.css";
 import { Trans, useTranslation } from "react-i18next";
+import Moment from "moment";
+import triangle from "../../triangle.svg";
+import logo from "../logo/logo.svg";
+import axios from "axios";
+import Loader from "react-loader-spinner";
 
 const CheckOutPopUp = (props) => {
   const [show, setShow] = useState(false);
@@ -23,10 +28,32 @@ const CheckOutPopUp = (props) => {
   const handleShow117 = () => setShow117(true);
   const [show02, setShow02] = useState(false);
   const handleShow02 = () => setShow02(true);
-  const handleClose02 = () => setShow02(false);
+  const [showDeliveryTime, setShowDeliveryTime] = useState(false);
+  const [deliveryTime, setDeliveryTime] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [delivery, setDelivery] = useState(
+    parseInt(localStorage.getItem("minimum_amount_for_free_shipping")) || 0
+  );
+  const [showSuccess, setShowSuccess] = useState(false);
+  const handleCloseSuccess = () => {
+    setShowSuccess(false);
+    window.location.reload();
+  };
+  const [showProgress, setShowProgress] = useState(false);
 
   var cart_items = JSON.parse(localStorage.getItem("products")) || [];
   const [totalCost, setTotalCost] = useState(
+    cart_items != null && cart_items.length > 0
+      ? cart_items
+          .reduce(
+            (a, value) => (a = a + value.product_price * value.pro_qua),
+            0
+          )
+          .toFixed(3)
+      : 0
+  );
+  const [totalCostWithDelivery, setTotalCostWithDelivery] = useState(
     cart_items != null && cart_items.length > 0
       ? cart_items
           .reduce(
@@ -43,6 +70,41 @@ const CheckOutPopUp = (props) => {
       i18n.changeLanguage(language);
     }
   }, []);
+  const [date, setDate] = useState(null);
+  const [dateId, setDateId] = useState(null);
+  const [time, setTime] = useState(null);
+  const [deliveryCost, setDeliveryCost] = useState(0);
+  const [timeText, setTimeText] = useState("Schedule Delivery");
+
+  const handleClose02 = (date, dateId, time) => {
+    // console.log("-ok-");
+    setShow02(false);
+    // console.log(date);
+    // console.log(time);
+    setDateId(dateId);
+    setDate(date);
+    setTime(time);
+    setShowDeliveryTime(true);
+    if (time !== undefined && time !== null) {
+      setDeliveryCost(parseFloat(time.delivery_cost));
+      if (parseFloat(totalCost) > parseFloat(delivery)) {
+        setTotalCostWithDelivery(totalCost);
+      } else {
+        let b = parseFloat(time.delivery_cost);
+        setTotalCostWithDelivery((parseFloat(totalCost) + b).toFixed(3));
+      }
+      setTimeText(
+        Moment("2021-05-21 " + time.start_time).format("hh:mm a") +
+          " - " +
+          Moment("2021-05-21 " + time.end_time).format("hh:mm a")
+      );
+    }
+  };
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+    setAlertMessage("");
+  };
   const [notes, setNotes] = useState(null);
   const handleChangeNote = (e) => {
     setNotes(e.target.value);
@@ -56,6 +118,66 @@ const CheckOutPopUp = (props) => {
   const handlePaymentMethod = (item) => {
     setDefaultPayment(item);
   };
+
+  const handleCheckout = () => {
+    console.log("handleCheckout");
+    if (time === null) {
+      setAlertMessage("Please choose delivery time");
+      setShowAlert(true);
+    } else {
+      let paymentType = "COD";
+      if (defaultPayment === "Benefit Pay") {
+        paymentType = "BENEFIT";
+      } else if (defaultPayment === "Card On Delivery") {
+        paymentType = "cash";
+      }
+      let param = {
+        user_id: localStorage.getItem("user_id"),
+        address_id: localStorage.getItem("default_address_id"),
+        shop_id: localStorage.getItem("shop_id"),
+        payment_type: paymentType,
+        inv_type: "delivery",
+        inv_form: "invoice",
+        credit: 0,
+        note: notes,
+        extras: [],
+        type: [],
+        inv_lat: localStorage.getItem("current_location_lat"),
+        inv_lng: localStorage.getItem("current_location_lng"),
+        is_express: "false",
+        timing_id: time.timing_id,
+        delivery_cost:
+          parseFloat(totalCost) > parseFloat(delivery) ? 0 : deliveryCost,
+        coupon: "",
+        pros: localStorage.getItem("products"),
+      };
+      // console.log(param);
+      setShowProgress(true);
+      axios
+        .post("https://ristsys.store/api/AddInvoice", param)
+        .then((response) => {
+          console.log(response);
+          setShowProgress(false);
+          if (response.data.status === 1) {
+            setDate(null);
+            setDateId(null);
+            setTime(null);
+            setDeliveryCost(0);
+            setTimeText("Schedule Delivery");
+            setShowDeliveryTime(false);
+            setDeliveryTime(null);
+            setShowSuccess(true);
+            localStorage.removeItem("products");
+            localStorage.removeItem("cart_count");
+            props.handleClose4();
+          }
+        })
+        .catch((error) => {
+          setShowProgress(false);
+        });
+    }
+  };
+
   return (
     <>
       <Modal
@@ -124,32 +246,39 @@ const CheckOutPopUp = (props) => {
           >
             Delivery Time
           </h4>
-          <div
-            onClick={handleShow115}
-            style={{
-              marginTop: "7%",
-              marginLeft: "4%",
-              width: "90%",
-              cursor: "pointer",
-              height: "9vh",
-              alignItems: "center",
-              justifyContent: "space-evenly",
-              borderRadius: "8px",
-              background: "#F6F6F6",
-              display: "flex",
-            }}
-          >
-            <h5 className="fifteen" style={{ marginLeft: "-10%" }}>
-              15
-            </h5>
-            <h5 style={{ marginLeft: "8%" }}>December</h5>
-            <h5 style={{ paddingLeft: "5%" }}>2020</h5>
-          </div>
+          {showDeliveryTime ? (
+            <div
+              onClick={handleShow02}
+              style={{
+                marginTop: "7%",
+                marginLeft: "4%",
+                width: "90%",
+                cursor: "pointer",
+                height: "9vh",
+                alignItems: "center",
+                justifyContent: "space-evenly",
+                borderRadius: "8px",
+                background: "#F6F6F6",
+                display: "flex",
+              }}
+            >
+              <h5 className="fifteen" style={{ marginLeft: "-10%" }}>
+                {Moment(date).format("DD")}
+              </h5>
+              <h5 style={{ marginLeft: "8%" }}>{Moment(date).format("MMM")}</h5>
+              <h5 style={{ paddingLeft: "5%" }}>
+                {Moment(date).format("YYYY")}
+              </h5>
+            </div>
+          ) : (
+            ""
+          )}
+
           <div
             onClick={handleShow02}
             style={{
               width: "90%",
-              height: "8vh",
+              height: "6vh",
               background: "#F6F6F6",
               marginTop: "3%",
               marginLeft: "4%",
@@ -163,7 +292,7 @@ const CheckOutPopUp = (props) => {
               className="schedule"
               style={{ paddingTop: "4%", paddingLeft: "8%", cursor: "pointer" }}
             >
-              Schedule Delivery{" "}
+              {timeText}
             </h6>
             <i
               class="fas fa-chevron-down schedulei"
@@ -328,19 +457,178 @@ const CheckOutPopUp = (props) => {
         </Modal.Body>
 
         <Button
+          onClick={handleCheckout}
           className="cheack-out-btn"
-          onClick={handleShow116}
+          // onClick={handleShow116}
           size="lg"
           block
         >
           {t("openCart.Checkout")}
           <span>
-            &nbsp; ({totalCost} {localStorage.getItem("country_currency")})
+            &nbsp; ({totalCostWithDelivery}{" "}
+            {localStorage.getItem("country_currency")})
           </span>
         </Button>
         <Modal.Footer style={{ color: "white", border: "none" }}></Modal.Footer>
       </Modal>
-      <DeliveryTime show02={show02} handleClose02={handleClose02} />
+      <DeliveryTime
+        show02={show02}
+        handleClose02={handleClose02}
+        dates={props.dates}
+      />
+
+      {/* ---------------------Order Success------------------ */}
+      <Modal
+        className="your"
+        show={showSuccess}
+        style={{
+          borderRadius: "30px ",
+          top: "25%",
+          width: "450px",
+          marginLeft: "40%",
+          background: "transparent",
+          border: "none",
+        }}
+        onHide={handleCloseSuccess}
+        animation={false}
+      >
+        <Modal.Header
+          style={{
+            borderRadius: "1rem ",
+            background: "transparent",
+            border: "none",
+          }}
+          closeButton
+        >
+          <img
+            src={logo}
+            style={{
+              width: "90px",
+              height: "60px",
+              marginLeft: "37%",
+              marginTop: "20px",
+              padding: "5px",
+            }}
+          />
+        </Modal.Header>
+
+        <Modal.Body style={{ border: "none" }}>
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: "20px",
+              marginTop: "-20px",
+              fontSize: "18px",
+              padding: "10px",
+            }}
+          >
+            Your order has been confirmed,<br></br>Thank you for choosing us.
+          </p>
+        </Modal.Body>
+
+        <Modal.Footer
+          style={{ border: "none", marginLeft: "-4%", width: "100%" }}
+        ></Modal.Footer>
+      </Modal>
+
+      {/* ---------------------Progress Modal------------------ */}
+      <Modal
+        backdrop="static"
+        className="your"
+        show={showProgress}
+        style={{
+          borderRadius: "30px ",
+          top: "25%",
+          width: "410px",
+          marginLeft: "40%",
+          background: "transparent",
+          border: "none",
+        }}
+        animation={false}
+      >
+        <Modal.Header
+          style={{
+            borderRadius: "1rem ",
+            background: "transparent",
+            border: "none",
+            textAlign: "center",
+          }}
+        >
+          <div className="col-md-12">
+            <Loader
+              className="text-center"
+              type="TailSpin"
+              color="#e3424b"
+              height={80}
+              width={80}
+              style={{ textAlign: "center" }}
+            />
+          </div>
+        </Modal.Header>
+        <Modal.Body style={{ border: "none" }}>
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: "20px",
+              marginTop: "-20px",
+              fontSize: "18px",
+              padding: "10px",
+            }}
+          >
+            Please wait...<br></br>
+          </p>
+        </Modal.Body>
+
+        <Modal.Footer
+          style={{ border: "none", marginLeft: "-4%", width: "100%" }}
+        ></Modal.Footer>
+      </Modal>
+
+      {/* ---------------------Alert Modal------------------ */}
+      <Modal
+        className="your"
+        show={showAlert}
+        style={{
+          borderRadius: "30px ",
+          top: "25%",
+          width: "410px",
+          marginLeft: "40%",
+          background: "transparent",
+          border: "none",
+        }}
+        onHide={handleCloseAlert}
+        animation={false}
+      >
+        <Modal.Header
+          style={{
+            borderRadius: "1rem ",
+            background: "transparent",
+            border: "none",
+            textAlign: "center",
+          }}
+          closeButton
+        ></Modal.Header>
+        <Modal.Body style={{ border: "none" }}>
+          <div className="col-md-12" style={{ textAlign: "center" }}>
+            <img src={triangle} height={80} width={80} />
+          </div>
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: "20px",
+              marginTop: "20px",
+              fontSize: "18px",
+              padding: "10px",
+            }}
+          >
+            {alertMessage}
+          </p>
+        </Modal.Body>
+
+        <Modal.Footer
+          style={{ border: "none", marginLeft: "-4%", width: "100%" }}
+        ></Modal.Footer>
+      </Modal>
     </>
   );
 };

@@ -137,7 +137,7 @@ function ProductItem(props) {
         }
         return item;
       });
-      console.log("-14-");
+      // console.log("-14-");
       // console.log(newList);
       // console.log("-15-");
       localStorage.setItem("products", JSON.stringify(newList));
@@ -204,17 +204,21 @@ function ProductItem(props) {
       props.pro_special_price != "" &&
       props.pro_special_price != 0.0 &&
       props.pro_special_price != 0.0 ? (
-        <div className="price-box">
-          <h4 className="pl-2 item-price">
-            {props.pro_special_price}
-            <span className="currency-symbol">
-              {localStorage.getItem("country_currency")}
-            </span>
-          </h4>
-          {/* <div className="discount">
-            <p className="pt-1 pl-3 ptag">25%</p>
-          </div> */}
-        </div>
+        <>
+          <div className="price-box">
+            <h4 className="pl-2 item-price">
+              {props.pro_special_price}
+              <span className="currency-symbol">
+                {localStorage.getItem("country_currency")}
+              </span>
+            </h4>
+            <div className="discount">
+            <p className="pt-2 pl-3 ptag">
+              {100-((props.pro_special_price/props.pro_price)*100).toFixed(0)}%
+            </p>
+          </div>
+          </div>
+        </>
       ) : (
         <div className="price-box">
           <h4 className="pl-2 item-price">

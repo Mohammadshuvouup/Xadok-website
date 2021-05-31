@@ -241,6 +241,7 @@ export default function Explore(props) {
   };
 
   useEffect(() => {
+    localStorage.setItem("shop_id", Params.shop_id);
     let language = localStorage.getItem("language");
 
     if (language && language.length !== 0) {
@@ -502,6 +503,7 @@ export default function Explore(props) {
   };
 
   const closeModal = () => {
+    setAddCartUI(true);
     setModalShow(false);
     setCartData(null);
     setAlternative_Product([]);

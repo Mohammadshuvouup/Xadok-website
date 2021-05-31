@@ -268,6 +268,7 @@ export default function Explore(props) {
     axios
       .post("https://ristsys.store/api/shopPage", similarProduct_Param)
       .then((response) => {
+        // console.log("shop",response);
         localStorage.setItem(
           "minimum_amount_for_free_shipping",
           response.data.data.shop.minimum_amount_for_free_shipping

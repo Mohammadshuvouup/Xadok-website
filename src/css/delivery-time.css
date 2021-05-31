@@ -51,6 +51,7 @@
   margin-bottom: 20px;
   color: rgb(150, 31, 37) !important;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .delivery-time-popup ul li span {
@@ -67,4 +68,14 @@
   font-weight: 700;
   font-size: 20px;
   font-family: sans-serif;
+}
+
+.delivery-time-popup ul li.active {
+  list-style: none;
+  border-radius: 22px;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  background: #e3424a;
+  color: white !important;
 }

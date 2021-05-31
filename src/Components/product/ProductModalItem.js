@@ -194,9 +194,15 @@ function ProductModalItem(props) {
                   {localStorage.getItem("country_currency")}
                 </span>
               </h4>
-              {/* <div className="discount">
-                <p className="pt-1 pl-3 ptag">25%</p>
-              </div> */}
+              <div className="discount">
+                <p className="pt-1 pl-3 ptag">
+                  {100 -
+                    ((props.pro_special_price / props.pro_price) * 100).toFixed(
+                      0
+                    )}
+                  %
+                </p>
+              </div>
             </div>
           ) : (
             <div className="price-box">
@@ -212,10 +218,7 @@ function ProductModalItem(props) {
         </Card.Text>
         {addCartUI === true ? (
           props.pro_stock != 0 ? (
-            <button
-              className="addcartBtn"
-              onClick={() => handleAddCart(props)}
-            >
+            <button className="addcartBtn" onClick={() => handleAddCart(props)}>
               <i className="fas fa-shopping-cart mr-2"></i>{" "}
               {t("explore.add-to-cart")}{" "}
             </button>
