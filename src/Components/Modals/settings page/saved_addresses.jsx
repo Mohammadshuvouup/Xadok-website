@@ -82,7 +82,6 @@ const SavedAddresses = (props) => {
     props.handleCloses1(address);
   };
 
-
   return (
     <React.Fragment>
       <Modal
@@ -136,9 +135,13 @@ const SavedAddresses = (props) => {
           {/* <p className="add-new-address" onClick={handleAddNewAddress}>
             {t("Saved_addresses.Add-new-addresses")}
           </p> */}
-          <Button className="confirm-btn p-3" onClick={handleAddNewAddress}>
-            {t("Saved_addresses.Add-new-addresses")}
-          </Button>
+          {localStorage.getItem("user_id") ? (
+            <Button className="confirm-btn p-3" onClick={handleAddNewAddress}>
+              {t("Saved_addresses.Add-new-addresses")}
+            </Button>
+          ) : (
+            <p>Please login</p>
+          )}
           <Button
             className="confirm-btn p-3"
             type="submit"

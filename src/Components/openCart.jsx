@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+} from "react";
 import { Button, Modal, Row, Col } from "react-bootstrap";
 import { Trans, useTranslation } from "react-i18next";
 // import './../css/opencart.css'
@@ -9,7 +15,7 @@ import CheckOutPopUp from "./Modals/checkout_popup.jsx";
 
 const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 
-const OpenCart = (props) => {
+const OpenCart = forwardRef((props, ref) => {
   const [show4, setShow4] = useState(false);
   const handleClose4 = () => setShow4(false);
   const handleShow = () => setShow(true);
@@ -38,6 +44,13 @@ const OpenCart = (props) => {
   const [defaultAddressType, setDefaultAddressType] = useState(
     localStorage.getItem("default_address_type") || ""
   );
+
+  const [noItems, setNoItems] = useState(
+    localStorage.getItem("cart_count") === null ||
+      parseInt(localStorage.getItem("cart_count")) === 0
+      ? true
+      : false
+  );
   const [totalCost, setTotalCost] = useState(
     cart_items != null && cart_items.length > 0
       ? cart_items
@@ -51,17 +64,30 @@ const OpenCart = (props) => {
   // const [show4, setShow4] = useState(false);
   const handleShow4 = () => setShow4(true);
 
+  useImperativeHandle(ref, () => ({
+    reloadCartItem() {
+      setDelivery(localStorage.getItem("minimum_amount_for_free_shipping"));
+      setCartItems(JSON.parse(localStorage.getItem("products")));
+      setTotalCost(
+        JSON.parse(localStorage.getItem("products")) != null &&
+          JSON.parse(localStorage.getItem("products")).length > 0
+          ? JSON.parse(localStorage.getItem("products"))
+              .reduce(
+                (a, value) => (a = a + value.product_price * value.pro_qua),
+                0
+              )
+              .toFixed(3)
+          : 0
+      );
+      setNoItems(false);
+      console.log(delivery)
+    },
+  }));
+
   if (props.show2) {
-    console.log("loaded");
+    // console.log("loaded");
     // setCartItems(JSON.parse(localStorage.getItem("products")));
   }
-
-  const [noItems, setNoItems] = useState(
-    localStorage.getItem("cart_count") === null ||
-      parseInt(localStorage.getItem("cart_count")) === 0
-      ? true
-      : false
-  );
 
   const { t, i18n } = useTranslation();
   useEffect(() => {
@@ -84,7 +110,9 @@ const OpenCart = (props) => {
       setDefaultAddressType(selectedAddress.add_type);
     }
   };
-  const cart_qty = localStorage.getItem("cart_count");
+  const cart_qty = !localStorage.getItem("cart_count")
+    ? 0
+    : localStorage.getItem("cart_count");
 
   const updateQuanity = (props, type) => {
     // console.log(props);
@@ -456,6 +484,6 @@ const OpenCart = (props) => {
       </Modal>
     </>
   );
-};
+});
 
 export default OpenCart;

@@ -31,7 +31,10 @@ function ProductModalItem(props) {
 
   const handleAddCart = (item) => {
     // console.log("item", item);
-    var newLocalItems = JSON.parse(localStorage.getItem("products")) || [];
+    // var newLocalItems = JSON.parse(localStorage.getItem("products")) || [];
+    var newLocalItems = !localStorage.getItem("products")
+      ? []
+      : JSON.parse(localStorage.getItem("products"));
     const isSameShopFound = newLocalItems.some(
       (el) => el.shop_id === item.shop_id
     );
@@ -84,9 +87,10 @@ function ProductModalItem(props) {
       //   console.log("arrayproduct",arrayproduct)
       //   console.log("found",found)
       //   console.log("pro_id",obj.pro_id)
-      const selectedProduct = found
-        ? prevState.selectedProduct
-        : arrayproduct.push(obj);
+      if (found === false) {
+        arrayproduct.push(obj);
+      }
+      const selectedProduct = found ? prevState.selectedProduct : arrayproduct;
       //   console.log("selectedProduct",selectedProduct);
       localStorage.setItem("cart_count", selectedProduct.length);
       localStorage.setItem("products", JSON.stringify(selectedProduct));

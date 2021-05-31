@@ -278,7 +278,7 @@ const NewAddress = (props) => {
               <option value="">{t("add_address.Select-area")}</option>
               {props.area != null && props.area.length > 0
                 ? props.area.map((item) => (
-                    <option value={item.area_id}>{item.area_en}</option>
+                    <option key={item.area_id} value={item.area_id}>{item.area_en}</option>
                   ))
                 : ""}
             </select>

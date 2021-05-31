@@ -46,7 +46,10 @@ function ProductModal(props) {
   //   const [num, setNum] = useState(1);
   //   const [cart_quantity, setCart_quantity] = useState(0);
   //   const [gallery, setGallery] = useState(props.slide_product.gallery);
-  const [addCartUI, setAddCartUI] = useState(props.addCartUI);
+  // const [addCartUI, setAddCartUI] = useState(
+  //   props.addCartUI === true ? true : false
+  // );
+  const [addCartUI, setAddCartUI] = useState(true);
   //   const [cartQuantity, setCartQuantity] = useState(props.cartQuantity);
   const [quantity, setQuantity] = useState(props.cartQuantity);
   const { t, i18n } = useTranslation();
@@ -92,14 +95,16 @@ function ProductModal(props) {
         (el) => el.pro_id === obj.pro_id
       );
       const arrayproduct = prevState.selectedProduct;
-      const selectedProduct = found
-        ? prevState.selectedProduct
-        : arrayproduct.push(obj);
+      if (found === false) {
+        arrayproduct.push(obj);
+      }
+      const selectedProduct = found ? prevState.selectedProduct : arrayproduct;
       localStorage.setItem("cart_count", selectedProduct.length);
       localStorage.setItem("products", JSON.stringify(selectedProduct));
       let myColor = { background: "#0E1717", text: "#FFFFFF" };
       notify.show("Product added in the cart!", "success", 1000, myColor);
       setAddCartUI(false);
+      props.handleCustomEvent();
       return {
         selectedProduct,
         isAdded: true,
@@ -110,7 +115,10 @@ function ProductModal(props) {
   const handleAddCart = (item) => {
     // console.log(item);
     // return;
-    var newLocalItems = JSON.parse(localStorage.getItem("products")) || [];
+    // var newLocalItems = JSON.parse(localStorage.getItem("products")) || [];
+    var newLocalItems = !localStorage.getItem("products")
+      ? []
+      : JSON.parse(localStorage.getItem("products"));
     const isSameShopFound = newLocalItems.some(
       (el) => el.shop_id === item.shop_id
     );
@@ -173,6 +181,7 @@ function ProductModal(props) {
       });
       localStorage.setItem("products", JSON.stringify(newList));
       const found = newList.some((el) => el.pro_id === props.pro_id);
+      props.handleCustomEvent();
       if (found) {
         let product = newList.filter((el) => el.pro_id === props.pro_id);
         setCartQuantity(product[0].pro_qua);
@@ -395,6 +404,7 @@ function ProductModal(props) {
                                   pro_stock={val.pro_stock}
                                   pro_id={val.pro_id}
                                   procat_sub={val.procat_sub}
+                                  shop_id={val.shop_id}
                                 ></ProductModalItem>
                                 // <Card className="alternative-item">
                                 //   <Card.Img

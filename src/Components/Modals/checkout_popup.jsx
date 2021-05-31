@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Button, Modal } from "react-bootstrap";
 import master from "../../xadok/master.png";
 import OpenCart from "../openCart";
+import DeliveryTime from "../Modals/delivery-time";
 import "../../css/cheackout-popup.css";
 import { Trans, useTranslation } from "react-i18next";
 
@@ -20,6 +21,10 @@ const CheckOutPopUp = (props) => {
   const [show117, setShow117] = useState(false);
   const handleClose117 = () => setShow117(false);
   const handleShow117 = () => setShow117(true);
+  const [show02, setShow02] = useState(false);
+  const handleShow02 = () => setShow02(true);
+  const handleClose02 = () => setShow02(false);
+
   var cart_items = JSON.parse(localStorage.getItem("products")) || [];
   const [totalCost, setTotalCost] = useState(
     cart_items != null && cart_items.length > 0
@@ -52,26 +57,27 @@ const CheckOutPopUp = (props) => {
     setDefaultPayment(item);
   };
   return (
-    <Modal
-      className="cheackout-popup"
-      style={{ border: "none" }}
-      show={props.show4}
-      onHide={props.handleClose4}
-    >
-      <Modal.Header style={{ border: "none" }} closeButton>
-        <Modal.Title
-          style={{
-            border: "none",
-            paddingLeft: "22px",
-            fontWeight: "bold",
-            marginbottom: "56px",
-          }}
-        >
-          Checkout
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body style={{ border: "none" }}>
-        {/* <h4
+    <>
+      <Modal
+        className="cheackout-popup"
+        style={{ border: "none" }}
+        show={props.show4}
+        onHide={props.handleClose4}
+      >
+        <Modal.Header style={{ border: "none" }} closeButton>
+          <Modal.Title
+            style={{
+              border: "none",
+              paddingLeft: "22px",
+              fontWeight: "bold",
+              marginbottom: "56px",
+            }}
+          >
+            Checkout
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ border: "none" }}>
+          {/* <h4
           style={{
             paddingLeft: "22px",
             paddingTop: "14px",
@@ -112,103 +118,103 @@ const CheckOutPopUp = (props) => {
             <i class="fas fa-chevron-right"></i>
           </span>
         </h6> */}
-        <h4
-          className="checkoutde"
-          style={{ paddingLeft: "22px", fontWeight: "", paddingTop: "45px" }}
-        >
-          Delivery Time
-        </h4>
-        <div
-          onClick={handleShow115}
-          style={{
-            marginTop: "7%",
-            marginLeft: "4%",
-            width: "90%",
-            cursor: "pointer",
-            height: "9vh",
-            alignItems: "center",
-            justifyContent: "space-evenly",
-            borderRadius: "8px",
-            background: "#F6F6F6",
-            display: "flex",
-          }}
-        >
-          <h5 className="fifteen" style={{ marginLeft: "-10%" }}>
-            15
-          </h5>
-          <h5 style={{ marginLeft: "8%" }}>December</h5>
-          <h5 style={{ paddingLeft: "5%" }}>2020</h5>
-        </div>
-        <div
-          onClick={handleShow117}
-          style={{
-            width: "90%",
-            height: "8vh",
-            background: "#F6F6F6",
-            marginTop: "3%",
-            marginLeft: "4%",
-            border: "none",
-            display: "flex",
-            justifyContent: "space-between",
-            borderRadius: "8px",
-          }}
-        >
-          <h6
-            className="schedule"
-            style={{ paddingTop: "4%", paddingLeft: "8%" }}
+          <h4
+            className="checkoutde"
+            style={{ paddingLeft: "22px", fontWeight: "", paddingTop: "45px" }}
           >
-            Schedule Delivery{" "}
-          </h6>
-          <i
-            class="fas fa-chevron-down schedulei"
-            style={{ color: "silver", marginRight: "4%", marginTop: "4%" }}
-          ></i>
-        </div>
+            Delivery Time
+          </h4>
+          <div
+            onClick={handleShow115}
+            style={{
+              marginTop: "7%",
+              marginLeft: "4%",
+              width: "90%",
+              cursor: "pointer",
+              height: "9vh",
+              alignItems: "center",
+              justifyContent: "space-evenly",
+              borderRadius: "8px",
+              background: "#F6F6F6",
+              display: "flex",
+            }}
+          >
+            <h5 className="fifteen" style={{ marginLeft: "-10%" }}>
+              15
+            </h5>
+            <h5 style={{ marginLeft: "8%" }}>December</h5>
+            <h5 style={{ paddingLeft: "5%" }}>2020</h5>
+          </div>
+          <div
+            onClick={handleShow02}
+            style={{
+              width: "90%",
+              height: "8vh",
+              background: "#F6F6F6",
+              marginTop: "3%",
+              marginLeft: "4%",
+              border: "none",
+              display: "flex",
+              justifyContent: "space-between",
+              borderRadius: "8px",
+            }}
+          >
+            <h6
+              className="schedule"
+              style={{ paddingTop: "4%", paddingLeft: "8%", cursor: "pointer" }}
+            >
+              Schedule Delivery{" "}
+            </h6>
+            <i
+              class="fas fa-chevron-down schedulei"
+              style={{ color: "silver", marginRight: "4%", marginTop: "4%" }}
+            ></i>
+          </div>
 
-        <h4
-          className="payment"
-          style={{
-            paddingLeft: "22px",
-            paddingTop: "74px",
-            paddingBottom: "20px",
-          }}
-        >
-          Payment methods{" "}
-        </h4>
+          <h4
+            className="payment"
+            style={{
+              paddingLeft: "22px",
+              paddingTop: "74px",
+              paddingBottom: "20px",
+            }}
+          >
+            Payment methods{" "}
+          </h4>
 
-        {paymentMethods.map((item) => (
-          <>
-            {item === defaultPayment ? (
-              <Button
-                className="p-3 text-start ml-3 selected-payment"
-                onClick={() => handlePaymentMethod(item)}
-              >
-                {" "}
-                &nbsp; &nbsp;&nbsp;&nbsp;
-                <i
-                  style={{ fontSize: "27px" }}
-                  class="fas fa-money-bill-alt"
-                ></i>{" "}
-                &nbsp; &nbsp;&nbsp; {item}
-              </Button>
-            ) : (
-              <Button
-                className="p-3 text-start ml-3 default-payment"
-                onClick={() => handlePaymentMethod(item)}
-              >
-                {" "}
-                &nbsp; &nbsp;&nbsp;&nbsp;
-                <i
-                  style={{ fontSize: "27px" }}
-                  class="fas fa-money-bill-alt"
-                ></i>{" "}
-                &nbsp; &nbsp;&nbsp; {item}
-              </Button>
-            )}
-          </>
-        ))}
+          {paymentMethods.map((item) => (
+            <>
+              {item === defaultPayment ? (
+                <Button
+                  className="p-3 text-start ml-3 selected-payment"
+                  onClick={() => handlePaymentMethod(item)}
+                >
+                  {" "}
+                  &nbsp; &nbsp;&nbsp;&nbsp;
+                  <i
+                    style={{ fontSize: "27px" }}
+                    class="fas fa-money-bill-alt"
+                  ></i>{" "}
+                  &nbsp; &nbsp;&nbsp; {item}
+                </Button>
+              ) : (
+                <Button
+                  className="p-3 text-start ml-3 default-payment"
+                  onClick={() => handlePaymentMethod(item)}
+                >
+                  {" "}
+                  &nbsp; &nbsp;&nbsp;&nbsp;
+                  <i
+                    style={{ fontSize: "27px" }}
+                    class="fas fa-money-bill-alt"
+                  ></i>{" "}
+                  &nbsp; &nbsp;&nbsp; {item}
+                </Button>
+              )}
+            </>
+          ))}
 
-        {/* <Button
+          {/* <Button
           className="p-3 text-start ml-3"
           style={{
             marginTop: "2.5%",
@@ -246,7 +252,7 @@ const CheckOutPopUp = (props) => {
           <i style={{ fontSize: "27px" }} class="fas fa-id-card"></i> &nbsp;
           &nbsp;&nbsp; Card on delivery
         </Button> */}
-        {/* <h3 style={{ marginTop: "13%", fontWeight: "bold", marginLeft: "5%" }}>
+          {/* <h3 style={{ marginTop: "13%", fontWeight: "bold", marginLeft: "5%" }}>
           {" "}
           My Cart
           <span style={{ fontSize: "14px" }}> &nbsp; (2)</span>
@@ -292,48 +298,50 @@ const CheckOutPopUp = (props) => {
           />
         </div> */}
 
-        <h4
-          style={{
-            fontWeight: "bold",
-            marginLeft: "5%",
-            marginTop: "9%",
-            border: "none",
-          }}
-        >
-          Notes
-        </h4>
-        <textarea
-          // placeholder="Examples don't ring the best"
-          className="not-input"
-          onChange={handleChangeNote}
-          style={{
-            outline: "none",
-            border: "none",
-            marginLeft: "5%",
-            width: "90%",
-            marginTop: "4%",
-            height: "8vh",
-            background: "#F6F6F6",
-            borderRadius: "10px",
-            marginbottom: "68px",
-            padding: "10px",
-          }}
-        />
-      </Modal.Body>
+          <h4
+            style={{
+              fontWeight: "bold",
+              marginLeft: "5%",
+              marginTop: "9%",
+              border: "none",
+            }}
+          >
+            Notes
+          </h4>
+          <textarea
+            // placeholder="Examples don't ring the best"
+            className="not-input"
+            onChange={handleChangeNote}
+            style={{
+              outline: "none",
+              border: "none",
+              marginLeft: "5%",
+              width: "90%",
+              marginTop: "4%",
+              height: "8vh",
+              background: "#F6F6F6",
+              borderRadius: "10px",
+              marginbottom: "68px",
+              padding: "10px",
+            }}
+          />
+        </Modal.Body>
 
-      <Button
-        className="cheack-out-btn"
-        onClick={handleShow116}
-        size="lg"
-        block
-      >
-        {t("openCart.Checkout")}
-        <span>
-          &nbsp; ({totalCost} {localStorage.getItem("country_currency")})
-        </span>
-      </Button>
-      <Modal.Footer style={{ color: "white", border: "none" }}></Modal.Footer>
-    </Modal>
+        <Button
+          className="cheack-out-btn"
+          onClick={handleShow116}
+          size="lg"
+          block
+        >
+          {t("openCart.Checkout")}
+          <span>
+            &nbsp; ({totalCost} {localStorage.getItem("country_currency")})
+          </span>
+        </Button>
+        <Modal.Footer style={{ color: "white", border: "none" }}></Modal.Footer>
+      </Modal>
+      <DeliveryTime show02={show02} handleClose02={handleClose02} />
+    </>
   );
 };
 

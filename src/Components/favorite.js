@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Footer from "../Components/footer";
 import TopBar from "./topBar";
 import axios from "axios";
@@ -146,6 +146,11 @@ export default function Favourite() {
     setAlternative_Product([]);
     setCartSimilar_Product([]);
   };
+  const childRef = useRef();
+  const handleCustomEvent = () => {
+    // console.log("hi");
+    childRef.current.reloadCartItem();
+  }
 
   return (
     <React.Fragment>
@@ -159,6 +164,7 @@ export default function Favourite() {
         slide_product={slide_product}
         addCartUI={addCartUI}
         cartQuantity={cartQuantity}
+        handleCustomEvent={handleCustomEvent}
         // xadokCartItems={xadokCartItems}
       />
       {/* End  Modal Popup */}
@@ -168,7 +174,7 @@ export default function Favourite() {
           <SideDrawer />
 
           <Col xs={10} sm={10} lg={10}>
-            <TopBar />
+            <TopBar ref={childRef}/>
             <Row className="mt-4 grey-bg ">
               <h3> My Favourites </h3>
             </Row>
@@ -190,6 +196,7 @@ export default function Favourite() {
                       procat_sub={value.procat_sub}
                       shop_id={value.shop_id}
                       showProductModal={showProductModal}
+                      handleCustomEvent={handleCustomEvent}
                     ></ProductItem>
                   );
                 })

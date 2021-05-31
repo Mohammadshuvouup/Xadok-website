@@ -1,0 +1,70 @@
+.delivery-time-popup .modal-content {
+  width: 480px;
+  margin: 0 auto;
+}
+
+.delivery-time-popup .modal-header,
+.delivery-time-popup .modal-footer {
+  border: 0;
+}
+
+.delivery-time-popup .days-list {
+  overflow-x: scroll;
+  padding-right: 17px;
+  box-sizing: content-box;
+}
+
+.delivery-time-popup .schedule-day {
+  background: rgb(227, 66, 75);
+  margin-right: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  min-width: 140px;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+
+.delivery-time-popup .schedule-day.active {
+  border: 4px solid rgb(227, 66, 75);
+  background: white;
+  color: rgb(227, 66, 75) !important;
+  font-weight: 600;
+}
+
+.delivery-time-popup .modal-body {
+  overflow: hidden;
+  width: 100%;
+}
+
+.delivery-time-popup ul {
+  padding: 0;
+  margin-top: 15px;
+}
+
+.delivery-time-popup ul li {
+  list-style: none;
+  background: rgba(169, 169, 169, 0.782);
+  border-radius: 22px;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  color: rgb(150, 31, 37) !important;
+  font-weight: 500;
+}
+
+.delivery-time-popup ul li span {
+  float: right;
+}
+
+.delivery-time-popup .confirm-btn {
+  padding: 10px;
+  width: 50%;
+  margin: 0 auto;
+  background-color: rgb(227, 66, 75);
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 20px;
+  font-family: sans-serif;
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Navbar,
   Row,
@@ -394,7 +394,13 @@ export default function Explore(props) {
     setCartData(null);
     setAlternative_Product([]);
     setCartSimilar_Product([]);
-  };
+  }; 
+  
+  const childRef = useRef();
+  const handleCustomEvent = () => {
+    console.log("hi");
+    childRef.current.reloadCartItem();
+  }
   /*    ======================== SIMILAR PRODUCTS ======================== */
   const SimilarProducts = () => {
     return (
@@ -415,6 +421,7 @@ export default function Explore(props) {
                 procat_sub={value.procat_sub}
                 shop_id={value.shop_id}
                 showProductModal={handleAddCart}
+                handleCustomEvent={handleCustomEvent}
               ></ProductItem>
             );
           })
@@ -443,6 +450,7 @@ export default function Explore(props) {
           slide_product={slide_product}
           addCartUI={addCartUI}
           cartQuantity={cartQuantity}
+          handleCustomEvent={handleCustomEvent}
         />
         <Row>
           <Col className="menu-icon" sm={1} xs={1}>
@@ -560,7 +568,7 @@ export default function Explore(props) {
           </div>
 
           <Col xs={10} sm={10} lg={10} fluid>
-            <TopBar search={handleSearch} shop_id={Params.shop_id} />
+            <TopBar ref={childRef} search={handleSearch} shop_id={Params.shop_id} />
 
             <Row>
               <Col

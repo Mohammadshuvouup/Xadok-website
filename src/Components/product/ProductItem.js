@@ -22,10 +22,13 @@ function ProductItem(props) {
 
   const handleAddCart = (item) => {
     // console.log("item", item);
-    var newLocalItems = JSON.parse(localStorage.getItem("products")) || [];
-    const isSameShopFound = newLocalItems.some(
-      (el) => el.shop_id === item.shop_id
-    );
+    var newLocalItems = !localStorage.getItem("products")
+      ? []
+      : JSON.parse(localStorage.getItem("products"));
+    const isSameShopFound =
+      newLocalItems.length > 0
+        ? newLocalItems.some((el) => el.shop_id === item.shop_id)
+        : false;
     // console.log(isSameShopFound);
     if (isSameShopFound === false) {
       //   console.log("false");
@@ -75,9 +78,10 @@ function ProductItem(props) {
       //   console.log("arrayproduct",arrayproduct)
       //   console.log("found",found)
       //   console.log("pro_id",obj.pro_id)
-      const selectedProduct = found
-        ? prevState.selectedProduct
-        : arrayproduct.push(obj);
+      if (found === false) {
+        arrayproduct.push(obj);
+      }
+      const selectedProduct = found ? prevState.selectedProduct : arrayproduct;
       //   console.log("selectedProduct",selectedProduct);
       localStorage.setItem("cart_count", selectedProduct.length);
       localStorage.setItem("products", JSON.stringify(selectedProduct));
@@ -86,6 +90,7 @@ function ProductItem(props) {
       notify.show("Product added in the cart!", "success", 1000, myColor);
       const cart_qty = localStorage.getItem("cart_count");
       setAddCartUI(true);
+      props.handleCustomEvent();
       return {
         selectedProduct,
         isAdded: true,
@@ -132,11 +137,12 @@ function ProductItem(props) {
         }
         return item;
       });
-      // console.log("-14-");
+      console.log("-14-");
       // console.log(newList);
       // console.log("-15-");
       localStorage.setItem("products", JSON.stringify(newList));
       const found = newList.some((el) => el.pro_id === props.pro_id);
+      props.handleCustomEvent();
       if (found) {
         let product = newList.filter((el) => el.pro_id === props.pro_id);
         setQuantity(product[0].pro_qua);

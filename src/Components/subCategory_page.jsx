@@ -145,7 +145,7 @@ export default function Explore(props) {
   const { t, i18n } = useTranslation();
   var list = [];
   const [data, setData] = useState({});
-  const modalRef = React.useRef();
+  const modalRef = useRef();
 
   const handleAddCart = (data) => {
     // console.log("cart data", data);
@@ -158,6 +158,7 @@ export default function Explore(props) {
     };
 
     setModalShow(true);
+    // console.log(modalRef);
     setAddCartUI(true);
     // console.log("modal param", modal_Param);
     axios
@@ -507,6 +508,11 @@ export default function Explore(props) {
     setCartSimilar_Product([]);
   };
   /*    ======================== PRODUCTS TO DISPLAY FOR SUBCATEGORY PAGE ======================== */
+  const childRef = useRef();
+  const handleCustomEvent = () => {
+    // console.log("hi");
+    childRef.current.reloadCartItem();
+  };
 
   const SubcategoryProducts = () => {
     return (
@@ -517,7 +523,7 @@ export default function Explore(props) {
             if (value !== null) {
               return (
                 <ProductItem
-                  key={value.id}
+                  key={value.id + Math.random()}
                   index={index}
                   pro_img={value.pro_img}
                   pro_price={value.pro_price}
@@ -529,6 +535,7 @@ export default function Explore(props) {
                   procat_sub={value.procat_sub}
                   shop_id={value.shop_id}
                   showProductModal={handleAddCart}
+                  handleCustomEvent={handleCustomEvent}
                 ></ProductItem>
               );
             }
@@ -553,6 +560,7 @@ export default function Explore(props) {
     <React.Fragment>
       <Container className="container-box" fluid>
         <ProductModal
+          ref={modalRef}
           show={modalShow}
           onHide={closeModal}
           cartData={cartData}
@@ -562,6 +570,7 @@ export default function Explore(props) {
           addCartUI={addCartUI}
           cartQuantity={cartQuantity}
           data={data}
+          handleCustomEvent={handleCustomEvent}
           // xadokCartItems={xadokCartItems}
         />
         <Row>
@@ -687,7 +696,11 @@ export default function Explore(props) {
           </div>
 
           <Col xs={10} sm={10} lg={10} fluid>
-            <TopBar search={handleSearch} shop_id={Params.shop_id} />
+            <TopBar
+              ref={childRef}
+              search={handleSearch}
+              shop_id={Params.shop_id}
+            />
             <Row>
               <Col
                 xs={12}

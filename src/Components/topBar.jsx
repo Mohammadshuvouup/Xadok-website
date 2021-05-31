@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+} from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Card, Button, Modal, Accordion } from "react-bootstrap";
 import delivery from "../topbar/delivery address.svg";
@@ -18,7 +24,10 @@ import "../App.css";
 
 import { useTranslation } from "react-i18next";
 
-const TopBar = (props) => {
+// We need to wrap component in `forwardRef` in order to gain
+// access to the ref object that is assigned using the `ref` prop.
+// This ref is passed as the second parameter to the function component.
+const TopBar = forwardRef((props, ref) => {
   let geo_location = {
     lat: "",
     lng: "",
@@ -158,6 +167,16 @@ const TopBar = (props) => {
       searchProducts(searchText, props);
     }
   };
+  const childRef = useRef();
+  // The component instance will be extended
+  // with whatever you return from the callback passed
+  // as the second argument
+  useImperativeHandle(ref, () => ({
+    reloadCartItem() {
+      // console.log("reloadCartItem");
+      childRef.current.reloadCartItem();
+    },
+  }));
 
   function searchProducts(text, props) {
     let param = {
@@ -260,6 +279,7 @@ const TopBar = (props) => {
 
       {/* -----------------Open Cart---------------------- */}
       <OpenCart
+        ref={childRef}
         show2={show2}
         setShow2={setShow2}
         setShow={setShow}
@@ -2814,6 +2834,6 @@ fc5363fbeea51a1%3A0x74726bcd92d8edd2!2sKuwait!5e0!3m2!1sen!2s!4v1611979046409!5m
       </>
     </div>
   );
-};
+});
 
 export default TopBar;
