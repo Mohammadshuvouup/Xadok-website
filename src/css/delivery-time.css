@@ -3,6 +3,12 @@
   margin: 0 auto;
 }
 
+@media (max-width:600px){
+    .delivery-time-popup .modal-content {
+        width: 100%;
+      }
+}
+
 .delivery-time-popup .modal{
     overflow-x: hidden;
     overflow-y: auto;

@@ -267,3 +267,10 @@ border-radius: 12px;
 .cart .cheackout:hover{
     background-color: #223142;
 }
+@media(max-width: 768px){
+    .cart {
+      left: 0 !important;
+      width: 100% !important;
+    
+    }
+  }

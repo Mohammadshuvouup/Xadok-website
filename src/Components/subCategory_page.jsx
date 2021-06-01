@@ -579,7 +579,7 @@ export default function Explore(props) {
           <Col className="menu-icon" sm={1} xs={1}>
             <i className="fas fa-bars" onClick={expandMenu}></i>
           </Col>
-          <Col sm={2} lg={2} className="sideNav subcategory-nav">
+          <Col xs={2} sm={2} lg={2} className="sideNav subcategory-nav">
             <Navbar.Brand className="pt-2 logo" style={{ width: "100%" }}>
               <NavLink to="/">
                 <Image
@@ -695,6 +695,95 @@ export default function Explore(props) {
                 style={{ height: "10vh" }}
               />
             </Navbar.Brand>
+
+            <Nav defaultActiveKey="" className="flex-column pt-4">
+              {category &&
+                category.length > 0 &&
+                category.map((value, index) => {
+                  return (
+                    <Nav.Link className="side-bar-item" key={value.procat_id}>
+                      <Accordion
+                        defaultActiveKey="0"
+                        onClick={() => displaySubCategory(value.procat_id)}
+                      >
+                        <Card>
+                          <Card.Header>
+                            <Link
+                              to={
+                                "/" +
+                                Params.shop_name +
+                                "/" +
+                                Params.shop_id +
+                                "/" +
+                                value.procat_id +
+                                "/" +
+                                value.name +
+                                "/" +
+                                "0"
+                              }
+                              style={{ textDecoration: "none" }}
+                            >
+                              <Accordion.Toggle
+                                as={Button}
+                                variant="link"
+                                eventKey="1"
+                              >
+                                <Image
+                                  src={`${API_PREFIX_URL}${value.procat_img}`}
+                                />
+                                {value.name}
+                              </Accordion.Toggle>
+                            </Link>
+                          </Card.Header>
+
+                          <Accordion.Collapse eventKey="1" key={index}>
+                            <Card.Body>
+                              {product_subcategory &&
+                                product_subcategory.length > 0 &&
+                                product_subcategory.map((sub_cat, index) =>
+                                  sub_cat.length == 0 ? (
+                                    <Loader
+                                      className="text-center"
+                                      type="TailSpin"
+                                      color="#e3424b"
+                                      height={80}
+                                      width={80}
+                                    />
+                                  ) : (
+                                    <ul
+                                      className="side-nav-catgory-list"
+                                      key={sub_cat.procat_id}
+                                    >
+                                      {/* <Image src={`${API_PREFIX_URL}${sub_cat.procat_img}`} /> */}
+                                      <Link
+                                        to={
+                                          "/" +
+                                          Params.shop_name +
+                                          "/" +
+                                          Params.shop_id +
+                                          "/" +
+                                          value.procat_id +
+                                          "/" +
+                                          sub_cat.procat_name_en +
+                                          "/" +
+                                          sub_cat.procat_id
+                                        }
+                                        style={{ textDecoration: "none" }}
+                                      >
+                                        <li> {sub_cat.procat_name_en}</li>
+                                      </Link>
+                                    </ul>
+                                  )
+                                )}
+                            </Card.Body>
+                          </Accordion.Collapse>
+                        </Card>
+                      </Accordion>
+                    </Nav.Link>
+                  );
+                })}
+            </Nav>
+            
           </div>
 
           <Col xs={10} sm={10} lg={10} fluid>

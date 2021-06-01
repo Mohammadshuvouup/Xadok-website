@@ -46,6 +46,10 @@ body{
    width: 20px;
 }
 
+.sideNav{
+    overflow-x: hidden;
+}
+
 .sideNav .nav-link .number{
     background-color: rgb(227, 66, 75);
     color: black;
@@ -173,6 +177,13 @@ body{
         display: none ;
     }
 
+    .subcategory-nav{
+        display: none;
+    }
+
+    .menu-icon{
+        display: block;
+    }
     .logo{
         height:10vh !important;
         margin-top: 1rem;

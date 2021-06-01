@@ -457,7 +457,7 @@ export default function Explore(props) {
           <Col className="menu-icon" sm={1} xs={1}>
             <i className="fas fa-bars" onClick={expandMenu}></i>
           </Col>
-          <Col sm={2} lg={2} className="sideNav subcategory-nav">
+          <Col xs={2} sm={2} lg={2} className="sideNav subcategory-nav">
             <Navbar.Brand className="pt-2 logo" style={{ width: "100%" }}>
               <NavLink to="/">
                 <Image
@@ -501,8 +501,8 @@ export default function Explore(props) {
                               >
                                 <Image
                                   src={`${API_PREFIX_URL}${value.procat_img}`}
-                                />
-                                {value.name}
+                                /><span>  {value.name}</span>
+                              
                               </Accordion.Toggle>
                             </Link>
                           </Card.Header>

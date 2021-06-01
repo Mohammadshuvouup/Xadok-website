@@ -255,7 +255,7 @@ margin-top: 34px;
 
 @media (max-width: 900px) {
     .personal-info .modal-content , 
-    .save-address-modal .modal-content,
+    .saved-address-modal .modal-content,
     .new-address-modal .modal-content {
         width: 95%;
     }

@@ -610,6 +610,7 @@ img {
   }
 }
 
+
 @media screen and (max-width: 450px) {
   .font .number {
     left: -13%;

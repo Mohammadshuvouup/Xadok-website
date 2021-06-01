@@ -132,3 +132,16 @@
 .toast-notification{
     transform: translate(75%,36px)  !important;
 }
+@media(max-width: 768px){
+    .signup_modal .modal-content {
+      left: 0;
+      width: 100%;
+    }
+  }
+  @media (max-width: 991px) {
+    .signup .modal-content {
+        left: 0;
+        width: 100%;
+      }
+
+}
