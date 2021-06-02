@@ -94,10 +94,15 @@ body{
 
 .slide-menu{
     left: 0;
+    /* display: block; */
+    opacity: 1;
+    transition:left 1s ease;
 }
 
 .hide-menu{
     left: -2000px;
+    /* display: none; */
+    opacity: 0;
 }
 
 .fire{
@@ -192,6 +197,11 @@ body{
       .logo-img{
         width:100% !important;
         height:100% !important;
+      }
+
+      .sideNav .nav-link{
+          text-align: center;
+          padding: 15px 5px 15px 10px !important;
       }
 }
 

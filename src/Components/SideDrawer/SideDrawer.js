@@ -53,7 +53,7 @@ const SideDrawer = (props) => {
       {/* <Col className="menu-icon" sm={1} xs={1}>
      <i className="fas fa-bars" onClick={expandMenu}></i>
   </Col> */}
-      <Col xs={2} sm={2} lg={2} className="sideNav subcategory-nav">
+      <Col xs={2} sm={2} lg={2} className="sideNav">
         <Navbar.Brand className="pt-2 logo" style={{ width: "100%" }}>
           <NavLink to="/">
             <Image src={logo} className="logo-img" style={{ height: "10vh" }} />
