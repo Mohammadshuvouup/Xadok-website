@@ -273,4 +273,23 @@ border-radius: 12px;
       width: 100% !important;
     
     }
+    .api-box .col-md-3{
+        width: 30%;
+    }
+    .api-box .col-md-7{
+        width: 50%;
+    }
+    .api-box .col-md-2{
+        width: 20%;
+        justify-content: center;
+
+    }
+    .shipping .col-md-3{
+        width:30%
+    }
+
+     .shipping .col-md-7{
+       width: 70%;
+     }
+
   }

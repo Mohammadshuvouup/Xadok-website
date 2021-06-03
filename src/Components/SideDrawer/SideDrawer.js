@@ -53,7 +53,7 @@ const SideDrawer = (props) => {
       {/* <Col className="menu-icon" sm={1} xs={1}>
      <i className="fas fa-bars" onClick={expandMenu}></i>
   </Col> */}
-      <Col xs={2} sm={2} lg={2} className="sideNav">
+      <Col xs={12} sm={12} lg={2} className="sideNav">
         <Navbar.Brand className="pt-2 logo" style={{ width: "100%" }}>
           <NavLink to="/">
             <Image src={logo} className="logo-img" style={{ height: "10vh" }} />
@@ -72,9 +72,9 @@ const SideDrawer = (props) => {
         </NavLink> */}
           <NavLink exact to="/favorite" className="nav-link">
             <svg
-              width="18"
-              height="24"
-              viewBox="0 0 18 24"
+              width="30"
+              height="36"
+              viewBox="0 0 30 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path

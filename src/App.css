@@ -1014,8 +1014,8 @@ img {
  
  } */
   .cart {
-    margin-left: 10% !important;
-    width: 369px !important;
+    /* margin-left: 10% !important;*/
+    width: 100% !important; 
   }
   #scard {
     width: 18.5rem !important;
@@ -1415,10 +1415,19 @@ img {
     min-height: 273px;
   }
 }
+
+
 .veritical-border {
   padding: 0px !important;
   border-left: 0.1rm solid #bdbdbd;
   padding-right: 20px !important;
+}
+
+@media (max-width:768px){
+  .veritical-border {
+
+    padding-right: 0px !important;
+  }
 }
 .remove-margin {
   margin: 0px !important;

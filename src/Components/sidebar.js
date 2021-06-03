@@ -231,7 +231,7 @@ export default function Sidebar() {
             <Row>
               <SideDrawer />
 
-              <Col xs={10} sm={10} lg={10} fluid className="veritical-border">
+              <Col xs={12} sm={12} lg={10} fluid className="veritical-border">
                 <TopBar />
 
                 {/*=== carousel contents === */}
@@ -263,7 +263,7 @@ export default function Sidebar() {
                   </Col>
                 </Row>
 
-                <Row className="mt-2 ml-1">
+                <Row className="mt-2 ml-1 mr-1">
                   <DisplayShops />
                 </Row>
               </Col>

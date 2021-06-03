@@ -177,7 +177,29 @@ body{
     margin-left: 10px;
 }
 
-@media screen and (max-width:980px){
+@media (max-width:980px){
+
+    .sideNav{
+        position: fixed !important;
+        bottom: 0;
+        background-color: white;
+        z-index: 10;
+        display: flex;
+        box-shadow:  0px 0px 11px rgb(143, 143, 143);
+        padding: 10px 10px !important;
+        justify-content: space-between;
+       
+    }
+
+    .sideNav .nav{
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+        width: 100%;
+        justify-content: space-between;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
     .menu-item, .free-delivery{
         display: none ;
     }
@@ -191,7 +213,7 @@ body{
     }
     .logo{
         height:10vh !important;
-        margin-top: 1rem;
+        display: none !important;
          
       }
       .logo-img{
@@ -201,10 +223,14 @@ body{
 
       .sideNav .nav-link{
           text-align: center;
-          padding: 15px 5px 15px 10px !important;
+          padding: 16px 5px 16px 14px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center;
       }
 }
 
 .navbar-brand a, .navbar-brand .active {
     background: transparent !important;
 }
+

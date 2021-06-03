@@ -272,7 +272,11 @@ margin-top: 34px;
 }
 
 
-@media (max-width: 767.98px) { 
+@media (max-width: 500px) { 
+    
+    .save-address-modal .modal-content{
+        width: 95% !important;
+    }
 
  }
 

@@ -15,6 +15,7 @@ import Favorite from "./Components/favorite";
 import Orders from "./Components/orders";
 import Messages from "./Components/messages";
 import Settings from "./Components/settings";
+import  OfferPage from "./Components/offers_page"
 import "./App.css";
 import SideDrawer from "./Components/SideDrawer/SideDrawer";
 import {
@@ -42,6 +43,7 @@ const App = () => {
           <Router>
             <Switch>
               <Route path="/" exact component={Sidebar} />
+              <Route path="/offerpage"  exact component={ OfferPage} />
               <Route path="/supermarket" exact component={Supermarket} />
               <Route path="/exploring" exact component={Exploring} />
               <Route path="/favorite" exact component={Favorite} />

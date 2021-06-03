@@ -1,5 +1,5 @@
 .sideNav .nav-link{
-  display: block !important;
+  display: flex !important;
   margin-right: 9px;
 }
 /* 

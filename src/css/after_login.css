@@ -69,5 +69,7 @@
     float: unset;
     left: 0;
     margin: 0 auto;
+    width: 100%;
   }
+  
 }
