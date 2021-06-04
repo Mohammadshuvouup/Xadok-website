@@ -362,7 +362,21 @@ export default function Explore(props) {
           offer.map((value, index) => (
             // return(
             // <Link key={index} to={`/Offers/${Params.shop_name}/${Params.shop_id}/${value.id}`}>
-            <Link key={index}>
+            <Link key={index}
+              to="/offerpage"
+              // to={{
+              //   pathname:
+              //     "/offerpage" +
+              //     "/" +
+              //     value.name +
+              //     "/" +
+              //     value.shop_id +
+              //     "/" +
+              //     value.cat_id +
+              //     "/",
+              // }}
+              
+            >
               <Card className="offer-item mr-4" key={index}>
                 <div className="card-image-box">
                   <Card.Img

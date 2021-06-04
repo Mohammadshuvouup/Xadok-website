@@ -1,0 +1,29 @@
+.offers-products .carousel-item img {
+    object-position: top;
+}
+.offers-products{
+    margin-bottom: 2rem;
+}
+.carousel-item img {
+    height: 100%;
+    object-fit: contain;
+}
+
+
+@media (min-width:768px){
+.offers-products .carousel-item{
+    height: 1518px;
+}
+}
+
+@media (min-width:768px) and (max-width:990px) {
+    .offers-products .carousel-item img {
+          object-fit: contain;
+    }
+}
+
+@media (max-width:767px){
+    .offers-products .carousel-item{
+        height: 790px;
+    }
+}

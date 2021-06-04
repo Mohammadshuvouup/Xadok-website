@@ -8,10 +8,13 @@ import {
     Image,
     Card,
     Button,
-    Accordion,
+  Accordion,
+  Carousel
 } from "react-bootstrap";
 import logo from "../logo/logo.svg";
-import Footer from "./footer";
+import Footer from "../Components/footer";
+import offerpageimg from "../xadok/offerspages.png";
+
 import TopBar from "./topBar";
 import ProductModal from "./product/ProductModal";
 import ProductItem from "./product/ProductItem";
@@ -24,6 +27,7 @@ import Loader from "react-loader-spinner";
 import NoProduct from "./no_product_page";
 import { Trans, useTranslation } from "react-i18next";
 import "../css/subCategory.css";
+import "../css/offers_page.css";
 import "../App.css";
 const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 const page_size = 30;
@@ -32,8 +36,47 @@ const page_size = 30;
 
 
 const OfferPage = () => {
+  const [shops, setShops] = useState([]);
+  const [loadMore, setLoadMore] = useState(true);
+  const [isOpen, setOpen] = useState(false);
+  const [isClose, setClose] = useState(false);
+  const [is_AdClose, setAdClose] = useState(false);
+  const [category, setCategory] = useState([]);
+  const [page, setPage] = useState(1);
+  const [appState, setAppState] = useState({ loading: false, res: null });
+  const [product_subcategory, setProduct_subcategory] = useState([]);
+  const [subcat_list, setsubcat_list] = useState([]);
+  let Params = useParams();
 
-    let Params = useParams();
+  const shop_Params = {
+    shop_id: "Params.shop_id",
+    user_id: "",
+  };
+
+
+  useEffect(() => {
+    axios
+      .post("https://ristsys.store/api/shopPage", shop_Params)
+      .then((response) => {
+        if (response.status === 0) {
+          setLoadMore(false);
+        }
+        localStorage.setItem(
+          "minimum_amount_for_free_shipping",
+          response.data.data.shop.minimum_amount_for_free_shipping
+        );
+        setAppState({ loading: false, res: response });
+        setShops(response.data.data.shop);
+        setCategory(response.data.data.category);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      })
+    
+  }
+  )
+
 
     const expandMenu = () => {
         if (isOpen === false) {
@@ -51,7 +94,6 @@ const OfferPage = () => {
     
       const childRef = useRef();
     const handleCustomEvent = () => {
-        // console.log("hi");
         childRef.current.reloadCartItem();
     };
 
@@ -62,14 +104,7 @@ const OfferPage = () => {
     };
 
     
-      const [isOpen, setOpen] = useState(false);
-    const [isClose, setClose] = useState(false);
-    const [is_AdClose, setAdClose] = useState(false);
-    const [category, setCategory] = useState([]);
-    const [page, setPage] = useState(1);
-    const [appState, setAppState] = useState({ loading: false, res: null });
-    const [product_subcategory, setProduct_subcategory] = useState([]);
-    const [subcat_list, setsubcat_list] = useState([]);
+    
 
       /*    ======================== DISPLAY SIDEBAR SUB CATEGORIES ======================== */
 
@@ -294,14 +329,75 @@ const OfferPage = () => {
           </div>
 
           <Col xs={10} sm={10} lg={10} fluid>
-            <TopBar
-              ref={childRef}
-              search={handleSearch}
-              shop_id={Params.shop_id}
-            />
-           
-
-          
+              <TopBar ref={childRef} search={handleSearch} shop_id={Params.shop_id} />
+              <Row>
+              <Col
+                xs={12}
+                sm={12}
+                lg={12}
+                className="explore-banner"
+                style={{
+                  background: `url( ${
+                    shops.gallery != null && shops.gallery.length > 0
+                      ? API_PREFIX_URL + shops.gallery[0].gallery_image
+                      : ""
+                  })`,
+                }}
+              >
+                {shops.shop_img != null ? (
+                  <Image src={`${API_PREFIX_URL}${shops.shop_img}`}></Image>
+                ) : (
+                  <Loader
+                    className="text-center"
+                    type="TailSpin"
+                    color="#e3424b"
+                    height={80}
+                    width={80}
+                  />
+                )}
+              </Col>
+              </Row>
+              <Row className="pl-4">
+              <h2 className="explore-sub-title mb-4">
+                Weekend Offers
+              </h2>
+              
+            </Row>
+            <Carousel className="offers-products">
+                <Carousel.Item interval={1000}>
+                  <img
+                    className="d-block w-100"
+                    src={offerpageimg}
+                    alt="First slide"
+                  />
+                  {/* <Carousel.Caption>
+                    <h3>First slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                  </Carousel.Caption> */}
+                </Carousel.Item>
+                <Carousel.Item interval={500}>
+                  <img
+                    className="d-block w-100"
+                    src={offerpageimg}
+                    alt="Second slide"
+                  />
+                  {/* <Carousel.Caption>
+                    <h3>Second slide label</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  </Carousel.Caption> */}
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={offerpageimg}
+                    alt="Third slide"
+                  />
+                  {/* <Carousel.Caption>
+                    <h3>Third slide label</h3>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                  </Carousel.Caption> */}
+                </Carousel.Item>
+              </Carousel>      
 
 
 
@@ -310,7 +406,9 @@ const OfferPage = () => {
         </Row>
            
           
-            </Container>
+        </Container>
+        <Footer/>
+        
         </React.Fragment>
 
 
