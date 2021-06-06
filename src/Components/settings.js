@@ -94,7 +94,7 @@ export default function Settings() {
         <Row>
           <SideDrawer />
 
-          <Col xs={10} sm={10} lg={10} fluid>
+          <Col xs={12} sm={12} lg={10} fluid>
             <TopBar />
 
             <h4
