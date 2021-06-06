@@ -38,6 +38,7 @@ Button:focus {
 .toast-notification {
   transform: translate(75%, 36px) !important;
 }
+
 .mainnavbartop .input-group {
   width: 100% !important;
 }
@@ -1126,8 +1127,8 @@ img {
   }
   .footer {
     font-size: 13px;
-    height: 9vh !important;
     padding-top: 2%;
+    padding-bottom: 6%;
   }
   .l {
     width: 100px !important;
@@ -1408,6 +1409,11 @@ img {
   .carousel-item {
     min-height: 166px;
   }
+
+
+    .toast-notification{
+        transform: translate(50%,36px)  !important;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {

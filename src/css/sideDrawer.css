@@ -213,8 +213,11 @@ body{
     }
     .logo{
         height:10vh !important;
-        display: none !important;
          
+      }
+
+      .home-logo{
+          display: none !important;
       }
       .logo-img{
         width:100% !important;

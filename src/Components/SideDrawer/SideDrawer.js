@@ -54,9 +54,9 @@ const SideDrawer = (props) => {
      <i className="fas fa-bars" onClick={expandMenu}></i>
   </Col> */}
       <Col xs={12} sm={12} lg={2} className="sideNav">
-        <Navbar.Brand className="pt-2 logo" style={{ width: "100%" }}>
+        <Navbar.Brand className="pt-2 logo home-logo" style={{ width: "100%" }}>
           <NavLink to="/">
-            <Image src={logo} className="logo-img" style={{ height: "10vh" }} />
+            <Image src={logo} className="logo-img " style={{ height: "10vh" }} />
           </NavLink>
         </Navbar.Brand>
         <Nav defaultActiveKey="" className="flex-column pt-4">

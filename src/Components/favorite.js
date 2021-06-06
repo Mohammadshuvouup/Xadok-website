@@ -173,7 +173,7 @@ export default function Favourite() {
         <Row>
           <SideDrawer />
 
-          <Col xs={10} sm={10} lg={10}>
+          <Col xs={12} sm={12} lg={10}>
             <TopBar ref={childRef}/>
             <Row className="mt-4 grey-bg ">
               <h3> My Favourites </h3>

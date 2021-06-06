@@ -206,7 +206,7 @@ export default function Orders() {
         <Row>
           <SideDrawer />
 
-          <Col xs={10} sm={10} lg={10} fluid>
+          <Col xs={12} sm={12} lg={10} fluid>
             <TopBar ref={childRef} shop_id={shop_id} />
 
             {/* =========== upcoming orders =========== */}

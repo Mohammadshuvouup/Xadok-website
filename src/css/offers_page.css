@@ -9,6 +9,21 @@
     object-fit: contain;
 }
 
+.offers-products .carousel-item{
+    position: relative;
+}
+
+.shoppingcart-icon{
+    background-color: #FFDD73;
+    padding: 14px 10px;
+    border-radius: 10px;
+    color: black;
+    position: absolute;
+    top: 0;
+    left: 100px;
+    cursor: pointer;
+    z-index: 9999;
+}
 
 @media (min-width:768px){
 .offers-products .carousel-item{

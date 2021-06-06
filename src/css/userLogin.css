@@ -99,6 +99,10 @@
       left: 0;
       width: 100%;
     }
+
+    .toast-notification{
+        transform: translate(0,36px)  !important;
+    }
   }
 
 

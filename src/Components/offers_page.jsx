@@ -29,6 +29,7 @@ import { Trans, useTranslation } from "react-i18next";
 import "../css/subCategory.css";
 import "../css/offers_page.css";
 import "../App.css";
+import Offer_Cart from './Modals/offer_cart_popup'
 const API_PREFIX_URL = `https://deliveryxadok.s3.us-east-2.amazonaws.com/`;
 const page_size = 30;
 
@@ -46,6 +47,12 @@ const OfferPage = () => {
   const [appState, setAppState] = useState({ loading: false, res: null });
   const [product_subcategory, setProduct_subcategory] = useState([]);
   const [subcat_list, setsubcat_list] = useState([]);
+
+  const [show_cart, setShow_cart] = useState(false);
+
+  const handleClose_cart = () => setShow_cart(false);
+  const handleShow_cart = () => setShow_cart(true);
+
   let Params = useParams();
 
   const shop_Params = {
@@ -115,7 +122,8 @@ const OfferPage = () => {
 
     return (
         
-        <React.Fragment>
+      <React.Fragment>
+        <Offer_Cart show_cart={show_cart} setShow_cart={setShow_cart} handleClose_cart={handleClose_cart} handleShow_cart={ handleClose_cart}/>
             <Container className="container-box" fluid>
             <Row>
           <Col className="menu-icon" sm={1} xs={1}>
@@ -370,21 +378,16 @@ const OfferPage = () => {
                     src={offerpageimg}
                     alt="First slide"
                   />
-                  {/* <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                  </Carousel.Caption> */}
+                  <i className="fas fa-shopping-cart shoppingcart-icon" onClick={handleShow_cart}></i>
+ 
                 </Carousel.Item>
-                <Carousel.Item interval={500}>
+                {/* <Carousel.Item interval={500}>
                   <img
                     className="d-block w-100"
                     src={offerpageimg}
                     alt="Second slide"
                   />
-                  {/* <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  </Carousel.Caption> */}
+         
                 </Carousel.Item>
                 <Carousel.Item>
                   <img
@@ -392,11 +395,7 @@ const OfferPage = () => {
                     src={offerpageimg}
                     alt="Third slide"
                   />
-                  {/* <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                  </Carousel.Caption> */}
-                </Carousel.Item>
+                </Carousel.Item> */}
               </Carousel>      
 
 
